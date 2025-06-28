@@ -3,12 +3,10 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaInfoCircle, FaFileContract, FaSignOutAlt } from "react-icons/fa";
+import { FaFileContract, FaSignOutAlt } from "react-icons/fa";
 import { AiOutlineTeam } from "react-icons/ai";
 import { MdPolicy } from "react-icons/md";
-
-
-
+import { IoIosContact } from "react-icons/io";
 
 const menuItems = [
   {
@@ -20,6 +18,17 @@ const menuItems = [
       { path: "/team-section-title", name: "Team Section Title" },
     ],
   },
+
+  {
+    path: "/contact",
+    name: "Contact",
+    icon: <IoIosContact />,
+    children: [
+      { path: "/contact-form", name: "Contact Form" },
+      { path: "/contact-data-details", name: "Contact Data Details" },
+    ],
+  },
+
   {
     path: "/private-policy",
     name: "Private Policy",

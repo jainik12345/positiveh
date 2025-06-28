@@ -34,6 +34,12 @@ const admin = require("./routes/admin");
 
 const teamSectionTitle = require("./routes/team/teamSectionTitle");
 const teamMemberName = require("./routes/team/teamMemberName");
+
+
+/**----------------------------------------------------Contact ----------------------------------------------------*/
+const contactDataDetails = require("./routes/contact/contactDataDetails");
+const contactForm = require("./routes/contact/contactForm");
+
  
 
 app.use("/admin", admin);
@@ -42,6 +48,12 @@ app.use("/admin", admin);
 /**----------------------------------------------------Team ----------------------------------------------------*/
 app.use("/team-section-title", teamSectionTitle);
 app.use("/team-member-name", teamMemberName);
+
+/**----------------------------------------------------Contact ----------------------------------------------------*/
+app.use("/contact-data-details", contactDataDetails);
+app.use("/contact-form", contactForm);
+
+
 
 
 

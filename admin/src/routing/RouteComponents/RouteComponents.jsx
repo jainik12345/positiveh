@@ -20,6 +20,9 @@ import TeamMember from './../../pages/Team/TeamMember/TeamMember';
 import TeamMemberInsert from './../../pages/Team/TeamMember/TeamMemberInsert';
 import TeamMemberUpdate from './../../pages/Team/TeamMember/TeamMemberUpdate';
 import TeamMemberTrace from './../../pages/Team/TeamMember/TeamMemberTrace';
+import ContactForm from './../../pages/ContactPage/ContactForm/ContactForm';
+import ContactFormTrace from './../../pages/ContactPage/ContactForm/ContactFormTrace';
+import ContactDataDetails from './../../pages/ContactPage/ContactDataDetails/ContactDataDetails';
 
 const RouteComponents = () => {
   return (
@@ -57,6 +60,12 @@ const RouteComponents = () => {
           <Route path="/team-member/insert" element={<TeamMemberInsert />} />
           <Route path="/team-member/update" element={<TeamMemberUpdate />} />
           <Route path="/team-member/trace" element={<TeamMemberTrace />} />
+
+          {/* -----------------------------------------------------Contact Pages----------------------------------------------------- */}
+
+          {<Route path="/contact-form" element={<ContactForm />} />}
+          {<Route path="/contact-form/trace" element={<ContactFormTrace />} />}
+          {<Route path="/contact-data-details" element={<ContactDataDetails />} />}
 
         </Route>
       </Routes>
