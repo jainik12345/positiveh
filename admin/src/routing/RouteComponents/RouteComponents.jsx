@@ -7,8 +7,10 @@ import VerifyOTP from "../../components/LoginSection/VerifyOTP";
 import ResetPassword from "../../components/LoginSection/ResetPassword";
 
 import HomePage from "../../pages/HomePage/HomePage";
-import PrivatePolicy from "./../../../../frontend/src/pages/Terms/PrivatePolicy/PrivatePolicy";
-import TermsConditions from "./../../../../frontend/src/pages/Terms/TermsConditions/TermsConditions";
+import PrivatePolicy from "../../pages/PrivatePolicy/PrivatePolicy";
+import TermsConditions from "../../pages/TermsConditions/TermsConditions";
+import PrivatePolicyInsert from "../../pages/PrivatePolicy/PrivatePolicyInsert";
+import PrivatePolicyUpdate from "../../pages/PrivatePolicy/PrivatePolicyUpdate";
 
 const RouteComponents = () => {
   return (
@@ -18,16 +20,19 @@ const RouteComponents = () => {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/verify-otp" element={<VerifyOTP />} />
         <Route path="/reset-password" element={<ResetPassword />} />
-
+    
         {/* Redirect / to /admin */}
 
         <Route path="/" element={<Navigate to="/admin" replace />} />
         <Route path="/" element={<MainLayout />}>
           {/* -----------------------------------------------------Home Pages----------------------------------------------------- */}
 
-          <Route path="/home-page" element={<HomePage />} />
+          <Route path="/home-image" element={<HomePage />} />
 
-          <Route path="priate-policy" element={<PrivatePolicy />} />
+          <Route path="private-policy" element={<PrivatePolicy />} />
+          <Route path="private-policy/insert" element={<PrivatePolicyInsert />} />
+          <Route path="private-policy/update" element={<PrivatePolicyUpdate/>} />
+          {/* <Route path="private-policy" element={<PrivatePolicy />} /> */}
           <Route path="/terms-conditions" element={<TermsConditions />} />
         </Route>
       </Routes>
