@@ -1,11 +1,7 @@
-import React from 'react'
+import RouteComponent from "./routing/RouteComponent/RouteComponent";
 
 const App = () => {
-  return (
-    <div>
-      App
-    </div>
-  )
-}
+  return <RouteComponent />;
+};
 
-export default App
+export default App;
