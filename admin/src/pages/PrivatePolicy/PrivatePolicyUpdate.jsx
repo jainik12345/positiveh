@@ -37,7 +37,7 @@ const PrivatePolicyUpdate = () => {
 
   return (
     <div
-      className="min-h-screen w-full flex items-center justify-center px-2 py-8"
+      className="w-full flex items-center justify-center px-2 py-8"
       style={{
         background: "linear-gradient(120deg, #07090c 80%, #0a183d 100%)",
       }}

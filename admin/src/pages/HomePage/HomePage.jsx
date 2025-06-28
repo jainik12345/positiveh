@@ -21,13 +21,13 @@ const HomePage = () => {
             repeatDelay: 5,
           }}
         >
-          <FaRegSmileBeam className="text-yellow-500 text-[130px] mb-6" />
+          <FaRegSmileBeam className="text-yellow-500 cursor-pointer text-[130px] mb-6" />
         </motion.div>
       </motion.div>
 
       {/* Heading */}
       <motion.h1
-        className="text-4xl md:text-5xl font-bold text-gray-800 mb-4"
+        className="text-4xl md:text-5xl font-bold text-white mb-4"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 3.3, duration: 0.8 }}
@@ -37,16 +37,16 @@ const HomePage = () => {
 
       {/* Subtext */}
       <motion.p
-        className="text-xl text-gray-600 max-w-xl"
+        className="text-xl text-white max-w-xl"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 3.6, duration: 0.8 }}
       >
         Welcome to{" "}
         <span className="font-semibold text-yellow-600">
-          Compass Tourism Admin Panel
+          Positive H. Admin Panel
         </span>
-        . We're excited to have you here!
+        . We're excited to have you here!!
       </motion.p>
     </div>
   );

@@ -54,7 +54,7 @@ const LoginPage = () => {
             text: "Welcome to Positive H.!",
           });
 
-          navigate("/priate-policy");
+          navigate("/home-image");
         }
       } catch (error) {
         Swal.fire({

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Table,
   TableBody,
@@ -9,64 +9,68 @@ import {
   Paper,
   Pagination,
 } from "@mui/material";
-import { FaEdit, FaTrash } from "react-icons/fa";
-import Add from "../../components/Buttons/Add";
-import Trace from "../../components/Buttons/Trace";
-import DeleteData from "../../components/Popup/DeleteData";
+import { FaRecycle } from "react-icons/fa";
+import Back from "../../../components/Buttons/Back";
+import RestoreData from "../../../components/Popup/RestoreData";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import BE_URL from "../../../config";
 
-// Static data for demonstration
-const STATIC_DATA = [
-  {
-    id: 1,
-    private_policy_title: "Data Collection",
-    private_policy_description:
-      "We collect data to provide better services to all our users. The data collected includes personal information, usage statistics, and cookies.",
-  },
-  {
-    id: 2,
-    private_policy_title: "Data Usage",
-    private_policy_description:
-      "Collected data is used to personalize user experience and improve our platform features.",
-  },
-  {
-    id: 3,
-    private_policy_title: "Data Sharing",
-    private_policy_description:
-      "We do not share personal data with third parties except as required by law.",
-  },
-];
-
-const PrivatePolicy = () => {
+const TeamMemberTrace = () => {
   const [page, setPage] = useState(1);
   const rowsPerPage = 10;
-  const [showDeletePopup, setShowDeletePopup] = useState(false); 
-  const data = STATIC_DATA;
+  const [data, setData] = useState([]);
+  const [showRestorePopup, setShowRestorePopup] = useState(false);
   const navigate = useNavigate();
+
+  const fetchTrashedData = async () => {
+    try {
+      const res = await axios.get(`${BE_URL}/team-member-name/trashed`);
+      const formatted = res.data.data.map((item) => ({
+        ...item,
+        imageUrl: `${BE_URL}/Images/TeamImages/TeamMemberName/${item.image}`,
+      }));
+      setData(formatted);
+    } catch (err) {
+      console.error("Error fetching trashed team members:", err);
+    }
+  };
+
+  const handleRestore = async (id) => {
+    try {
+      await axios.patch(`${BE_URL}/team-member-name/restore/${id}`);
+      setShowRestorePopup(true);
+      setTimeout(() => {
+        setShowRestorePopup(false);
+        fetchTrashedData();
+      }, 2500);
+    } catch (err) {
+      console.error("Error restoring team member:", err);
+    }
+  };
 
   const displayedRows = data.slice(
     (page - 1) * rowsPerPage,
     page * rowsPerPage
   );
 
-  const HandleAddBtn = () => {
-    navigate("/private-policy/insert");
+  const handleBackClick = () => {
+    navigate("/team-member");
   };
 
-  const HandleEditBtn = () => {
-    navigate("/private-policy/update");
-  };
+  useEffect(() => {
+    fetchTrashedData();
+  }, []);
 
-  // Very dark theme with subtle blue highlights
   return (
     <div
-      className=" w-full px-2 py-8 flex items-center justify-center"
+      className="w-full px-2 py-8 flex items-center justify-center"
       style={{
         background: "linear-gradient(120deg, #07090c 80%, #0a183d 100%)",
       }}
     >
-      {showDeletePopup && (
-        <DeleteData onClose={() => setShowDeletePopup(false)} />
+      {showRestorePopup && (
+        <RestoreData onClose={() => setShowRestorePopup(false)} />
       )}
 
       <div
@@ -78,12 +82,13 @@ const PrivatePolicy = () => {
         }}
       >
         <div className="flex justify-between items-center mb-7">
-          <Trace onClick={() => alert("Trace clicked!")} />
-          <Add
-            text="Add Private Policy"
-            width="w-[200px]"
-            onClick={HandleAddBtn}
-          />
+          <h2
+            className="text-left font-semibold text-xl"
+            style={{ color: "#5186c9" }}
+          >
+            Team Members Trace
+          </h2>
+          <Back onClick={handleBackClick} />
         </div>
 
         <div className="h-[2px] mb-8 w-full rounded bg-gradient-to-r from-[#263859]/70 via-[#101a2d]/90 to-[#263859]/70" />
@@ -122,7 +127,37 @@ const PrivatePolicy = () => {
                     background: "rgba(16, 26, 45, 0.30)",
                   }}
                 >
+                  Name
+                </TableCell>
+                <TableCell
+                  className="!font-bold text-base"
+                  style={{
+                    color: "#5186c9",
+                    borderRight: "1.5px solid #192e4d",
+                    background: "rgba(16, 26, 45, 0.30)",
+                  }}
+                >
+                  Position
+                </TableCell>
+                <TableCell
+                  className="!font-bold text-base"
+                  style={{
+                    color: "#5186c9",
+                    borderRight: "1.5px solid #192e4d",
+                    background: "rgba(16, 26, 45, 0.30)",
+                  }}
+                >
                   Title
+                </TableCell>
+                <TableCell
+                  className="!font-bold text-base"
+                  style={{
+                    color: "#5186c9",
+                    borderRight: "1.5px solid #192e4d",
+                    background: "rgba(16, 26, 45, 0.30)",
+                  }}
+                >
+                  Heading
                 </TableCell>
                 <TableCell
                   className="!font-bold text-base"
@@ -138,10 +173,20 @@ const PrivatePolicy = () => {
                   className="!font-bold text-base"
                   style={{
                     color: "#5186c9",
+                    borderRight: "1.5px solid #192e4d",
                     background: "rgba(16, 26, 45, 0.30)",
                   }}
                 >
-                  Action
+                  Image
+                </TableCell>
+                <TableCell
+                  className="!font-bold text-base"
+                  style={{
+                    color: "#5186c9",
+                    background: "rgba(16, 26, 45, 0.30)",
+                  }}
+                >
+                  Restore
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -172,7 +217,34 @@ const PrivatePolicy = () => {
                       borderRight: "1.2px solid #192e4d",
                     }}
                   >
-                    {row.private_policy_title}
+                    {row.name}
+                  </TableCell>
+                  <TableCell
+                    className="font-medium text-left"
+                    style={{
+                      color: "#b2c7e5",
+                      borderRight: "1.2px solid #192e4d",
+                    }}
+                  >
+                    {row.position}
+                  </TableCell>
+                  <TableCell
+                    className="font-medium text-left"
+                    style={{
+                      color: "#b2c7e5",
+                      borderRight: "1.2px solid #192e4d",
+                    }}
+                  >
+                    {row.title}
+                  </TableCell>
+                  <TableCell
+                    className="font-medium text-left"
+                    style={{
+                      color: "#b2c7e5",
+                      borderRight: "1.2px solid #192e4d",
+                    }}
+                  >
+                    {row.heading}
                   </TableCell>
                   <TableCell
                     className="text-left"
@@ -183,36 +255,29 @@ const PrivatePolicy = () => {
                       whiteSpace: "pre-wrap",
                     }}
                   >
-                    {row.private_policy_description}
+                    {row.description}
                   </TableCell>
-                  <TableCell className="text-left">
-                    <div className="flex space-x-6">
-                      <button
-                        style={{
-                          color: "#3c82e6",
-                          border: "none",
-                          background: "none",
-                          filter: "drop-shadow(0 0 4px #5186c955)",
-                        }}
-                        onClick={HandleEditBtn}
-                        title="Edit"
-                      >
-                        <FaEdit size={22} />
-                      </button>
-                      <button
-                        className="hover:scale-110 transition"
-                        style={{
-                          color: "#e53935",
-                          border: "none",
-                          background: "none",
-                          filter: "drop-shadow(0 0 4px #e5393544)",
-                        }}
-                        onClick={() => setShowDeletePopup(true)}
-                        title="Delete"
-                      >
-                        <FaTrash size={22} />
-                      </button>
-                    </div>
+                  <TableCell
+                    className="text-left"
+                    style={{
+                      color: "#e3eafc",
+                      borderRight: "1.2px solid #192e4d",
+                    }}
+                  >
+                    <img
+                      src={row.imageUrl}
+                      alt="Team Member"
+                      className="w-16 h-16 object-cover rounded"
+                    />
+                  </TableCell>
+                  <TableCell>
+                    <button
+                      className="text-blue-600 cursor-pointer hover:text-blue-800"
+                      onClick={() => handleRestore(row.id)}
+                      title="Restore"
+                    >
+                      <FaRecycle size={22} />
+                    </button>
                   </TableCell>
                 </TableRow>
               ))}
@@ -252,4 +317,4 @@ const PrivatePolicy = () => {
   );
 };
 
-export default PrivatePolicy;
+export default TeamMemberTrace;

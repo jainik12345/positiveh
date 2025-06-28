@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import BE_URL from "../../../config";
 import {
   Table,
   TableBody,
@@ -10,57 +12,66 @@ import {
   Pagination,
 } from "@mui/material";
 import { FaEdit, FaTrash } from "react-icons/fa";
-import Add from "../../components/Buttons/Add";
-import Trace from "../../components/Buttons/Trace";
-import DeleteData from "../../components/Popup/DeleteData";
 import { useNavigate } from "react-router-dom";
+import Add from "../../../components/Buttons/Add";
+import Trace from "../../../components/Buttons/Trace";
+import DeleteData from "../../../components/Popup/DeleteData";
 
-// Static data for demonstration
-const STATIC_DATA = [
-  {
-    id: 1,
-    private_policy_title: "Data Collection",
-    private_policy_description:
-      "We collect data to provide better services to all our users. The data collected includes personal information, usage statistics, and cookies.",
-  },
-  {
-    id: 2,
-    private_policy_title: "Data Usage",
-    private_policy_description:
-      "Collected data is used to personalize user experience and improve our platform features.",
-  },
-  {
-    id: 3,
-    private_policy_title: "Data Sharing",
-    private_policy_description:
-      "We do not share personal data with third parties except as required by law.",
-  },
-];
-
-const PrivatePolicy = () => {
+const TeamMember = () => {
+  const [members, setMembers] = useState([]);
   const [page, setPage] = useState(1);
+  const [showDeletePopup, setShowDeletePopup] = useState(false);
   const rowsPerPage = 10;
-  const [showDeletePopup, setShowDeletePopup] = useState(false); 
-  const data = STATIC_DATA;
   const navigate = useNavigate();
 
-  const displayedRows = data.slice(
+  const fetchMembers = async () => {
+    try {
+      const res = await axios.get(`${BE_URL}/team-member-name`);
+      const formatted = res.data.data.map((item) => ({
+        ...item,
+        imageUrl: `${BE_URL}/Images/TeamImages/TeamMemberName/${item.image}`,
+      }));
+      setMembers(formatted);
+    } catch (err) {
+      console.error("Error fetching team members:", err);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`${BE_URL}/team-member-name/${id}`);
+      setShowDeletePopup(true);
+      setTimeout(() => {
+        setShowDeletePopup(false);
+        fetchMembers();
+      }, 2500);
+    } catch (err) {
+      console.error("Delete failed", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchMembers();
+  }, []);
+
+  const displayedRows = members.slice(
     (page - 1) * rowsPerPage,
     page * rowsPerPage
   );
 
   const HandleAddBtn = () => {
-    navigate("/private-policy/insert");
+    navigate("/team-member/insert");
   };
 
-  const HandleEditBtn = () => {
-    navigate("/private-policy/update");
+  const HandleEditBtn = (row) => {
+    navigate("/team-member/update", {
+      state: { rowData: row },
+    });
   };
 
-  // Very dark theme with subtle blue highlights
   return (
     <div
-      className=" w-full px-2 py-8 flex items-center justify-center"
+      className="w-full px-2 py-8 flex items-center justify-center"
       style={{
         background: "linear-gradient(120deg, #07090c 80%, #0a183d 100%)",
       }}
@@ -68,7 +79,6 @@ const PrivatePolicy = () => {
       {showDeletePopup && (
         <DeleteData onClose={() => setShowDeletePopup(false)} />
       )}
-
       <div
         className="w-full max-w-screen-xl rounded-2xl p-7"
         style={{
@@ -78,9 +88,9 @@ const PrivatePolicy = () => {
         }}
       >
         <div className="flex justify-between items-center mb-7">
-          <Trace onClick={() => alert("Trace clicked!")} />
+          <Trace onClick={() => navigate("/team-member/trace")} />
           <Add
-            text="Add Private Policy"
+            text="Add Team Member"
             width="w-[200px]"
             onClick={HandleAddBtn}
           />
@@ -122,6 +132,26 @@ const PrivatePolicy = () => {
                     background: "rgba(16, 26, 45, 0.30)",
                   }}
                 >
+                  Name
+                </TableCell>
+                <TableCell
+                  className="!font-bold text-base"
+                  style={{
+                    color: "#5186c9",
+                    borderRight: "1.5px solid #192e4d",
+                    background: "rgba(16, 26, 45, 0.30)",
+                  }}
+                >
+                  Position
+                </TableCell>
+                <TableCell
+                  className="!font-bold text-base"
+                  style={{
+                    color: "#5186c9",
+                    borderRight: "1.5px solid #192e4d",
+                    background: "rgba(16, 26, 45, 0.30)",
+                  }}
+                >
                   Title
                 </TableCell>
                 <TableCell
@@ -132,7 +162,27 @@ const PrivatePolicy = () => {
                     background: "rgba(16, 26, 45, 0.30)",
                   }}
                 >
+                  Heading
+                </TableCell>
+                <TableCell
+                  className="!font-bold text-base"
+                  style={{
+                    color: "#5186c9",
+                    borderRight: "1.5px solid #192e4d",
+                    background: "rgba(16, 26, 45, 0.30)",
+                  }}
+                >
                   Description
+                </TableCell>
+                <TableCell
+                  className="!font-bold text-base"
+                  style={{
+                    color: "#5186c9",
+                    borderRight: "1.5px solid #192e4d",
+                    background: "rgba(16, 26, 45, 0.30)",
+                  }}
+                >
+                  Image
                 </TableCell>
                 <TableCell
                   className="!font-bold text-base"
@@ -172,7 +222,34 @@ const PrivatePolicy = () => {
                       borderRight: "1.2px solid #192e4d",
                     }}
                   >
-                    {row.private_policy_title}
+                    {row.name}
+                  </TableCell>
+                  <TableCell
+                    className="font-medium text-left"
+                    style={{
+                      color: "#b2c7e5",
+                      borderRight: "1.2px solid #192e4d",
+                    }}
+                  >
+                    {row.position}
+                  </TableCell>
+                  <TableCell
+                    className="font-medium text-left"
+                    style={{
+                      color: "#b2c7e5",
+                      borderRight: "1.2px solid #192e4d",
+                    }}
+                  >
+                    {row.title}
+                  </TableCell>
+                  <TableCell
+                    className="font-medium text-left"
+                    style={{
+                      color: "#b2c7e5",
+                      borderRight: "1.2px solid #192e4d",
+                    }}
+                  >
+                    {row.heading}
                   </TableCell>
                   <TableCell
                     className="text-left"
@@ -183,7 +260,20 @@ const PrivatePolicy = () => {
                       whiteSpace: "pre-wrap",
                     }}
                   >
-                    {row.private_policy_description}
+                    {row.description}
+                  </TableCell>
+                  <TableCell
+                    className="text-left"
+                    style={{
+                      color: "#e3eafc",
+                      borderRight: "1.2px solid #192e4d",
+                    }}
+                  >
+                    <img
+                      src={row.imageUrl}
+                      alt="Team Member"
+                      className="w-16 h-16 object-cover rounded"
+                    />
                   </TableCell>
                   <TableCell className="text-left">
                     <div className="flex space-x-6">
@@ -194,7 +284,7 @@ const PrivatePolicy = () => {
                           background: "none",
                           filter: "drop-shadow(0 0 4px #5186c955)",
                         }}
-                        onClick={HandleEditBtn}
+                        onClick={() => HandleEditBtn(row)}
                         title="Edit"
                       >
                         <FaEdit size={22} />
@@ -207,7 +297,7 @@ const PrivatePolicy = () => {
                           background: "none",
                           filter: "drop-shadow(0 0 4px #e5393544)",
                         }}
-                        onClick={() => setShowDeletePopup(true)}
+                        onClick={() => handleDelete(row.id)}
                         title="Delete"
                       >
                         <FaTrash size={22} />
@@ -227,7 +317,7 @@ const PrivatePolicy = () => {
             }}
           >
             <Pagination
-              count={Math.ceil(data.length / rowsPerPage)}
+              count={Math.ceil(members.length / rowsPerPage)}
               page={page}
               onChange={(e, value) => setPage(value)}
               color="primary"
@@ -252,4 +342,4 @@ const PrivatePolicy = () => {
   );
 };
 
-export default PrivatePolicy;
+export default TeamMember;

@@ -28,12 +28,33 @@ app.get("/", (req, res) => {
 /**Call Routes.. */
 
 const admin = require("./routes/admin");
+
+
+/**----------------------------------------------------Team ----------------------------------------------------*/
+
+const teamSectionTitle = require("./routes/team/teamSectionTitle");
+const teamMemberName = require("./routes/team/teamMemberName");
  
 
 app.use("/admin", admin);
- 
- 
- 
+
+
+/**----------------------------------------------------Team ----------------------------------------------------*/
+app.use("/team-section-title", teamSectionTitle);
+app.use("/team-member-name", teamMemberName);
+
+
+
+
+// Static Images
+/**--------------------------------------------------Home-------------------------------------------------- */
+app.use(
+  "/Images/TeamImages/TeamMemberName",
+  express.static(path.join(__dirname, "Images/TeamImages/TeamMemberName"))
+);
+
+
+
 
 /**---------------Start Server ---------------*/
 app.listen(port, () => {
