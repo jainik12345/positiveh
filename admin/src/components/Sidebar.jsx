@@ -29,6 +29,15 @@ const menuItems = [
     ],
   },
 
+    {
+    path: "/career",
+    name: "Career",
+    icon: <IoIosContact />,
+    children: [
+      { path: "/career-opportunities", name: "Career Opportunities" }, 
+    ],
+  },
+
   {
     path: "/private-policy",
     name: "Private Policy",

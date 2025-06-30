@@ -29,21 +29,20 @@ app.get("/", (req, res) => {
 
 const admin = require("./routes/admin");
 
-
 /**----------------------------------------------------Team ----------------------------------------------------*/
 
 const teamSectionTitle = require("./routes/team/teamSectionTitle");
 const teamMemberName = require("./routes/team/teamMemberName");
 
-
 /**----------------------------------------------------Contact ----------------------------------------------------*/
 const contactDataDetails = require("./routes/contact/contactDataDetails");
 const contactForm = require("./routes/contact/contactForm");
 
- 
+/**----------------------------------------------------Career ----------------------------------------------------*/
+
+const careerOpportunities = require("./routes/career/careerOpportunities");
 
 app.use("/admin", admin);
-
 
 /**----------------------------------------------------Team ----------------------------------------------------*/
 app.use("/team-section-title", teamSectionTitle);
@@ -53,10 +52,9 @@ app.use("/team-member-name", teamMemberName);
 app.use("/contact-data-details", contactDataDetails);
 app.use("/contact-form", contactForm);
 
+/**----------------------------------------------------Career ----------------------------------------------------*/
 
-
-
-
+app.use("/careerOpportunities", careerOpportunities);
 
 // Static Images
 /**--------------------------------------------------Home-------------------------------------------------- */
@@ -65,8 +63,12 @@ app.use(
   express.static(path.join(__dirname, "Images/TeamImages/TeamMemberName"))
 );
 
-
-
+app.use(
+  "/Images/CareerImages/CareerOpportunities",
+  express.static(
+    path.join(__dirname, "Images/CareerImages/CareerOpportunities")
+  )
+);
 
 /**---------------Start Server ---------------*/
 app.listen(port, () => {
