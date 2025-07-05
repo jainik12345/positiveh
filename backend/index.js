@@ -29,6 +29,10 @@ app.get("/", (req, res) => {
 
 const admin = require("./routes/admin");
 
+/**----------------------------------------------------Home ----------------------------------------------------*/
+
+const homeOurTeam = require("./routes/home/homeOurTeam");
+
 /**----------------------------------------------------Team ----------------------------------------------------*/
 
 const teamSectionTitle = require("./routes/team/teamSectionTitle");
@@ -43,6 +47,10 @@ const contactForm = require("./routes/contact/contactForm");
 const careerOpportunities = require("./routes/career/careerOpportunities");
 
 app.use("/admin", admin);
+
+/**----------------------------------------------------Home ----------------------------------------------------*/
+
+app.use("/homeOurTeam", homeOurTeam);
 
 /**----------------------------------------------------Team ----------------------------------------------------*/
 app.use("/team-section-title", teamSectionTitle);

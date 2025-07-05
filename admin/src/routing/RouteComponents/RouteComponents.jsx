@@ -27,6 +27,14 @@ import CareerOpportunities from "../../pages/CareerPage/CareerOpportunities/Care
 import CareerOpportunitiesInsert from "../../pages/CareerPage/CareerOpportunities/CareerOpportunitiesInsert";
 import CareerOpportunitiesUpdate from "../../pages/CareerPage/CareerOpportunities/CareerOpportunitiesUpdate";
 import CareerOpportunitiesTrace from "../../pages/CareerPage/CareerOpportunities/CareerOpportunitiesTrace";
+import HomeOurTeam from "../../pages/HomePage/HomeOurTeam/HomeOurTeam";
+import HomeOurTeamInsert from "../../pages/HomePage/HomeOurTeam/HomeOurTeamInsert";
+import HomeOurTeamUpdate from "../../pages/HomePage/HomeOurTeam/HomeOurTeamUpdate";
+import HomeOurTeamTrace from "../../pages/HomePage/HomeOurTeam/HomeOurTeamTrace";
+import HomeOurPortfolio from "../../pages/HomePage/HomeOurPortfolio/HomeOurPortfolio";
+import HomeOurPortfolioInsert from "../../pages/HomePage/HomeOurPortfolio/HomeOurPortfolioInsert";
+import HomeOurPortfolioUpdate from "../../pages/HomePage/HomeOurPortfolio/HomeOurPortfolioUpdate";
+import HomeOurPortfolioTrace from "../../pages/HomePage/HomeOurPortfolio/HomeOurPortfolioTrace";
 
 const RouteComponents = () => {
   return (
@@ -44,6 +52,24 @@ const RouteComponents = () => {
           {/* -----------------------------------------------------Home Pages----------------------------------------------------- */}
 
           <Route path="/home-image" element={<HomePage />} />
+
+
+          <Route path="/home-our-team" element={<HomeOurTeam/>} />
+          <Route path="/home-our-team/insert" element={<HomeOurTeamInsert/>} />
+          <Route path="/home-our-team/update" element={<HomeOurTeamUpdate/>} />
+          <Route path="/home-our-team/trace" element={<HomeOurTeamTrace/>} />
+
+          <Route path="/home-our-portfolio" element={<HomeOurPortfolio/>} />
+          <Route path="/home-our-portfolio/insert" element={<HomeOurPortfolioInsert/>} />
+          <Route path="/home-our-portfolio/update" element={<HomeOurPortfolioUpdate/>} />
+          <Route path="/home-our-portfolio/trace" element={<HomeOurPortfolioTrace/>} />
+
+
+
+          {/* -----------------------------------------------------Terms----------------------------------------------------- */}
+
+
+
 
           <Route path="private-policy" element={<PrivatePolicy />} />
           <Route path="private-policy/insert" element={<PrivatePolicyInsert />} />

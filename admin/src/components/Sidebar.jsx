@@ -6,9 +6,19 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaFileContract, FaSignOutAlt } from "react-icons/fa";
 import { AiOutlineTeam } from "react-icons/ai";
 import { MdPolicy } from "react-icons/md";
-import { IoIosContact } from "react-icons/io";
+import { IoIosHome, IoIosContact } from "react-icons/io";
 
 const menuItems = [
+  {
+    path: "/home",
+    name: "Home",
+    icon: <IoIosHome />,
+    children: [
+      { path: "/home-our-team", name: "Home Our Team" },
+      { path: "/home-our-portfolio", name: "Home Our Portfolio" },
+    ],
+  },
+
   {
     path: "/team",
     name: "Team",
@@ -29,13 +39,11 @@ const menuItems = [
     ],
   },
 
-    {
+  {
     path: "/career",
     name: "Career",
     icon: <IoIosContact />,
-    children: [
-      { path: "/career-opportunities", name: "Career Opportunities" }, 
-    ],
+    children: [{ path: "/career-opportunities", name: "Career Opportunities" }],
   },
 
   {
