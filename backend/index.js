@@ -32,6 +32,7 @@ const admin = require("./routes/admin");
 /**----------------------------------------------------Home ----------------------------------------------------*/
 
 const homeOurTeam = require("./routes/home/homeOurTeam");
+const homeOurPortfolio = require("./routes/home/homeOurPortfolio");
 
 /**----------------------------------------------------Team ----------------------------------------------------*/
 
@@ -51,6 +52,7 @@ app.use("/admin", admin);
 /**----------------------------------------------------Home ----------------------------------------------------*/
 
 app.use("/homeOurTeam", homeOurTeam);
+app.use("/homeOurPortfolio", homeOurPortfolio);
 
 /**----------------------------------------------------Team ----------------------------------------------------*/
 app.use("/team-section-title", teamSectionTitle);
@@ -76,6 +78,11 @@ app.use(
   express.static(
     path.join(__dirname, "Images/CareerImages/CareerOpportunities")
   )
+);
+
+app.use(
+  "/Images/HomeImages/HomeOurPortfolio",
+  express.static(path.join(__dirname, "Images/HomeImages/HomeOurPortfolio"))
 );
 
 /**---------------Start Server ---------------*/
