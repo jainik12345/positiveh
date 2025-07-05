@@ -23,6 +23,10 @@ import TeamMemberTrace from './../../pages/Team/TeamMember/TeamMemberTrace';
 import ContactForm from './../../pages/ContactPage/ContactForm/ContactForm';
 import ContactFormTrace from './../../pages/ContactPage/ContactForm/ContactFormTrace';
 import ContactDataDetails from './../../pages/ContactPage/ContactDataDetails/ContactDataDetails';
+import CareerOpportunities from "../../pages/CareerPage/CareerOpportunities/CareerOpportunities";
+import CareerOpportunitiesInsert from "../../pages/CareerPage/CareerOpportunities/CareerOpportunitiesInsert";
+import CareerOpportunitiesUpdate from "../../pages/CareerPage/CareerOpportunities/CareerOpportunitiesUpdate";
+import CareerOpportunitiesTrace from "../../pages/CareerPage/CareerOpportunities/CareerOpportunitiesTrace";
 
 const RouteComponents = () => {
   return (
@@ -66,6 +70,20 @@ const RouteComponents = () => {
           {<Route path="/contact-form" element={<ContactForm />} />}
           {<Route path="/contact-form/trace" element={<ContactFormTrace />} />}
           {<Route path="/contact-data-details" element={<ContactDataDetails />} />}
+
+
+
+          {/* -----------------------------------------------------Career----------------------------------------------------- */}
+
+
+
+          <Route path="/career-opportunities" element={<CareerOpportunities/>} />
+          <Route path="/career-opportunities/insert" element={<CareerOpportunitiesInsert/>} />
+          <Route path="/career-opportunities/update" element={<CareerOpportunitiesUpdate/>} />
+          <Route path="/career-opportunities/trace" element={<CareerOpportunitiesTrace/>} />
+
+
+
 
         </Route>
       </Routes>
