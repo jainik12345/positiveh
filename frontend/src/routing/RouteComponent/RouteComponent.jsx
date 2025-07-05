@@ -9,13 +9,14 @@ import PrivatePolicy from "../../pages/PrivatePolicyPage/PrivatePolicyPage";
 import PortfolioPage from "../../pages/PortfolioPage/PortfolioPage";
 import CareersPage from "../../pages/CareersPage/CareersPage";
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
+import TermsConditionsPage from "../../pages/TermsConditionPage/TermsConditionPage";
 
 const WebsitePage = ({ children }) => {
   return (
     <>
       <Header />
       {children}
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };
@@ -101,9 +102,20 @@ const RouteComponent = () => {
             </WebsitePage>
           }
         />
+
+        {/* Terms & Conditions */}
+
+        <Route
+          path="/terms-conditions"
+          element={
+            <WebsitePage>
+              <TermsConditionsPage />
+            </WebsitePage>
+          }
+        />
       </Routes>
     </>
   );
 };
-
+    
 export default RouteComponent;

@@ -1,11 +1,17 @@
-import React from 'react'
+import ContactUsPageBanner from "./ContactUsPageBanner/ContactUsPageBanner";
+import ContactUsPageContactDetailsSection from "./ContactUsPageContactDetailsSection/ContactUsPageContactDetailsSection";
+import ContactUsPageContactFormSection from "./ContactUsPageContactFormSection/ContactUsPageContactFormSection";
+import ContactUsPageMapSection from "./ContactUsPageMapSection/ContactUsPageMapSection";
 
 const ContactUsPage = () => {
   return (
-    <div>
-      ContactUsPage
-    </div>
-  )
-}
+    <>
+      <ContactUsPageBanner />
+      <ContactUsPageContactDetailsSection />
+      <ContactUsPageContactFormSection />
+      <ContactUsPageMapSection />
+    </>
+  );
+};
 
-export default ContactUsPage
+export default ContactUsPage;

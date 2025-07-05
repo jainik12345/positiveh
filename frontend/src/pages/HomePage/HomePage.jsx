@@ -1,11 +1,15 @@
-import React from 'react'
+import HomePageHeroSection from "./HomePageHeroSection/HomePageHeroSection";
+import HomePageOurPortfolioSection from "./HomePageOurPortfolioSection/HomePageOurPortfolioSection";
+import HomePageInfoSection from "./HomePageInfoSection/HomePageInfoSection";
 
 const HomePage = () => {
   return (
-    <div>
-      HomePage
-    </div>
-  )
-}
+    <>
+      <HomePageHeroSection />
+      <HomePageOurPortfolioSection />
+      <HomePageInfoSection />
+    </>
+  );
+};
 
-export default HomePage
+export default HomePage;

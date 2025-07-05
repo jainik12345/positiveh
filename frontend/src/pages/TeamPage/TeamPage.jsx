@@ -1,11 +1,17 @@
-import React from 'react'
+import TeamPageBannerSection from "./TeamPageBannerSection/TeamPageBannerSection";
+import TeamPageQuoteSection from "./TeamPageQuoteSection/TeamPageQuoteSection";
+import TeamPageMembersDetailsSection from "./TeamPageMembersDetailsSection/TeamPageMembersDetailsSection";
+import TeamPageRedirectContactUsSection from "./TeamPageRedirectContactUsSection/TeamPageRedirectContactUsSection";
 
 const TeamPage = () => {
   return (
-    <div>
-      
-    </div>
-  )
-}
+    <>
+      <TeamPageBannerSection />
+      <TeamPageQuoteSection />
+      <TeamPageMembersDetailsSection />
+      <TeamPageRedirectContactUsSection />
+    </>
+  );
+};
 
-export default TeamPage
+export default TeamPage;
