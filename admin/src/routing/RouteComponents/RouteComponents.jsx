@@ -52,7 +52,7 @@ const RouteComponents = () => {
         <Route path="/" element={<MainLayout />}>
           {/* -----------------------------------------------------Home Pages----------------------------------------------------- */}
 
-          <Route path="/home-image" element={<HomePage />} />
+          <Route path="/home-page" element={<HomePage />} />
 
 
           <Route path="/home-our-team" element={<HomeOurTeam/>} /> 
