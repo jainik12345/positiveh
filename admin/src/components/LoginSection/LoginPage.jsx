@@ -53,7 +53,7 @@ const LoginPage = () => {
             text: "Welcome to Compass Tourism!",
           });
 
-          navigate("/home-page");
+          navigate("/home-image");
         }
       } catch (error) {
         Swal.fire({
