@@ -6,12 +6,8 @@ import ForgotPassword from "../../components/LoginSection/ForgotPassword";
 import VerifyOTP from "../../components/LoginSection/VerifyOTP";
 import ResetPassword from "../../components/LoginSection/ResetPassword";
 
-import HomePage from "../../pages/HomePage/HomePage";
-import PrivatePolicy from "../../pages/PrivatePolicy/PrivatePolicy";
+import HomePage from "../../pages/HomePage/HomePage"; 
 import TermsConditions from "../../pages/TermsConditions/TermsConditions";
-import PrivatePolicyInsert from "../../pages/PrivatePolicy/PrivatePolicyInsert";
-import PrivatePolicyUpdate from "../../pages/PrivatePolicy/PrivatePolicyUpdate";
-import PrivatePolicyTrace from "../../pages/PrivatePolicy/PrivatePolicyTrace";
 import TermsConditionsInsert from "../../pages/TermsConditions/TermsConditionsInsert";
 import TermsConditionsUpdate from "../../pages/TermsConditions/TermsConditionsUpdate";
 import TermsConditionsTrace from "../../pages/TermsConditions/TermsConditionsTrace";
@@ -36,6 +32,18 @@ import CareerMoreInfo from "../../pages/CareerPage/CareerMoreInfo/CareerMoreInfo
 import CareerMoreInfoInsert from './../../pages/CareerPage/CareerMoreInfo/CareerMoreInfoInsert';
 import CareerMoreInfoUpdate from './../../pages/CareerPage/CareerMoreInfo/CareerMoreInfoUpdate';
 import CareerMoreInfoTrace from './../../pages/CareerPage/CareerMoreInfo/CareerMoreInfoTrace';
+import HomeImageSlider from './../../pages/HomePage/HomeImageSlider/HomeImageSlider';
+import HomeImageSliderInsert from './../../pages/HomePage/HomeImageSlider/HomeImageSliderInsert';
+import HomeImageSliderUpdate from './../../pages/HomePage/HomeImageSlider/HomeImageSliderUpdate';
+import HomeImageSliderTrace from './../../pages/HomePage/HomeImageSlider/HomeImageSliderTrace';
+import HomeAboutHotelSection from "../../pages/HomePage/HomeAboutHotelSection/HomeAboutHotelSection";
+import HomeAboutHotelSectionInsert from "../../pages/HomePage/HomeAboutHotelSection/HomeAboutHotelSectionInsert";
+import HomeAboutHotelSectionUpdate from "../../pages/HomePage/HomeAboutHotelSection/HomeAboutHotelSectionUpdate";
+import HomeAboutHotelSectionTrace from "../../pages/HomePage/HomeAboutHotelSection/HomeAboutHotelSectionTrace";
+import PrivatePolicy from '../../pages/PrivatePolicy/PrivatePolicy';
+import PrivatePolicyInsert from "../../pages/PrivatePolicy/PrivatePolicyInsert";
+import PrivatePolicyUpdate from "../../pages/PrivatePolicy/PrivatePolicyUpdate";
+import PrivatePolicyTrace from './../../pages/PrivatePolicy/PrivatePolicyTrace';
 
 const RouteComponents = () => {
   return (
@@ -64,15 +72,27 @@ const RouteComponents = () => {
 
 
 
+          <Route path="/home-image-slider" element={<HomeImageSlider/>} />
+          <Route path="/home-image-slider/insert" element={<HomeImageSliderInsert/>} />
+          <Route path="/home-image-slider/update" element={<HomeImageSliderUpdate/>} />
+          <Route path="/home-image-slider/trace" element={<HomeImageSliderTrace/>} />
+
+          <Route path="/home-about-hotel-section" element={<HomeAboutHotelSection/>} />
+          <Route path="/home-about-hotel-section/insert" element={<HomeAboutHotelSectionInsert/>} />
+          <Route path="/home-about-hotel-section/update" element={<HomeAboutHotelSectionUpdate/>} />
+          <Route path="/home-about-hotel-section/trace" element={<HomeAboutHotelSectionTrace/>} />
+
+
+
           {/* -----------------------------------------------------Terms----------------------------------------------------- */}
 
 
 
 
-          <Route path="private-policy" element={<PrivatePolicy />} />
-          <Route path="private-policy/insert" element={<PrivatePolicyInsert />} />
-          <Route path="private-policy/update" element={<PrivatePolicyUpdate/>} />
-          <Route path="private-policy/trace" element={<PrivatePolicyTrace />} />
+          <Route path="/private-policy" element={<PrivatePolicy />} />
+          <Route path="/private-policy/insert" element={<PrivatePolicyInsert />} />
+          <Route path="/private-policy/update" element={<PrivatePolicyUpdate/>} />
+          <Route path="/private-policy/trace" element={<PrivatePolicyTrace />} />
 
 
           <Route path="/terms-conditions" element={<TermsConditions />} />

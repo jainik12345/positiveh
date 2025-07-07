@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import BE_URL from "../../config";
+import BE_URL from "../../../config";
 import {
   Table,
   TableBody,
@@ -13,33 +13,37 @@ import {
 } from "@mui/material";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import Add from "../../components/Buttons/Add";
-import Trace from "../../components/Buttons/Trace";
-import DeleteData from "../../components/Popup/DeleteData";
+import Add from "../../../components/Buttons/Add";
+import Trace from "../../../components/Buttons/Trace";
+import DeleteData from "../../../components/Popup/DeleteData";
 
-const PrivatePolicy = () => {
-  const [items, setItems] = useState([]);
+const HomeImageSlider = () => {
+  const [sliders, setSliders] = useState([]);
   const [page, setPage] = useState(1);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const rowsPerPage = 10;
   const navigate = useNavigate();
 
-  const fetchItems = async () => {
+  const fetchSliders = async () => {
     try {
-      const res = await axios.get(`${BE_URL}/privatePolicy`);
-      setItems(res.data.data);
+      const res = await axios.get(`${BE_URL}/homeImageSlider`);
+      const formatted = res.data.data.map((item) => ({
+        ...item,
+        imageUrl: `${BE_URL}/Images/HomeImages/HomeImageSlider/${item.image}`,
+      }));
+      setSliders(formatted);
     } catch (err) {
-      console.error("Error fetching private policy:", err);
+      console.error("Error fetching slider images:", err);
     }
   };
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`${BE_URL}/privatePolicy/${id}`);
+      await axios.delete(`${BE_URL}/homeImageSlider/${id}`);
       setShowDeletePopup(true);
       setTimeout(() => {
         setShowDeletePopup(false);
-        fetchItems();
+        fetchSliders();
       }, 2500);
     } catch (err) {
       console.error("Delete failed", err);
@@ -47,20 +51,20 @@ const PrivatePolicy = () => {
   };
 
   useEffect(() => {
-    fetchItems();
+    fetchSliders();
   }, []);
 
-  const displayedRows = items.slice(
+  const displayedRows = sliders.slice(
     (page - 1) * rowsPerPage,
     page * rowsPerPage
   );
 
   const HandleAddBtn = () => {
-    navigate("/private-policy/insert");
+    navigate("/home-image-slider/insert");
   };
 
   const HandleEditBtn = (row) => {
-    navigate("/private-policy/update", {
+    navigate("/home-image-slider/update", {
       state: { rowData: row },
     });
   };
@@ -84,9 +88,9 @@ const PrivatePolicy = () => {
         }}
       >
         <div className="flex justify-between items-center mb-7">
-          <Trace onClick={() => navigate("/private-policy/trace")} />
+          <Trace onClick={() => navigate("/home-image-slider/trace")} />
           <Add
-            text="Add Private Policy"
+            text="Add Slider Image"
             width="w-[230px]"
             onClick={HandleAddBtn}
           />
@@ -120,6 +124,7 @@ const PrivatePolicy = () => {
                 >
                   ID
                 </TableCell>
+
                 <TableCell
                   className="!font-bold text-base"
                   style={{
@@ -128,17 +133,7 @@ const PrivatePolicy = () => {
                     background: "rgba(16, 26, 45, 0.30)",
                   }}
                 >
-                  Title
-                </TableCell>
-                <TableCell
-                  className="!font-bold text-base"
-                  style={{
-                    color: "#5186c9",
-                    borderRight: "1.5px solid #192e4d",
-                    background: "rgba(16, 26, 45, 0.30)",
-                  }}
-                >
-                  Description
+                  Image
                 </TableCell>
                 <TableCell
                   className="!font-bold text-base"
@@ -173,24 +168,17 @@ const PrivatePolicy = () => {
                   </TableCell>
 
                   <TableCell
-                    className="font-medium text-left"
-                    style={{
-                      color: "#b2c7e5",
-                      borderRight: "1.2px solid #192e4d",
-                    }}
-                  >
-                    {row.title}
-                  </TableCell>
-                  <TableCell
                     className="text-left"
                     style={{
                       color: "#e3eafc",
                       borderRight: "1.2px solid #192e4d",
-                      maxWidth: 300,
-                      whiteSpace: "pre-wrap",
                     }}
                   >
-                    {row.description}
+                    <img
+                      src={row.imageUrl}
+                      alt="Slider"
+                      className="w-16 h-16 object-cover rounded"
+                    />
                   </TableCell>
                   <TableCell className="text-left">
                     <div className="flex space-x-6">
@@ -234,7 +222,7 @@ const PrivatePolicy = () => {
             }}
           >
             <Pagination
-              count={Math.ceil(items.length / rowsPerPage)}
+              count={Math.ceil(sliders.length / rowsPerPage)}
               page={page}
               onChange={(e, value) => setPage(value)}
               color="primary"
@@ -259,4 +247,4 @@ const PrivatePolicy = () => {
   );
 };
 
-export default PrivatePolicy;
+export default HomeImageSlider;

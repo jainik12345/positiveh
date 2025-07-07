@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Submit from "../../components/Buttons/Submit";
-import Cancel from "../../components/Buttons/Cancel";
-import SubmitData from "../../components/Popup/SubmitData";
-import BE_URL from "../../config";
+import Submit from "../../../components/Buttons/Submit";
+import Cancel from "../../../components/Buttons/Cancel";
+import SubmitData from "../../../components/Popup/SubmitData";
+import BE_URL from "../../../config";
 import axios from "axios";
 
-const PrivatePolicyInsert = () => {
+const HomeAboutHotelSectionInsert = () => {
   const navigate = useNavigate();
-
-  const [title, setTitle] = useState("");
+  const [image, setImage] = useState(null);
   const [description, setDescription] = useState("");
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
@@ -23,27 +22,41 @@ const PrivatePolicyInsert = () => {
     }
   }, [success]);
 
+  const handleImageChange = (e) => {
+    setError(null);
+    setImage(e.target.files[0]);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!title.trim() || !description.trim()) {
-      setError("Both title and description are required.");
+    if (!image || !description.trim()) {
+      setError("Both image and description are required.");
       return;
     }
 
-    try {
-      const res = await axios.post(`${BE_URL}/privatePolicy`, {
-        title,
-        description,
-      });
+    const formData = new FormData();
+    formData.append("image", image);
+    formData.append("description", description);
 
-      if (res.data.status === "success") {
+    try {
+      const response = await axios.post(
+        `${BE_URL}/homeAboutHotelSection`,
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
+
+      if (response.data.status === "success") {
         setSuccess(true);
-        setTitle("");
-        setDescription("");
         setError(null);
+        setImage(null);
+        setDescription("");
+        const fileInput = document.querySelector('input[type="file"]');
+        if (fileInput) fileInput.value = "";
       } else {
-        setError("Failed to add private policy");
+        setError("Failed to add hotel section");
       }
     } catch (err) {
       setError(err.response?.data?.error || "Something went wrong");
@@ -51,7 +64,7 @@ const PrivatePolicyInsert = () => {
   };
 
   const handleCancel = () => {
-    navigate("/private-policy");
+    navigate("/home-about-hotel-section");
   };
 
   return (
@@ -79,31 +92,28 @@ const PrivatePolicyInsert = () => {
             letterSpacing: "0.04em",
           }}
         >
-          Add Private Policy
+          Add Home About Hotel Section
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-8">
-          {/* Title */}
+          {/* Image Upload */}
           <div>
             <label
               className="block mb-2 font-semibold"
               style={{ color: "#5186c9" }}
             >
-              Title
+              Image
             </label>
             <input
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              className="rounded-md p-2 w-full"
+              type="file"
+              onChange={handleImageChange}
+              accept="image/*"
+              className="rounded-md p-2 w-full cursor-pointer"
               style={{
                 background: "#181a24",
                 border: "1.5px solid #192e4d",
                 color: "#b2c7e5",
-                outline: "none",
-                boxShadow: "0 1px 3px #101a2d22",
               }}
-              placeholder="Enter policy title"
               required
             />
           </div>
@@ -117,19 +127,15 @@ const PrivatePolicyInsert = () => {
               Description
             </label>
             <textarea
+              rows={12}
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              rows={6}
               className="rounded-md p-2 w-full"
               style={{
                 background: "#181a24",
                 border: "1.5px solid #192e4d",
-                color: "#e3eafc",
-                outline: "none",
-                boxShadow: "0 1px 3px #101a2d22",
-                resize: "vertical",
+                color: "#b2c7e5",
               }}
-              placeholder="Enter private policy description"
               required
             />
           </div>
@@ -151,4 +157,4 @@ const PrivatePolicyInsert = () => {
   );
 };
 
-export default PrivatePolicyInsert;
+export default HomeAboutHotelSectionInsert;

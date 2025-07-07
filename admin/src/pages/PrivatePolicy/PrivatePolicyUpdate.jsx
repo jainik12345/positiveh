@@ -1,34 +1,41 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Update from "../../components/Buttons/Update";
 import Cancel from "../../components/Buttons/Cancel";
 import UpdateData from "../../components/Popup/UpdateData";
-
-const STATIC_ROW = {
-  id: 1,
-  private_policy_title: "Data Security",
-  private_policy_description: "We ensure your data is safely stored and encrypted.",
-};
+import axios from "axios";
+import BE_URL from "../../config";
 
 const PrivatePolicyUpdate = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const rowData = location.state?.rowData || STATIC_ROW;
+  const rowData = location.state?.rowData || {};
 
-  const [title, setTitle] = useState(rowData.private_policy_title);
-  const [description, setDescription] = useState(rowData.private_policy_description);
+  const [title, setTitle] = useState(rowData.title || "");
+  const [description, setDescription] = useState(rowData.description || "");
   const [success, setSuccess] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (!title.trim() || !description.trim()) {
-      console.log("Validation failed: Title and description are required");
+      console.log("Validation failed: All fields are required");
       return;
     }
-    setSuccess(true);
-    setTimeout(() => {
-      navigate("/private-policy");
-    }, 2500);
+
+    try {
+      await axios.put(`${BE_URL}/privatePolicy/${rowData.id}`, {
+        title,
+        description,
+      });
+      setSuccess(true);
+      setTimeout(() => {
+        setSuccess(false);
+        navigate("/private-policy");
+      }, 2500);
+    } catch (error) {
+      console.error("Update failed:", error);
+    }
   };
 
   const handleCancel = () => {
@@ -64,7 +71,7 @@ const PrivatePolicyUpdate = () => {
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-8">
-          {/* Title Field */}
+          {/* Title */}
           <div>
             <label
               className="block mb-2 font-semibold"
@@ -88,8 +95,7 @@ const PrivatePolicyUpdate = () => {
               required
             />
           </div>
-
-          {/* Description Field */}
+          {/* Description */}
           <div>
             <label
               className="block mb-2 font-semibold"
@@ -114,7 +120,6 @@ const PrivatePolicyUpdate = () => {
               required
             />
           </div>
-
           {/* Buttons */}
           <div className="flex justify-end gap-4 pt-2">
             <Update type="submit" />
@@ -122,7 +127,6 @@ const PrivatePolicyUpdate = () => {
           </div>
         </form>
       </div>
-
       {/* Success Popup */}
       {success && <UpdateData />}
     </div>

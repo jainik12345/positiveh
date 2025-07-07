@@ -16,28 +16,30 @@ const menuItems = [
     children: [
       { path: "/home-our-team", name: "Home Our Team" },
       { path: "/home-our-portfolio", name: "Home Our Portfolio" },
+      { path: "/home-image-slider", name: "Home Image Slider" },
+      { path: "/home-about-hotel-section", name: "Home About Hotels Section" },
     ],
   },
 
-  {
-    path: "/team",
-    name: "Team",
-    icon: <AiOutlineTeam />,
-    children: [
-      { path: "/team-member", name: "Team Member" },
-      { path: "/team-section-title", name: "Team Section Title" },
-    ],
-  },
+  // {
+  //   path: "/team",
+  //   name: "Team",
+  //   icon: <AiOutlineTeam />,
+  //   children: [
+  //     { path: "/team-member", name: "Team Member" },
+  //     { path: "/team-section-title", name: "Team Section Title" },
+  //   ],
+  // },
 
-  {
-    path: "/contact",
-    name: "Contact",
-    icon: <IoIosContact />,
-    children: [
-      { path: "/contact-form", name: "Contact Form" },
-      { path: "/contact-data-details", name: "Contact Data Details" },
-    ],
-  },
+  // {
+  //   path: "/contact",
+  //   name: "Contact",
+  //   icon: <IoIosContact />,
+  //   children: [
+  //     { path: "/contact-form", name: "Contact Form" },
+  //     { path: "/contact-data-details", name: "Contact Data Details" },
+  //   ],
+  // },
 
   {
     path: "/career",
@@ -54,11 +56,11 @@ const menuItems = [
     name: "Private Policy",
     icon: <MdPolicy />,
   },
-  {
-    path: "/terms-conditions",
-    name: "Terms & Conditions",
-    icon: <FaFileContract />,
-  },
+  // {
+  //   path: "/terms-conditions",
+  //   name: "Terms & Conditions",
+  //   icon: <FaFileContract />,
+  // },
 ];
 
 const Sidebar = () => {

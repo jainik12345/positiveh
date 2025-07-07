@@ -28,11 +28,14 @@ app.get("/", (req, res) => {
 /**Call Routes.. */
 
 const admin = require("./routes/admin");
+const privatePolicy = require("./routes/privatePolicy");
 
 /**----------------------------------------------------Home ----------------------------------------------------*/
 
 const homeOurTeam = require("./routes/home/homeOurTeam");
 const homeOurPortfolio = require("./routes/home/homeOurPortfolio");
+const homeImageSlider = require("./routes/home/homeImageSlider");
+const homeAboutHotelSection = require("./routes/home/homeAboutHotels");
 
 /**----------------------------------------------------Team ----------------------------------------------------*/
 
@@ -46,13 +49,17 @@ const contactForm = require("./routes/contact/contactForm");
 /**----------------------------------------------------Career ----------------------------------------------------*/
 
 const careerOpportunities = require("./routes/career/careerOpportunities");
+const careerMoreInfo = require("./routes/career/careerMoreInfo");
 
 app.use("/admin", admin);
+app.use("/privatePolicy", privatePolicy);
 
 /**----------------------------------------------------Home ----------------------------------------------------*/
 
 app.use("/homeOurTeam", homeOurTeam);
 app.use("/homeOurPortfolio", homeOurPortfolio);
+app.use("/homeImageSlider", homeImageSlider);
+app.use("/homeAboutHotelSection", homeAboutHotelSection);
 
 /**----------------------------------------------------Team ----------------------------------------------------*/
 app.use("/team-section-title", teamSectionTitle);
@@ -65,13 +72,34 @@ app.use("/contact-form", contactForm);
 /**----------------------------------------------------Career ----------------------------------------------------*/
 
 app.use("/careerOpportunities", careerOpportunities);
+app.use("/careerMoreInfo", careerMoreInfo);
 
 // Static Images
 /**--------------------------------------------------Home-------------------------------------------------- */
+
+app.use(
+  "/Images/HomeImages/HomeOurPortfolio",
+  express.static(path.join(__dirname, "Images/HomeImages/HomeOurPortfolio"))
+);
+
+app.use(
+  "/Images/HomeImages/HomeImageSlider",
+  express.static(path.join(__dirname, "Images/HomeImages/HomeImageSlider"))
+);
+
+app.use(
+  "/Images/HomeImages/HomeAboutHotels",
+  express.static(path.join(__dirname, "Images/HomeImages/HomeAboutHotels"))
+);
+
+/**----------------------------------------------------Team ----------------------------------------------------*/
+
 app.use(
   "/Images/TeamImages/TeamMemberName",
   express.static(path.join(__dirname, "Images/TeamImages/TeamMemberName"))
 );
+
+/**----------------------------------------------------Career ----------------------------------------------------*/
 
 app.use(
   "/Images/CareerImages/CareerOpportunities",
@@ -81,8 +109,8 @@ app.use(
 );
 
 app.use(
-  "/Images/HomeImages/HomeOurPortfolio",
-  express.static(path.join(__dirname, "Images/HomeImages/HomeOurPortfolio"))
+  "/Images/CareerImages/MoreInfo",
+  express.static(path.join(__dirname, "Images/CareerImages/MoreInfo"))
 );
 
 /**---------------Start Server ---------------*/
