@@ -1,3 +1,4 @@
+import TeamPageRedirectContactUsSection from "../TeamPage/TeamPageRedirectContactUsSection/TeamPageRedirectContactUsSection";
 import PortfolioPageBannerSection from "./PortfolioPageBannerSection/PortfolioPageBannerSection";
 import PortfolioPageCardsSection from "./PortfolioPageCardsSection/PortfolioPageCardsSection";
 import PortfolioPageRedirectContactUsSection from "./PortfolioPageRedirectContactUsSection/PortfolioPageRedirectContactUsSection";
@@ -7,7 +8,8 @@ const PortfolioPage = () => {
     <>
       <PortfolioPageBannerSection />
       <PortfolioPageCardsSection />
-      <PortfolioPageRedirectContactUsSection />
+      {/* <PortfolioPageRedirectContactUsSection /> */} {/* Not Use */}
+      <TeamPageRedirectContactUsSection />
     </>
   );
 };

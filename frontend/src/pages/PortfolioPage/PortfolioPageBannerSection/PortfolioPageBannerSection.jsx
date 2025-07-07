@@ -1,11 +1,15 @@
-import React from 'react'
+import React from "react";
+import BannerSection from "../../../components/BannerSection/BannerSection";
+import image from "../../../assets/banner.jpg";
 
 const PortfolioPageBannerSection = () => {
   return (
-    <div>
-      PortfolioPageBannerSection
-    </div>
-  )
-}
+    <BannerSection
+      bgImage={image}
+      title="Our Portfolio"
+      subtitle="A group of professionals shaping the future"
+    />
+  );
+};
 
-export default PortfolioPageBannerSection
+export default PortfolioPageBannerSection;
