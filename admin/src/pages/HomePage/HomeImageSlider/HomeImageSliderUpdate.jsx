@@ -1,68 +1,55 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import Submit from "../../../components/Buttons/Submit";
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import Update from "../../../components/Buttons/Update";
 import Cancel from "../../../components/Buttons/Cancel";
-import SubmitData from "../../../components/Popup/SubmitData";
-import BE_URL from "../../../config";
+import UpdateData from "../../../components/Popup/UpdateData";
 import axios from "axios";
+import BE_URL from "../../../config";
 
-const HomeOurPortfolioInsert = () => {
+const HomeImageSliderUpdate = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const rowData = location.state?.rowData || {};
+
+  const [preview, setPreview] = useState(
+    rowData.image
+      ? `${BE_URL}/Images/HomeImages/HomeImageSlider/${rowData.image}`
+      : null
+  );
   const [image, setImage] = useState(null);
   const [success, setSuccess] = useState(false);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    if (success) {
-      const timer = setTimeout(() => {
-        setSuccess(false);
-      }, 2500);
-      return () => clearTimeout(timer);
-    }
-  }, [success]);
 
   const handleImageChange = (e) => {
-    setError(null);
-    setImage(e.target.files[0]);
+    const file = e.target.files[0];
+    setImage(file);
+    setPreview(file ? URL.createObjectURL(file) : preview);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!image) {
-      setError("Image is required");
-      return;
+    const formData = new FormData();
+
+    if (image) {
+      formData.append("image", image);
+    } else if (rowData.image) {
+      formData.append("existingImage", rowData.image);
     }
 
-    const formData = new FormData();
-    formData.append("image", image);
-
     try {
-      const response = await axios.post(
-        `${BE_URL}/homeOurPortfolio`,
-        formData,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
-      );
-
-      if (response.data.status === "success") {
-        setSuccess(true);
-        setError(null);
-
-        setImage(null);
-        const fileInput = document.querySelector('input[type="file"]');
-        if (fileInput) fileInput.value = "";
-      } else {
-        setError("Failed to add team member");
-      }
-    } catch (err) {
-      setError(err.response?.data?.error || "Something went wrong");
+      await axios.put(`${BE_URL}/homeImageSlider/${rowData.id}`, formData);
+      setSuccess(true);
+      setTimeout(() => {
+        setSuccess(false);
+        navigate("/home-image-slider");
+      }, 2500);
+    } catch (error) {
+      console.error("Update failed:", error);
     }
   };
 
   const handleCancel = () => {
-    navigate("/home-our-portfolio");
+    navigate("/home-image-slider");
   };
 
   return (
@@ -90,7 +77,7 @@ const HomeOurPortfolioInsert = () => {
             letterSpacing: "0.04em",
           }}
         >
-          Add Home our Portfolio
+          Update Home Image Slider
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-8">
@@ -100,34 +87,43 @@ const HomeOurPortfolioInsert = () => {
               className="block mb-2 font-semibold"
               style={{ color: "#5186c9" }}
             >
-              Profile Image
+              Slider Image
             </label>
             <input
               type="file"
-              onChange={handleImageChange}
               accept="image/*"
+              onChange={handleImageChange}
               className="rounded-md p-2 w-full cursor-pointer"
               style={{
                 background: "#181a24",
                 border: "1.5px solid #192e4d",
                 color: "#b2c7e5",
               }}
-              required
             />
+            {preview && (
+              <div className="mt-2">
+                <span className="text-sm text-gray-500">Image preview:</span>
+                <img
+                  src={preview}
+                  alt="Slider"
+                  className="w-24 h-24 object-cover rounded mt-1"
+                />
+              </div>
+            )}
           </div>
-          {/* Error Message */}
-          {error && <p className="text-red-600 font-semibold">{error}</p>}
+
           {/* Buttons */}
           <div className="flex justify-end gap-4 pt-2">
-            <Submit type="submit" />
+            <Update type="submit" />
             <Cancel onClick={handleCancel} />
           </div>
         </form>
       </div>
+
       {/* Success Popup */}
-      {success && <SubmitData />}
+      {success && <UpdateData />}
     </div>
   );
 };
 
-export default HomeOurPortfolioInsert;
+export default HomeImageSliderUpdate;

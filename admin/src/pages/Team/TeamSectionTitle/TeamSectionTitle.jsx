@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Submit from "../../../components/Buttons/Submit";
-import Update from "../../../components/Buttons/Update"; 
+import Update from "../../../components/Buttons/Update";
 import SubmitData from "../../../components/Popup/SubmitData";
 import UpdateData from "../../../components/Popup/UpdateData";
 import axios from "axios";
@@ -132,27 +132,28 @@ const TeamSectionTitle = () => {
           {id ? "Update Team Section Title" : "Add Team Section Title"}
         </h2>
         <form onSubmit={handleSubmit} className="space-y-8">
-          {/* Title Field */}
+          {/* Description Field */}
           <div>
             <label
               className="block mb-2 font-semibold"
               style={{ color: "#5186c9" }}
             >
-              Title
+              Description
             </label>
-            <input
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+            <textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              rows={8}
               className="rounded-md p-2 w-full"
               style={{
                 background: "#181a24",
                 border: "1.5px solid #192e4d",
-                color: "#b2c7e5",
+                color: "#e3eafc",
                 outline: "none",
                 boxShadow: "0 1px 3px #ffffff",
+                resize: "vertical",
               }}
-              placeholder="Enter section title"
+              placeholder="Enter section description"
               required
             />
           </div>
@@ -182,28 +183,27 @@ const TeamSectionTitle = () => {
             />
           </div>
 
-          {/* Description Field */}
+          {/* Title Field */}
           <div>
             <label
               className="block mb-2 font-semibold"
               style={{ color: "#5186c9" }}
             >
-              Description
+              Title
             </label>
-            <textarea
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              rows={5}
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
               className="rounded-md p-2 w-full"
               style={{
                 background: "#181a24",
                 border: "1.5px solid #192e4d",
-                color: "#e3eafc",
+                color: "#b2c7e5",
                 outline: "none",
                 boxShadow: "0 1px 3px #ffffff",
-                resize: "vertical",
               }}
-              placeholder="Enter section description"
+              placeholder="Enter section title"
               required
             />
           </div>

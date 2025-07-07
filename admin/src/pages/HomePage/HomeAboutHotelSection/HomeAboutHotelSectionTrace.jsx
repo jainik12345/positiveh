@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import BE_URL from "../../config";
 import {
   Table,
   TableBody,
@@ -11,59 +9,58 @@ import {
   Paper,
   Pagination,
 } from "@mui/material";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaRecycle } from "react-icons/fa";
+import Back from "../../../components/Buttons/Back";
+import RestoreData from "../../../components/Popup/RestoreData";
 import { useNavigate } from "react-router-dom";
-import Add from "../../components/Buttons/Add";
-import Trace from "../../components/Buttons/Trace";
-import DeleteData from "../../components/Popup/DeleteData";
+import axios from "axios";
+import BE_URL from "../../../config";
 
-const PrivatePolicy = () => {
-  const [items, setItems] = useState([]);
+const HomeAboutHotelSectionTrace = () => {
   const [page, setPage] = useState(1);
-  const [showDeletePopup, setShowDeletePopup] = useState(false);
   const rowsPerPage = 10;
+  const [data, setData] = useState([]);
+  const [showRestorePopup, setShowRestorePopup] = useState(false);
   const navigate = useNavigate();
 
-  const fetchItems = async () => {
+  const fetchTrashedData = async () => {
     try {
-      const res = await axios.get(`${BE_URL}/privatePolicy`);
-      setItems(res.data.data);
+      const res = await axios.get(`${BE_URL}/homeAboutHotelSection/trashed`);
+      const formatted = res.data.data.map((item) => ({
+        ...item,
+        imageUrl: `${BE_URL}/Images/HomeImages/HomeAboutHotels/${item.image}`,
+      }));
+      setData(formatted);
     } catch (err) {
-      console.error("Error fetching private policy:", err);
+      console.error("Error fetching trashed hotel sections:", err);
     }
   };
 
-  const handleDelete = async (id) => {
+  const handleRestore = async (id) => {
     try {
-      await axios.delete(`${BE_URL}/privatePolicy/${id}`);
-      setShowDeletePopup(true);
+      await axios.patch(`${BE_URL}/homeAboutHotelSection/restore/${id}`);
+      setShowRestorePopup(true);
       setTimeout(() => {
-        setShowDeletePopup(false);
-        fetchItems();
+        setShowRestorePopup(false);
+        fetchTrashedData();
       }, 2500);
     } catch (err) {
-      console.error("Delete failed", err);
+      console.error("Error restoring hotel section:", err);
     }
   };
 
-  useEffect(() => {
-    fetchItems();
-  }, []);
-
-  const displayedRows = items.slice(
+  const displayedRows = data.slice(
     (page - 1) * rowsPerPage,
     page * rowsPerPage
   );
 
-  const HandleAddBtn = () => {
-    navigate("/private-policy/insert");
+  const handleBackClick = () => {
+    navigate("/home-about-hotel-section");
   };
 
-  const HandleEditBtn = (row) => {
-    navigate("/private-policy/update", {
-      state: { rowData: row },
-    });
-  };
+  useEffect(() => {
+    fetchTrashedData();
+  }, []);
 
   return (
     <div
@@ -72,9 +69,10 @@ const PrivatePolicy = () => {
         background: "linear-gradient(120deg, #07090c 80%, #0a183d 100%)",
       }}
     >
-      {showDeletePopup && (
-        <DeleteData onClose={() => setShowDeletePopup(false)} />
+      {showRestorePopup && (
+        <RestoreData onClose={() => setShowRestorePopup(false)} />
       )}
+
       <div
         className="w-full max-w-screen-xl rounded-2xl p-7"
         style={{
@@ -84,12 +82,13 @@ const PrivatePolicy = () => {
         }}
       >
         <div className="flex justify-between items-center mb-7">
-          <Trace onClick={() => navigate("/private-policy/trace")} />
-          <Add
-            text="Add Private Policy"
-            width="w-[230px]"
-            onClick={HandleAddBtn}
-          />
+          <h2
+            className="text-left font-semibold text-xl"
+            style={{ color: "#5186c9" }}
+          >
+            Hotel Section Trace
+          </h2>
+          <Back onClick={handleBackClick} />
         </div>
 
         <div className="h-[2px] mb-8 w-full rounded bg-gradient-to-r from-[#263859]/70 via-[#101a2d]/90 to-[#263859]/70" />
@@ -120,6 +119,7 @@ const PrivatePolicy = () => {
                 >
                   ID
                 </TableCell>
+
                 <TableCell
                   className="!font-bold text-base"
                   style={{
@@ -128,7 +128,7 @@ const PrivatePolicy = () => {
                     background: "rgba(16, 26, 45, 0.30)",
                   }}
                 >
-                  Title
+                  Image
                 </TableCell>
                 <TableCell
                   className="!font-bold text-base"
@@ -140,6 +140,7 @@ const PrivatePolicy = () => {
                 >
                   Description
                 </TableCell>
+
                 <TableCell
                   className="!font-bold text-base"
                   style={{
@@ -147,7 +148,7 @@ const PrivatePolicy = () => {
                     background: "rgba(16, 26, 45, 0.30)",
                   }}
                 >
-                  Action
+                  Restore
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -173,53 +174,38 @@ const PrivatePolicy = () => {
                   </TableCell>
 
                   <TableCell
-                    className="font-medium text-left"
-                    style={{
-                      color: "#b2c7e5",
-                      borderRight: "1.2px solid #192e4d",
-                    }}
-                  >
-                    {row.title}
-                  </TableCell>
-                  <TableCell
                     className="text-left"
                     style={{
                       color: "#e3eafc",
                       borderRight: "1.2px solid #192e4d",
-                      maxWidth: 300,
-                      whiteSpace: "pre-wrap",
                     }}
                   >
-                    {row.description}
+                    <img
+                      src={row.imageUrl}
+                      alt="Hotel Section"
+                      className="w-16 h-16 object-cover rounded"
+                    />
                   </TableCell>
-                  <TableCell className="text-left">
-                    <div className="flex space-x-6">
-                      <button
-                        style={{
-                          color: "#3c82e6",
-                          border: "none",
-                          background: "none",
-                          filter: "drop-shadow(0 0 4px #5186c955)",
-                        }}
-                        onClick={() => HandleEditBtn(row)}
-                        title="Edit"
-                      >
-                        <FaEdit size={22} />
-                      </button>
-                      <button
-                        className="hover:scale-110 transition"
-                        style={{
-                          color: "#e53935",
-                          border: "none",
-                          background: "none",
-                          filter: "drop-shadow(0 0 4px #e5393544)",
-                        }}
-                        onClick={() => handleDelete(row.id)}
-                        title="Delete"
-                      >
-                        <FaTrash size={22} />
-                      </button>
-                    </div>
+
+                  <TableCell
+                    style={{
+                      color: "#e3eafc",
+                      borderRight: "1.2px solid #192e4d",
+                    }}
+                  >
+                    {row.description.length > 80
+                      ? row.description.slice(0, 80) + "..."
+                      : row.description}
+                  </TableCell>
+
+                  <TableCell>
+                    <button
+                      className="text-blue-600 cursor-pointer hover:text-blue-800"
+                      onClick={() => handleRestore(row.id)}
+                      title="Restore"
+                    >
+                      <FaRecycle size={22} />
+                    </button>
                   </TableCell>
                 </TableRow>
               ))}
@@ -234,7 +220,7 @@ const PrivatePolicy = () => {
             }}
           >
             <Pagination
-              count={Math.ceil(items.length / rowsPerPage)}
+              count={Math.ceil(data.length / rowsPerPage)}
               page={page}
               onChange={(e, value) => setPage(value)}
               color="primary"
@@ -259,4 +245,4 @@ const PrivatePolicy = () => {
   );
 };
 
-export default PrivatePolicy;
+export default HomeAboutHotelSectionTrace;

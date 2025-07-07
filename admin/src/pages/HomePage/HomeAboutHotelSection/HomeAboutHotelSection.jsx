@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import BE_URL from "../../config";
+import BE_URL from "../../../config";
 import {
   Table,
   TableBody,
@@ -13,33 +13,37 @@ import {
 } from "@mui/material";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import Add from "../../components/Buttons/Add";
-import Trace from "../../components/Buttons/Trace";
-import DeleteData from "../../components/Popup/DeleteData";
+import Add from "../../../components/Buttons/Add";
+import Trace from "../../../components/Buttons/Trace";
+import DeleteData from "../../../components/Popup/DeleteData";
 
-const PrivatePolicy = () => {
-  const [items, setItems] = useState([]);
+const HomeAboutHotelSection = () => {
+  const [records, setRecords] = useState([]);
   const [page, setPage] = useState(1);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const rowsPerPage = 10;
   const navigate = useNavigate();
 
-  const fetchItems = async () => {
+  const fetchRecords = async () => {
     try {
-      const res = await axios.get(`${BE_URL}/privatePolicy`);
-      setItems(res.data.data);
+      const res = await axios.get(`${BE_URL}/homeAboutHotelSection`);
+      const formatted = res.data.data.map((item) => ({
+        ...item,
+        imageUrl: `${BE_URL}/Images/HomeImages/HomeAboutHotels/${item.image}`,
+      }));
+      setRecords(formatted);
     } catch (err) {
-      console.error("Error fetching private policy:", err);
+      console.error("Error fetching hotel section records:", err);
     }
   };
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`${BE_URL}/privatePolicy/${id}`);
+      await axios.delete(`${BE_URL}/homeAboutHotelSection/${id}`);
       setShowDeletePopup(true);
       setTimeout(() => {
         setShowDeletePopup(false);
-        fetchItems();
+        fetchRecords();
       }, 2500);
     } catch (err) {
       console.error("Delete failed", err);
@@ -47,20 +51,20 @@ const PrivatePolicy = () => {
   };
 
   useEffect(() => {
-    fetchItems();
+    fetchRecords();
   }, []);
 
-  const displayedRows = items.slice(
+  const displayedRows = records.slice(
     (page - 1) * rowsPerPage,
     page * rowsPerPage
   );
 
-  const HandleAddBtn = () => {
-    navigate("/private-policy/insert");
+  const handleAdd = () => {
+    navigate("/home-about-hotel-section/insert");
   };
 
-  const HandleEditBtn = (row) => {
-    navigate("/private-policy/update", {
+  const handleEdit = (row) => {
+    navigate("/home-about-hotel-section/update", {
       state: { rowData: row },
     });
   };
@@ -84,12 +88,8 @@ const PrivatePolicy = () => {
         }}
       >
         <div className="flex justify-between items-center mb-7">
-          <Trace onClick={() => navigate("/private-policy/trace")} />
-          <Add
-            text="Add Private Policy"
-            width="w-[230px]"
-            onClick={HandleAddBtn}
-          />
+          <Trace onClick={() => navigate("/home-about-hotel-section/trace")} />
+          <Add text="Add Hotel Section" width="w-[230px]" onClick={handleAdd} />
         </div>
 
         <div className="h-[2px] mb-8 w-full rounded bg-gradient-to-r from-[#263859]/70 via-[#101a2d]/90 to-[#263859]/70" />
@@ -128,7 +128,7 @@ const PrivatePolicy = () => {
                     background: "rgba(16, 26, 45, 0.30)",
                   }}
                 >
-                  Title
+                  Image
                 </TableCell>
                 <TableCell
                   className="!font-bold text-base"
@@ -173,26 +173,29 @@ const PrivatePolicy = () => {
                   </TableCell>
 
                   <TableCell
-                    className="font-medium text-left"
                     style={{
-                      color: "#b2c7e5",
                       borderRight: "1.2px solid #192e4d",
                     }}
                   >
-                    {row.title}
+                    <img
+                      src={row.imageUrl}
+                      alt="Hotel"
+                      className="w-16 h-16 object-cover rounded"
+                    />
                   </TableCell>
+
                   <TableCell
-                    className="text-left"
                     style={{
                       color: "#e3eafc",
                       borderRight: "1.2px solid #192e4d",
-                      maxWidth: 300,
-                      whiteSpace: "pre-wrap",
                     }}
                   >
-                    {row.description}
+                    {row.description.length > 80
+                      ? row.description.slice(0, 80) + "..."
+                      : row.description}
                   </TableCell>
-                  <TableCell className="text-left">
+
+                  <TableCell>
                     <div className="flex space-x-6">
                       <button
                         style={{
@@ -201,7 +204,7 @@ const PrivatePolicy = () => {
                           background: "none",
                           filter: "drop-shadow(0 0 4px #5186c955)",
                         }}
-                        onClick={() => HandleEditBtn(row)}
+                        onClick={() => handleEdit(row)}
                         title="Edit"
                       >
                         <FaEdit size={22} />
@@ -234,7 +237,7 @@ const PrivatePolicy = () => {
             }}
           >
             <Pagination
-              count={Math.ceil(items.length / rowsPerPage)}
+              count={Math.ceil(records.length / rowsPerPage)}
               page={page}
               onChange={(e, value) => setPage(value)}
               color="primary"
@@ -259,4 +262,4 @@ const PrivatePolicy = () => {
   );
 };
 
-export default PrivatePolicy;
+export default HomeAboutHotelSection;

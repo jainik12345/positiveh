@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Submit from "../../components/Buttons/Submit";
-import Cancel from "../../components/Buttons/Cancel";
-import SubmitData from "../../components/Popup/SubmitData";
-import BE_URL from "../../config";
+import Submit from "../../../components/Buttons/Submit";
+import Cancel from "../../../components/Buttons/Cancel";
+import SubmitData from "../../../components/Popup/SubmitData";
+import BE_URL from "../../../config";
 import axios from "axios";
 
-const PrivatePolicyInsert = () => {
+const HomeImageSliderInsert = () => {
   const navigate = useNavigate();
-
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [image, setImage] = useState(null);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
 
@@ -23,27 +21,35 @@ const PrivatePolicyInsert = () => {
     }
   }, [success]);
 
+  const handleImageChange = (e) => {
+    setError(null);
+    setImage(e.target.files[0]);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!title.trim() || !description.trim()) {
-      setError("Both title and description are required.");
+    if (!image) {
+      setError("Image is required");
       return;
     }
 
+    const formData = new FormData();
+    formData.append("image", image);
+
     try {
-      const res = await axios.post(`${BE_URL}/privatePolicy`, {
-        title,
-        description,
+      const response = await axios.post(`${BE_URL}/homeImageSlider`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
       });
 
-      if (res.data.status === "success") {
+      if (response.data.status === "success") {
         setSuccess(true);
-        setTitle("");
-        setDescription("");
         setError(null);
+        setImage(null);
+        const fileInput = document.querySelector('input[type="file"]');
+        if (fileInput) fileInput.value = "";
       } else {
-        setError("Failed to add private policy");
+        setError("Failed to add slider image");
       }
     } catch (err) {
       setError(err.response?.data?.error || "Something went wrong");
@@ -51,7 +57,7 @@ const PrivatePolicyInsert = () => {
   };
 
   const handleCancel = () => {
-    navigate("/private-policy");
+    navigate("/home-image-slider");
   };
 
   return (
@@ -79,57 +85,28 @@ const PrivatePolicyInsert = () => {
             letterSpacing: "0.04em",
           }}
         >
-          Add Private Policy
+          Add Home Image Slider
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-8">
-          {/* Title */}
+          {/* Image Upload */}
           <div>
             <label
               className="block mb-2 font-semibold"
               style={{ color: "#5186c9" }}
             >
-              Title
+              Slider Image
             </label>
             <input
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              className="rounded-md p-2 w-full"
+              type="file"
+              onChange={handleImageChange}
+              accept="image/*"
+              className="rounded-md p-2 w-full cursor-pointer"
               style={{
                 background: "#181a24",
                 border: "1.5px solid #192e4d",
                 color: "#b2c7e5",
-                outline: "none",
-                boxShadow: "0 1px 3px #101a2d22",
               }}
-              placeholder="Enter policy title"
-              required
-            />
-          </div>
-
-          {/* Description */}
-          <div>
-            <label
-              className="block mb-2 font-semibold"
-              style={{ color: "#5186c9" }}
-            >
-              Description
-            </label>
-            <textarea
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              rows={6}
-              className="rounded-md p-2 w-full"
-              style={{
-                background: "#181a24",
-                border: "1.5px solid #192e4d",
-                color: "#e3eafc",
-                outline: "none",
-                boxShadow: "0 1px 3px #101a2d22",
-                resize: "vertical",
-              }}
-              placeholder="Enter private policy description"
               required
             />
           </div>
@@ -151,4 +128,4 @@ const PrivatePolicyInsert = () => {
   );
 };
 
-export default PrivatePolicyInsert;
+export default HomeImageSliderInsert;
