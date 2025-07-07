@@ -11,7 +11,7 @@ import {
 
 const ContactUsPageContactDetailsSection = () => {
   const handleWhatsApp = () => {
-    const phoneNumber = "7600275859";
+    const phoneNumber = "12345678";
     const message = encodeURIComponent(
       "Hello, I am interested in your services."
     );
@@ -29,18 +29,19 @@ const ContactUsPageContactDetailsSection = () => {
     {
       icon: <FaEnvelope className="text-4xl text-white" />,
       title: "Mail Us",
-      content: "gohilluckyrajsinhgohil8@gmail.com",
+      content: "dummymail@gmail.com",
       action: () =>
         (window.location.href = "mailto:gohilluckyrajsinhgohil8@gmail.com"),
       bgGradient: "from-blue-500 to-blue-600",
       hoverGradient: "from-blue-600 to-blue-700",
       iconColor: "bg-blue-500",
     },
+
     {
       icon: <FaMapMarkerAlt className="text-4xl text-white" />,
       title: "Visit Us",
       content:
-        "Shyam-1 Complex, Near P.N.B. School, Behind Petrol Pump, Devtirh Park, Relnagar, Rajkot.",
+        "110 Meeting Pl Dr 110 Meeting Pl Dr, Fayetteville, GA 30214, USA",
       action: handleMapDirection,
       bgGradient: "from-purple-500 to-purple-600",
       hoverGradient: "from-purple-600 to-purple-700",
@@ -49,7 +50,7 @@ const ContactUsPageContactDetailsSection = () => {
     {
       icon: <FaPhone className="text-4xl text-white" />,
       title: "Call Us",
-      content: "+91 76002 75859",
+      content: "+91 123456789",
       action: handleWhatsApp,
       bgGradient: "from-green-500 to-green-600",
       hoverGradient: "from-green-600 to-green-700",
