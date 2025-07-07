@@ -26,7 +26,7 @@ const FloatingButtons = () => {
   return (
     <>
       <a
-        href="https://wa.me/yourwhatsappphonenumber"
+        href="https://wa.me/1234567890"
         target="_blank"
         rel="noopener noreferrer"
         className="phone-call flex items-center justify-center"
