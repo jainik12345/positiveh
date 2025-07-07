@@ -179,7 +179,7 @@ const Header = () => {
 
   return (
     <header className={headerClass}>
-      <div className="navbar-cont max-w-screen-2xl mx-auto text-white py-10 md:px-10 px-5 flex items-center justify-between">
+      <div className="navbar-cont max-w-screen-2xl mx-auto text-white py-7 md:px-10 px-5 flex items-center justify-between">
         <NavLink className="logo" to="/">
           <img src={Logo} className="h-10" alt="Logo" />
         </NavLink>
