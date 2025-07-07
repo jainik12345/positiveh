@@ -10,7 +10,7 @@ const CareersPage = () => {
       <BannerSection  bgImage={bgImage} title="Be The Part Of Our Family" subtitle="Join The Our Family"/>
       <CareerPageOpportunitiesSection />
       <CareerPageMoreInfoSection />
-      {/* <CareerPageRedirectContactUsSection /> */}
+      <CareerPageRedirectContactUsSection />
     </>
   );
 };

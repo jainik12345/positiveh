@@ -28,7 +28,7 @@ const NAV_LINKS = [
 
 const Footer = () => {
   return (
-    <motion.div
+    <div
       className="bg-(--color-footer-color) p-10 text-white font-(family-name:--font-navbar-font) font-semibold"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -50,7 +50,7 @@ const Footer = () => {
           <h3 className="text-xl font-semibold mb-4 text-(--color-logo-color)">Quick Links</h3>
           <ul className="space-y-2">
             {NAV_LINKS.map((link, index) => (
-              <motion.li
+              <li
                 key={index}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -67,7 +67,7 @@ const Footer = () => {
                 >
                   {link.label}
                 </NavLink>
-              </motion.li>
+              </li>
             ))}
           </ul>
         </div>
@@ -112,7 +112,7 @@ const Footer = () => {
           <div className="flex gap-5 mt-6">
             {[FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter].map(
               (Icon, idx) => (
-                <motion.a
+                <a
                   key={idx}
                   href="#"
                   whileHover={{ scale: 1.2, rotate: 2 }}
@@ -121,7 +121,7 @@ const Footer = () => {
                   className="text-white text-xl p-3 bg-gray-800 rounded-full hover:bg-blue-500 hover:text-white shadow-md transition-all"
                 >
                   <Icon />
-                </motion.a>
+                </a>
               )
             )}
           </div>
@@ -132,7 +132,7 @@ const Footer = () => {
       <div className="mt-12 text-center text-sm text-gray-500">
         © {new Date().getFullYear()} Postive Hospitality. All rights reserved.
       </div>
-    </motion.div>
+    </div>
   );
 };
 
