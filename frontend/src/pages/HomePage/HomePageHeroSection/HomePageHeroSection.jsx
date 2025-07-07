@@ -111,7 +111,7 @@ const HomePageHeroSection = ({ images = staticImages }) => {
   };
 
   return (
-    <div className="w-full h-[80vh] md:h-[100vh] relative overflow-hidden">
+    <div className="w-full h-[70vh] md:h-[100vh] relative overflow-hidden">
       <AnimatePresence>
         {images.map((image, index) =>
           index === currentIndex ? (
