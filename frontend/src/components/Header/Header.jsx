@@ -175,16 +175,7 @@ const Header = () => {
     { Name: "Contact Us", Path: "/contact-us" },
   ];
 
-  const headerClass = `
-    w-full z-30 transition-all duration-500
-    ${
-      isDesktop
-        ? isSticky
-          ? "fixed top-0  bg-[#212529] shadow-md"
-          : "absolute top-0 bg-transparent"
-        : "absolute top-0 bg-[#212529]"
-    }
-  `;
+  const headerClass = ` w-full z-30 transition-all duration-500  ${ isDesktop ? isSticky ? "fixed top-0  bg-[#212529] shadow-md" : "absolute top-0 bg-transparent" : "relative top-0 bg-[#212529]" }`;
 
   return (
     <header className={headerClass}>

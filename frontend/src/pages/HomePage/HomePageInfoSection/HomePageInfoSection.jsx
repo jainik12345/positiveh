@@ -9,3 +9,4 @@ const HomePageInfoSection = () => {
 }
 
 export default HomePageInfoSection
+
