@@ -110,17 +110,9 @@ const ContactUsPageContactDetailsSection = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="rounded-2xl overflow-hidden shadow-2xl border border-gray-200"
         >
-          <div className="bg-gradient-to-r from-yellow-500 to-orange-500 p-6 text-center">
-            <h2 className="text-2xl font-bold text-white mb-2">
-              Find Us On Map
-            </h2>
-            <p className="text-yellow-100">
-              Visit our office for personalized travel planning
-            </p>
-          </div>
           <div className="relative">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3692.8162689179135!2d70.81308387947041!3d22.247048827446946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3959b5007776ee9f%3A0xd22324e900973926!2sRaj%20Chamunda%20Tours%20And%20Travels%20Kothariya%20Rajkot!5e0!3m2!1sen!2sin!4v1744006755723!5m2!1sen!2sin"
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5938.456993322024!2d-84.462223!3d33.449212!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f4ee4b2b821a49%3A0x2c33c4089eb325d8!2s110%20Meeting%20Pl%20Dr%2C%20Fayetteville%2C%20GA%2030214%2C%20USA!5e1!3m2!1sen!2sin!4v1751894279520!5m2!1sen!2sin"
               width="100%"
               height="450"
               style={{ border: 0 }}
