@@ -3,49 +3,16 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import hamptonInnImage from "../../../assets/images/home_image_slider_2.webp";
-import home2SuitesImage from "../../../assets/images/home_image_slider_3.webp";
-import townplaceSuitesImage from "../../../assets/images/home_image_slider_2.webp";
-import trubyHiltonImage from "../../../assets/images/home_image_slider_3.webp";
-import hamptonInnPeachtreeImage from "../../../assets/images/home_image_slider_2.webp";
+import hotelData from "../hotelData";
 
 const PortfolioPageCardsSection = () => {
   const navigate = useNavigate();
 
- 
-  const hotels = [
-    {
-      name: "HAMPTON INN",
-      location: "Fayetteville, GA",
-      image: hamptonInnImage,
-    },
-    {
-      name: "HOME 2 SUITES",
-      location: "Fayetteville, GA",
-      image: home2SuitesImage,
-    },
-    {
-      name: "TOWN PLACE SUITES",
-      location: "Rowery Branch, GA",
-      image: townplaceSuitesImage,
-    },
-    {
-      name: "TRUBY HILTON",
-      location: "Columbus, OH",
-      image: trubyHiltonImage,
-    },
-    {
-      name: "HAMPTON INN",
-      location: "Peachtree City, GA",
-      image: hamptonInnPeachtreeImage,
-    },
-  ];
+  const hotels = Object.entries(hotelData).map(([slug, hotel]) => ({
+    slug,
+    ...hotel,
+  }));
 
- 
-  const formatHotelUrl = (name) => {
-    return name.toLowerCase().replace(/\s+/g, "-");
-  };
- 
   const container = {
     hidden: { opacity: 0 },
     visible: {
@@ -103,23 +70,18 @@ const PortfolioPageCardsSection = () => {
               key={index}
               variants={item}
               className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all cursor-pointer flex flex-col h-full"
-              onClick={() =>
-                navigate(`/portfolio/${formatHotelUrl(hotel.name)}`)
-              }
+              onClick={() => navigate(`/portfolio/${hotel.slug}`)}
             >
-            
               <div className="h-48 md:h-56 w-full overflow-hidden">
                 <img
                   src={hotel.image}
-                  alt={hotel.name}
+                  alt={hotel.displayName}
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                 />
               </div>
-
-             
               <div className="p-6 mt-auto">
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                  {hotel.name}
+                  {hotel.displayName}
                 </h3>
                 <p className="text-gray-600">{hotel.location}</p>
               </div>
