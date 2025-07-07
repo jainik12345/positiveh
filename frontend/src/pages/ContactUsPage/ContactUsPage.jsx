@@ -9,7 +9,7 @@ const ContactUsPage = () => {
       <ContactUsPageBanner />
       <ContactUsPageContactDetailsSection />
       <ContactUsPageContactFormSection />
-      <ContactUsPageMapSection />
+      {/* <ContactUsPageMapSection /> */}
     </>
   );
 };
