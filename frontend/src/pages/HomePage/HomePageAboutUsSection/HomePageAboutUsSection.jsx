@@ -31,7 +31,7 @@ const HomePageAboutUsSection = () => {
             </span>
           </motion.h1>
           <motion.div
-            className="mx-auto h-1 w-50 bg-indigo-600 rounded-full"
+            className="mx-auto h-1 w-50 bg-[var(--color-footer-color)] rounded-full"
             initial={{ opacity: 0, scaleX: 0 }}
             whileInView={{ opacity: 1, scaleX: 1 }}
             viewport={{ once: true }}
@@ -57,7 +57,7 @@ const HomePageAboutUsSection = () => {
                 >
                   <div className="lg:w-1/2 w-full flex flex-col gap-5">
                     <div className="bg-white p-8 rounded-xl shadow-lg h-full flex items-center">
-                      <p className="text-gray-700 text-lg leading-relaxed ">
+                      <p className="text-gray-700 text-lg leading-relaxed text-justify">
                         {val.para}
                       </p>
                     </div>
