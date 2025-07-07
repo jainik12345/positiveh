@@ -7,8 +7,8 @@ const TeamPage = () => {
   return (
     <>
       <TeamPageBannerSection />
-      {/* <TeamPageQuoteSection /> */}
-      {/* <TeamPageMembersDetailsSection /> */}
+      <TeamPageQuoteSection />
+      <TeamPageMembersDetailsSection />
       <TeamPageRedirectContactUsSection />
     </>
   );
