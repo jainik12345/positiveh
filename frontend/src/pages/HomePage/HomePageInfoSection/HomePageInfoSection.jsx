@@ -1,11 +1,20 @@
+import { motion } from "framer-motion";
+
 const HomePageInfoSection = () => {
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-4 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-screen-xl mx-auto flex flex-col gap-5">
         <div className="text-center">
-          <h1 className="text-5xl font-bold text-gray-800 mb-6 relative inline-block">
+          <h1 className="text-5xl font-bold text-gray-800 mb-6 relative inline-block ">
             Our Team
-            <span className="absolute bottom-0 left-0 w-full h-1 bg-amber-400 transform translate-y-2"></span>
+            {/* <span className="absolute bottom-0 left-0 w-full h-1 bg-amber-400 transform translate-y-2"></span> */}
+            <motion.div
+              className="mx-auto h-1 w-30 bg-[var(--color-logo-color)] rounded-full mt-3"
+              initial={{ opacity: 0, scaleX: 0 }}
+              whileInView={{ opacity: 1, scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            />
           </h1>
 
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
