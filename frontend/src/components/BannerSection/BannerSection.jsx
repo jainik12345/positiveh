@@ -84,7 +84,7 @@ import { motion } from "framer-motion";
 
 const BannerSection = ({
   bgImage,
-  title = "Default Title",
+    title = "Default Title",
   subtitle = "",
   height = "h-[250px] md:h-[350px] lg:h-[450px]",
   overlayOpacity = 0.4,
