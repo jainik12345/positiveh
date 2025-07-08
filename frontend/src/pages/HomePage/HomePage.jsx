@@ -9,7 +9,7 @@ const HomePage = () => {
       <HomePageHeroSection/>
       <HomePageAboutUsSection/>
       <HomePageInfoSection />
-      {/* <HomePageOurPortfolioSection /> */}
+      <HomePageOurPortfolioSection />
     </>
   );
 };

@@ -1,7 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
 import { NavLink } from "react-router-dom";
-import { motion } from "framer-motion";
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import {
   FaFacebookF,
@@ -13,7 +11,9 @@ import Logo from "../../assets/final.svg";
 
 const NAV_LINKS = [
   { label: "Home", to: "/" },
-  { label: "About", to: "/about" },
+  { label: "Team", to: "/team" },
+  { label: "Portfolio", to: "/portfolio" },
+  { label: "Career", to: "/career" },
   { label: "Contact", to: "/contact-us" },
   { label: "Private Policy", to: "/private-policy" },
   { label: "Terms & Conditions", to: "/terms-conditions" },
@@ -28,13 +28,7 @@ const NAV_LINKS = [
 
 const Footer = () => {
   return (
-    <div
-      className="bg-(--color-footer-color) p-10 text-white font-(family-name:--font-navbar-font) font-semibold"
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }} // Triggers once when 20% of footer enters
-      transition={{ duration: 0.8, ease: "easeOut" }}
-    >
+    <div className="bg-(--color-footer-color) p-10 text-white font-(family-name:--font-navbar-font) font-semibold">
       <div className="max-w-screen-xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-10">
         {/* Column 1: Logo & Description */}
         <div className="flex flex-col gap-5 items-start">
@@ -52,17 +46,12 @@ const Footer = () => {
           </h3>
           <ul className="space-y-2">
             {NAV_LINKS.map((link, index) => (
-              <li
-                key={index}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.1 }}
-              >
+              <li key={index}>
                 <NavLink
                   to={link.to}
                   // className="text-sm text-gray-300 hover:text-white transition"
                   className={({ isActive }) =>
-                    `text-sm hover:text-white transition ${
+                    `text-sm hover:text-blue-500  transition ${
                       isActive ? "text-blue-500" : "text-white"
                     }`
                   }
@@ -119,9 +108,6 @@ const Footer = () => {
                 <a
                   key={idx}
                   href="#"
-                  whileHover={{ scale: 1.2, rotate: 2 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ type: "spring", stiffness: 300 }}
                   className="text-white text-xl p-3 bg-gray-800 rounded-full hover:bg-[var(--color-logo-color)]  hover:text-white shadow-md transition-all"
                 >
                   <Icon />

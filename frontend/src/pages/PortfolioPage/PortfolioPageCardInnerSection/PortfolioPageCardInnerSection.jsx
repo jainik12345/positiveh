@@ -1,4 +1,3 @@
-import React from "react";
 import { useParams } from "react-router-dom";
 import BannerSection from "../../../components/BannerSection/BannerSection";
 import image from "../../../assets/banner.jpg";

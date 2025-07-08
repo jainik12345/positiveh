@@ -18,6 +18,7 @@ const hotelData = {
       "🅿️ Free Parking",
       "📶 High-Speed WiFi",
     ],
+    location: "Fayetteville, GA",
   },
   "home-2-suites": {
     displayName: "Home 2 Suites",
@@ -30,27 +31,23 @@ const hotelData = {
       "📶 High-Speed WiFi",
       "🍽️ Complimentary Hot Breakfast",
     ],
+    location: "Fayetteville, GA",
   },
   "town-place-suites": {
     displayName: "Town Place Suites",
     image: townplaceSuitesImage,
     overview:
       "Town Place Suites in Rowery Branch, GA provides a comfortable long-term stay with spacious suites and homelike amenities.",
-    amenities: [
-      "🛏️ Spacious Suites",
-      "🍳 In-Room Kitchens",
-      "📶 Free WiFi"
-    ],
+    amenities: ["🛏️ Spacious Suites", "🍳 In-Room Kitchens", "📶 Free WiFi"],
+    location: "Fayetteville, GA",
   },
   "truby-hilton": {
     displayName: "Truby Hilton",
     image: trubyHiltonImage,
     overview:
       "A vibrant, modern hotel experience located in Columbus, OH. Truby Hilton combines style with affordability for today’s traveler.",
-    amenities: [
-      "🎮 Game Lounge",
-      "📺 Smart TVs"
-    ],
+    amenities: ["🎮 Game Lounge", "📺 Smart TVs"],
+    location: "Fayetteville, GA",
   },
   "hampton-inn-peachtree": {
     displayName: "Hampton Inn Peachtree",
@@ -58,6 +55,7 @@ const hotelData = {
     overview:
       "Situated in scenic Peachtree City, this Hampton Inn provides easy access to bike trails, shopping, and dining.",
     amenities: ["🚲 Bike Rentalssss"],
+    location: "Fayetteville, GA",
   },
 };
 
