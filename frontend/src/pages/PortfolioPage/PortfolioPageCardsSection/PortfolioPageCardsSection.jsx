@@ -75,25 +75,10 @@ const PortfolioPageCardsSection = () => {
           variants={container}
           className="flex justify-end p-5"
         >
-          {/* <FormControl variant="filled" sx={{ minWidth: 160 }}>
-            <InputLabel id="demo-simple-select-filled-label">Status</InputLabel>
-            <Select
-              labelId="demo-simple-select-filled-label"
-              id="demo-simple-select-filled"
-              value={age}
-              onChange={HandleOnChangeSelector}
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={10}>All</MenuItem>
-              <MenuItem value={20}>Upcoming</MenuItem>
-              <MenuItem value={30}>Running</MenuItem>
-            </Select>
-          </FormControl> */}
-
           <FormControl className="w-50">
-            <InputLabel id="Status-select-label">Status</InputLabel>
+            <InputLabel id="Status-select-label font-semibold">
+              Status
+            </InputLabel>
             <Select
               labelId="Status-select-label"
               id="Status"

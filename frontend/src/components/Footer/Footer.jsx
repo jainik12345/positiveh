@@ -13,7 +13,7 @@ const NAV_LINKS = [
   { label: "Home", to: "/" },
   { label: "Team", to: "/team" },
   { label: "Portfolio", to: "/portfolio" },
-  { label: "Career", to: "/career" },
+  { label: "Careers", to: "/careers" },
   { label: "Contact", to: "/contact-us" },
   { label: "Private Policy", to: "/private-policy" },
   { label: "Terms & Conditions", to: "/terms-conditions" },
