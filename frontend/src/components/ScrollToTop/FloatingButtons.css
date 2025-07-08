@@ -55,7 +55,7 @@
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background: #3b82f6;
+  background: #00D2FF;
   color: #ffffff;
   padding: 12px;
   border-radius: 50%;
@@ -66,7 +66,7 @@
 }
 
 .go-top-btn:hover {
-  background: #2563eb;
+  background: #50dfff;
   transform: translateY(-5px) scale(1.1);
 }
 
