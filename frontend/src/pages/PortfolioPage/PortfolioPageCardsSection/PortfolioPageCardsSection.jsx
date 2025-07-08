@@ -1,11 +1,21 @@
 /* eslint-disable no-unused-vars */
 
-import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import hotelData from "../hotelData";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import { useState } from "react";
 
 const PortfolioPageCardsSection = () => {
+  const [age, setAge] = useState("ALL");
+
+  const HandleOnChangeSelector = (event) => {
+    setAge(event.target.value);
+  };
+
   const navigate = useNavigate();
 
   const hotels = Object.entries(hotelData).map(([slug, hotel]) => ({
@@ -57,6 +67,54 @@ const PortfolioPageCardsSection = () => {
             provide exceptional service and amenities, and embrace their local
             surroundings while also prioritizing sustainability.
           </motion.p>
+        </motion.div>
+
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={container}
+          className="flex justify-end p-5"
+        >
+          {/* <FormControl variant="filled" sx={{ minWidth: 160 }}>
+            <InputLabel id="demo-simple-select-filled-label">Status</InputLabel>
+            <Select
+              labelId="demo-simple-select-filled-label"
+              id="demo-simple-select-filled"
+              value={age}
+              onChange={HandleOnChangeSelector}
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={10}>All</MenuItem>
+              <MenuItem value={20}>Upcoming</MenuItem>
+              <MenuItem value={30}>Running</MenuItem>
+            </Select>
+          </FormControl> */}
+
+          <FormControl className="w-50">
+            <InputLabel id="Status-select-label">Status</InputLabel>
+            <Select
+              labelId="Status-select-label"
+              id="Status"
+              value={age}
+              label="Status"
+              name="Status"
+              onChange={HandleOnChangeSelector}
+              MenuProps={{
+                disableScrollLock: true,
+              }}
+            >
+              <MenuItem value="ALL" selected>
+                All
+              </MenuItem>
+              {["UpComing", "Running"].map((val, index) => (
+                <MenuItem key={index} value={val}>
+                  {val}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
         </motion.div>
 
         <motion.div
