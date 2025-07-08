@@ -1,9 +1,9 @@
 // src/data/hotelData.js
-import hamptonInnImage from "../../assets/images/home_image_slider_2.webp";
-import home2SuitesImage from "../../assets/images/home_image_slider_3.webp";
-import townplaceSuitesImage from "../../assets/images/home_image_slider_2.webp";
-import trubyHiltonImage from "../../assets/images/home_image_slider_3.webp";
-import hamptonInnPeachtreeImage from "../../assets/images/home_image_slider_2.webp";
+import hamptonInnImage from "../../assets/images/22172a778498fdd0b4894ccf93fd1ca3.jpg";
+import home2SuitesImage from "../../assets/images/whats_new_image_1.avif";
+import townplaceSuitesImage from "../../assets/images/22172a778498fdd0b4894ccf93fd1ca3.jpg";
+import trubyHiltonImage from "../../assets/images/whats_new_image_1.avif";
+import hamptonInnPeachtreeImage from "../../assets/images/22172a778498fdd0b4894ccf93fd1ca3.jpg";
 
 const hotelData = {
   "hampton-inn": {

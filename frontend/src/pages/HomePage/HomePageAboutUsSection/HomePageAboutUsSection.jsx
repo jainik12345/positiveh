@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import image1 from "../../../assets/images/home_image_slider_2.webp";
-import image2 from "../../../assets/images/home_image_slider_3.webp";
+import image1 from "../../../assets/images/whats_new_image_1.avif";
+import image2 from "../../../assets/images/22172a778498fdd0b4894ccf93fd1ca3.jpg";
 
 const HomePageAboutUsSection = () => {
   const AboutDetails = [

@@ -79,9 +79,9 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 
-import sliderImg1 from "../../../assets/images/home_image_slider_2.webp";
-import sliderImg2 from "../../../assets/images/home_image_slider_3.webp";
-import sliderImg3 from "../../../assets/images/wedding_first.webp";
+import sliderImg1 from "../../../assets/images/22172a778498fdd0b4894ccf93fd1ca3.jpg";
+import sliderImg2 from "../../../assets/images/whats_new_image_1.avif";
+import sliderImg3 from "../../../assets/images/22172a778498fdd0b4894ccf93fd1ca3.jpg";
 import sliderImg4 from "../../../assets/images/whats_new_image_1.avif";
 
 const staticImages = [sliderImg1, sliderImg2, sliderImg3, sliderImg4];

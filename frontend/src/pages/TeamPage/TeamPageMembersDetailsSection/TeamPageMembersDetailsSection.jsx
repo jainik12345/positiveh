@@ -2,8 +2,8 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import person1 from "../../../assets/images/home_image_slider_2.webp";
-import person2 from "../../../assets/images/home_image_slider_3.webp";
+import person1 from "../../../assets/images/22172a778498fdd0b4894ccf93fd1ca3.jpg";
+import person2 from "../../../assets/images/whats_new_image_1.avif";
 
 const TeamPageMembersDetailsSection = ({ members }) => {
   // Animation variants

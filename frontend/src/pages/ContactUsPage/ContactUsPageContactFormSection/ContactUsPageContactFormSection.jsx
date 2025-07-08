@@ -60,7 +60,7 @@ const ContactUsPageContactFormSection = () => {
   };
 
   return (
-    <section className="relative py-16 px-4 md:px-8 lg:px-16 max-w-6xl mx-auto">
+    <section className="relative py-16 px-4 md:px-8 lg:px-16 max-w-6xl mx-auto overflow-x-hidden overflow-y-hidden">
       <div className="absolute -top-10 -left-10 w-32 h-32 bg-blue-100 rounded-full opacity-20 mix-blend-multiply filter blur-xl animate-blob"></div>
       <div className="absolute -bottom-8 -right-10 w-32 h-32 bg-purple-100 rounded-full opacity-20 mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
       <div className="absolute top-1/4 right-20 w-24 h-24 bg-pink-100 rounded-full opacity-20 mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
