@@ -7,6 +7,7 @@ import { FaFileContract, FaSignOutAlt } from "react-icons/fa";
 import { AiOutlineTeam } from "react-icons/ai";
 import { MdPolicy } from "react-icons/md";
 import { IoIosHome, IoIosContact } from "react-icons/io";
+import { FaHotel } from "react-icons/fa6";
 
 const menuItems = [
   {
@@ -21,46 +22,61 @@ const menuItems = [
     ],
   },
 
+  // {
+  //   path: "/team",
+  //   name: "Team",
+  //   icon: <AiOutlineTeam />,
+  //   children: [
+  //     { path: "/team-member", name: "Team Member" },
+  //     { path: "/team-section-title", name: "Team Section Title" },
+  //   ],
+  // },
+
+  // {
+  //   path: "/contact",
+  //   name: "Contact",
+  //   icon: <IoIosContact />,
+  //   children: [
+  //     { path: "/contact-form", name: "Contact Form" },
+  //     { path: "/contact-data-details", name: "Contact Data Details" },
+  //   ],
+  // },
+
+  // {
+  //   path: "/career",
+  //   name: "Career",
+  //   icon: <IoIosContact />,
+  //   children: [
+  //     { path: "/career-opportunities", name: "Career Opportunities" },
+  //     { path: "/career-more-info", name: "Career More Info" },
+  //   ],
+  // },
+
   {
-    path: "/team",
-    name: "Team",
-    icon: <AiOutlineTeam />,
+    path: "/hotel",
+    name: "Hotel",
+    icon: <FaHotel />,
     children: [
-      { path: "/team-member", name: "Team Member" },
-      { path: "/team-section-title", name: "Team Section Title" },
+      { path: "/hotel-name", name: "Hotel Name" },
+      { path: "/hotel-overview", name: "Hotel Overview" },
+      { path: "/hotel-banner-bg-image", name: "Hotel Banner Bg image" },
+      { path: "/hotel-amenities", name: "Hotel Amenities" },
+      { path: "/hotel-gallery", name: "Hotel Gallery" },
+      { path: "/hotel-location", name: "Hotel Location" },
+      { path: "/hotel-inquirys", name: "Hotel Inquirys" },
     ],
   },
 
-  {
-    path: "/contact",
-    name: "Contact",
-    icon: <IoIosContact />,
-    children: [
-      { path: "/contact-form", name: "Contact Form" },
-      { path: "/contact-data-details", name: "Contact Data Details" },
-    ],
-  },
-
-  {
-    path: "/career",
-    name: "Career",
-    icon: <IoIosContact />,
-    children: [
-      { path: "/career-opportunities", name: "Career Opportunities" },
-      { path: "/career-more-info", name: "Career More Info" },
-    ],
-  },
-
-  {
-    path: "/private-policy",
-    name: "Private Policy",
-    icon: <MdPolicy />,
-  },
-  {
-    path: "/terms-conditions",
-    name: "Terms & Conditions",
-    icon: <FaFileContract />,
-  },
+  // {
+  //   path: "/private-policy",
+  //   name: "Private Policy",
+  //   icon: <MdPolicy />,
+  // },
+  // {
+  //   path: "/terms-conditions",
+  //   name: "Terms & Conditions",
+  //   icon: <FaFileContract />,
+  // },
 ];
 
 const Sidebar = () => {
@@ -89,7 +105,13 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="fixed top-0 left-0 h-screen w-[250px] bg-[#15181c] flex flex-col justify-between z-40 shadow-2xl">
+    <div
+      className="fixed top-0  left-0 h-screen w-[280px]  bg-[#15181c] overflow-auto flex flex-col justify-between z-40 shadow-2xl"
+      style={{
+        scrollbarWidth: "thin",
+        scrollbarColor: "#15181c #2a3037",
+      }}
+    >
       {/* Logo */}
       <div>
         <div className="flex items-center justify-center h-[90px] border-b border-[#232323]">

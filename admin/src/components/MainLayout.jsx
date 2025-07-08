@@ -60,24 +60,16 @@
 
 // export default MainLayout;
 
-
 import React, { useState } from "react";
 import Sidebar from "./Sidebar";
 import { Outlet, useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 const MainLayout = () => {
   const [isOpen, setIsOpen] = useState(true);
   const location = useLocation();
-  const navigate = useNavigate();
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
-  };
-
-  const handleLogout = () => {
-    console.log("Logout clicked");
-    navigate("/admin");
   };
 
   const getPageTitle = () => {
@@ -93,25 +85,16 @@ const MainLayout = () => {
       <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />
       <div
         className={`transition-all duration-300 min-h-screen overflow-y-auto bg-black p-4 border-l border-gray-800 relative ${
-          isOpen ? "ml-[250px]" : "ml-[80px]"
+          isOpen ? "ml-[280px]" : "ml-[80px]"
         } flex-1`}
       >
-        {/* Logout Button
-        <button
-          onClick={handleLogout}
-          className="absolute top-4 right-4 bg-gray-900 hover:bg-gray-800 cursor-pointer text-white px-4 py-2 rounded shadow-lg z-40"
-        >
-          Logout
-        </button> */}
-
         <div className="mb-6">
           <div className="flex items-center justify-between mb-4">
             <h1 className="text-2xl font-semibold text-white drop-shadow">
               {getPageTitle()}
             </h1>
-            {/* <p className="text-sm text-gray-400">Home / {getPageTitle()}</p> */}
           </div>
-          <hr className="border-gray-800" />
+          <hr className="border-gray-800" />  
         </div>
 
         <Outlet />

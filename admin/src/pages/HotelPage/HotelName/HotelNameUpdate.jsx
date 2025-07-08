@@ -6,18 +6,18 @@ import UpdateData from "../../../components/Popup/UpdateData";
 import axios from "axios";
 import BE_URL from "../../../config";
 
-const HomeAboutHotelSectionUpdate = () => {
+const HotelNameUpdate = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const rowData = location.state?.rowData || {};
 
   const [preview, setPreview] = useState(
-    rowData.image
-      ? `${BE_URL}/Images/HomeImages/HomeAboutHotels/${rowData.image}`
-      : null
+    rowData.image ? `${BE_URL}/Images/HotelImages/HotelName/${rowData.image}` : null
   );
   const [image, setImage] = useState(null);
-  const [description, setDescription] = useState(rowData.description || "");
+  const [name, setName] = useState(rowData.name || "");
+  const [address, setAddress] = useState(rowData.address || "");
+  const [status, setStatus] = useState(rowData.status || "UpComing");
   const [success, setSuccess] = useState(false);
 
   const handleImageChange = (e) => {
@@ -30,7 +30,9 @@ const HomeAboutHotelSectionUpdate = () => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("description", description);
+    formData.append("name", name);
+    formData.append("address", address);
+    formData.append("status", status);
 
     if (image) {
       formData.append("image", image);
@@ -39,14 +41,11 @@ const HomeAboutHotelSectionUpdate = () => {
     }
 
     try {
-      await axios.put(
-        `${BE_URL}/homeAboutHotelSection/${rowData.id}`,
-        formData
-      );
+      await axios.put(`${BE_URL}/hotelName/${rowData.id}`, formData);
       setSuccess(true);
       setTimeout(() => {
         setSuccess(false);
-        navigate("/home-about-hotel-section");
+        navigate("/hotel-name");
       }, 2500);
     } catch (error) {
       console.error("Update failed:", error);
@@ -54,7 +53,7 @@ const HomeAboutHotelSectionUpdate = () => {
   };
 
   const handleCancel = () => {
-    navigate("/home-about-hotel-section");
+    navigate("/hotel-name");
   };
 
   return (
@@ -65,7 +64,7 @@ const HomeAboutHotelSectionUpdate = () => {
       }}
     >
       <div
-        className="w-full max-w-screen-xl mx-auto rounded-2xl p-8"    
+        className="w-full max-w-screen-xl mx-auto rounded-2xl p-8"
         style={{
           background: "rgba(12, 14, 22, 0.98)",
           boxShadow: "0 4px 32px #0a183d44, 0 0 0 2px #1565c033",
@@ -82,10 +81,79 @@ const HomeAboutHotelSectionUpdate = () => {
             letterSpacing: "0.04em",
           }}
         >
-          Update Hotel Section
+          Update Hotel Information
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-8">
+          {/* Name */}
+          <div>
+            <label
+              className="block mb-2 font-semibold"
+              style={{ color: "#5186c9" }}
+            >
+              Hotel Name
+            </label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="rounded-md p-2 w-full"
+              placeholder="Enter hotel name"
+              style={{
+                background: "#181a24",
+                border: "1.5px solid #192e4d",
+                color: "#b2c7e5",
+              }}
+              required
+            />
+          </div>
+
+          {/* Address */}
+          <div>
+            <label
+              className="block mb-2 font-semibold"
+              style={{ color: "#5186c9" }}
+            >
+              Address
+            </label>
+            <textarea
+              rows={4}
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              className="rounded-md p-2 w-full resize-none"
+              placeholder="Enter address"
+              style={{
+                background: "#181a24",
+                border: "1.5px solid #192e4d",
+                color: "#b2c7e5",
+              }}
+              required
+            />
+          </div>
+
+          {/* Status */}
+          <div>
+            <label
+              className="block mb-2 font-semibold"
+              style={{ color: "#5186c9" }}
+            >
+              Status
+            </label>
+            <select
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+              className="rounded-md p-2 w-full"
+              style={{
+                background: "#181a24",
+                border: "1.5px solid #192e4d",
+                color: "#b2c7e5",
+              }}
+            >
+              <option value="UpComing">UpComing</option>
+              <option value="Running">Running</option>
+            </select>
+          </div>
+
           {/* Image Upload */}
           <div>
             <label
@@ -117,29 +185,6 @@ const HomeAboutHotelSectionUpdate = () => {
             )}
           </div>
 
-          {/* Description */}
-          <div>
-            <label
-              className="block mb-2 font-semibold"
-              style={{ color: "#5186c9" }}
-            >
-              Description
-            </label>
-            <textarea
-              rows={10}
-              className="rounded-md p-3 w-full resize-none"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              placeholder="Enter description..."
-              style={{
-                background: "#181a24",
-                border: "1.5px solid #192e4d",
-                color: "#b2c7e5",
-              }}
-              required
-            />
-          </div>
-
           {/* Buttons */}
           <div className="flex justify-end gap-4 pt-2">
             <Update type="submit" />
@@ -152,4 +197,4 @@ const HomeAboutHotelSectionUpdate = () => {
   );
 };
 
-export default HomeAboutHotelSectionUpdate;
+export default HotelNameUpdate;

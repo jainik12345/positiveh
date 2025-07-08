@@ -44,6 +44,32 @@ import PrivatePolicy from '../../pages/PrivatePolicy/PrivatePolicy';
 import PrivatePolicyInsert from "../../pages/PrivatePolicy/PrivatePolicyInsert";
 import PrivatePolicyUpdate from "../../pages/PrivatePolicy/PrivatePolicyUpdate";
 import PrivatePolicyTrace from './../../pages/PrivatePolicy/PrivatePolicyTrace';
+import HotelName from './../../pages/HotelPage/HotelName/HotelName';
+import HotelNameInsert from './../../pages/HotelPage/HotelName/HotelNameInsert';
+import HotelNameUpdate from './../../pages/HotelPage/HotelName/HotelNameUpdate';
+import HotelNameTrace from './../../pages/HotelPage/HotelName/HotelNameTrace';
+import HotelOverview from './../../pages/HotelPage/HotelOverview/HotelOverview';
+import HotelOverviewInsert from './../../pages/HotelPage/HotelOverview/HotelOverviewInsert';
+import HotelOverviewUpdate from './../../pages/HotelPage/HotelOverview/HotelOverviewUpdate';
+import HotelOverviewTrace from './../../pages/HotelPage/HotelOverview/HotelOverviewTrace';
+import HotelBannerBgImage from './../../pages/HotelPage/HotelBannerBgImage/HotelBannerBgImage';
+import HotelBannerBgImageInsert from './../../pages/HotelPage/HotelBannerBgImage/HotelBannerBgImageInsert';
+import HotelBannerBgImageUpdate from './../../pages/HotelPage/HotelBannerBgImage/HotelBannerBgImageUpdate';
+import HotelBannerBgImageTrace from './../../pages/HotelPage/HotelBannerBgImage/HotelBannerBgImageTrace';
+import HotelAmenities from './../../pages/HotelPage/HotelAmenities/HotelAmenities';
+import HotelAmenitiesInsert from './../../pages/HotelPage/HotelAmenities/HotelAmenitiesInsert';
+import HotelAmenitiesUpdate from './../../pages/HotelPage/HotelAmenities/HotelAmenitiesUpdate';
+import HotelAmenitiesTrace from './../../pages/HotelPage/HotelAmenities/HotelAmenitiesTrace';
+import HotelGallery from './../../pages/HotelPage/HotelGallery/HotelGallery';
+import HotelGalleryInsert from './../../pages/HotelPage/HotelGallery/HotelGalleryInsert';
+import HotelGalleryUpdate from './../../pages/HotelPage/HotelGallery/HotelGalleryUpdate';
+import HotelGalleryTrace from './../../pages/HotelPage/HotelGallery/HotelGalleryTrace';
+import HotelLocation from './../../pages/HotelPage/HotelLocation/HotelLocation';
+import HotelLocationInsert from './../../pages/HotelPage/HotelLocation/HotelLocationInsert';
+import HotelLocationUpdate from './../../pages/HotelPage/HotelLocation/HotelLocationUpdate';
+import HotelLocationTrace from './../../pages/HotelPage/HotelLocation/HotelLocationTrace';
+import HotelInquirys from './../../pages/HotelPage/HotelInquirys/HotelInquirys';
+import HotelInquirysTrace from './../../pages/HotelPage/HotelInquirys/HotelInquirysTrace';
 
 const RouteComponents = () => {
   return (
@@ -134,6 +160,47 @@ const RouteComponents = () => {
 
 
 
+          {/* -----------------------------------------------------Hotel----------------------------------------------------- */}
+
+
+
+          <Route path="/hotel-name" element={<HotelName/>} />
+          <Route path="/hotel-name/insert" element={<HotelNameInsert/>} />
+          <Route path="/hotel-name/update" element={<HotelNameUpdate/>} />
+          <Route path="/hotel-name/trace" element={<HotelNameTrace/>} />
+
+
+          <Route path="/hotel-overview" element={<HotelOverview/>} />
+          <Route path="/hotel-overview/insert" element={<HotelOverviewInsert/>} />
+          <Route path="/hotel-overview/update" element={<HotelOverviewUpdate/>} />
+          <Route path="/hotel-overview/trace" element={<HotelOverviewTrace/>} />
+
+
+          <Route path="/hotel-banner-bg-image" element={<HotelBannerBgImage/>} />
+          <Route path="/hotel-banner-bg-image/insert" element={<HotelBannerBgImageInsert/>} />
+          <Route path="/hotel-banner-bg-image/update" element={<HotelBannerBgImageUpdate/>} />
+          <Route path="/hotel-banner-bg-image/trace" element={<HotelBannerBgImageTrace/>} />
+
+
+          <Route path="/hotel-amenities" element={<HotelAmenities/>} />
+          <Route path="/hotel-amenities/insert" element={<HotelAmenitiesInsert/>} />
+          <Route path="/hotel-amenities/update" element={<HotelAmenitiesUpdate/>} />
+          <Route path="/hotel-amenities/trace" element={<HotelAmenitiesTrace/>} />
+
+
+          <Route path="/hotel-gallery" element={<HotelGallery/>} />
+          <Route path="/hotel-gallery/insert" element={<HotelGalleryInsert/>} />
+          <Route path="/hotel-gallery/update" element={<HotelGalleryUpdate/>} />
+          <Route path="/hotel-gallery/trace" element={<HotelGalleryTrace/>} />
+
+          <Route path="/hotel-location" element={<HotelLocation/>} />
+          <Route path="/hotel-location/insert" element={<HotelLocationInsert/>} />
+          <Route path="/hotel-location/update" element={<HotelLocationUpdate/>} />
+          <Route path="/hotel-location/trace" element={<HotelLocationTrace/>} />
+
+
+          <Route path="/hotel-inquirys" element={<HotelInquirys/>} />
+          <Route path="/hotel-inquirys/trace" element={<HotelInquirysTrace/>} />
 
         </Route>
       </Routes>

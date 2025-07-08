@@ -51,6 +51,11 @@ const contactForm = require("./routes/contact/contactForm");
 const careerOpportunities = require("./routes/career/careerOpportunities");
 const careerMoreInfo = require("./routes/career/careerMoreInfo");
 
+/**----------------------------------------------------Hotel ----------------------------------------------------*/
+
+const hotelName = require("./routes/hotel/hotelName");
+const hotelOverview = require("./routes/hotel/hotelOverview");
+
 app.use("/admin", admin);
 app.use("/privatePolicy", privatePolicy);
 
@@ -73,6 +78,11 @@ app.use("/contact-form", contactForm);
 
 app.use("/careerOpportunities", careerOpportunities);
 app.use("/careerMoreInfo", careerMoreInfo);
+
+/**----------------------------------------------------Hotel ----------------------------------------------------*/
+
+app.use("/hotelName", hotelName);
+app.use("/hotelOverview", hotelOverview);
 
 // Static Images
 /**--------------------------------------------------Home-------------------------------------------------- */
@@ -111,6 +121,18 @@ app.use(
 app.use(
   "/Images/CareerImages/MoreInfo",
   express.static(path.join(__dirname, "Images/CareerImages/MoreInfo"))
+);
+
+/**----------------------------------------------------Hotel ----------------------------------------------------*/
+
+app.use(
+  "/Images/HotelImages/HotelName",
+  express.static(path.join(__dirname, "Images/HotelImages/HotelName"))
+);
+
+app.use(
+  "/Images/HotelImages/HotelOverview",
+  express.static(path.join(__dirname, "Images/HotelImages/HotelOverview"))
 );
 
 /**---------------Start Server ---------------*/
