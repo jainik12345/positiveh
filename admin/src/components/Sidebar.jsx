@@ -22,35 +22,35 @@ const menuItems = [
     ],
   },
 
-  // {
-  //   path: "/team",
-  //   name: "Team",
-  //   icon: <AiOutlineTeam />,
-  //   children: [
-  //     { path: "/team-member", name: "Team Member" },
-  //     { path: "/team-section-title", name: "Team Section Title" },
-  //   ],
-  // },
+  {
+    path: "/team",
+    name: "Team",
+    icon: <AiOutlineTeam />,
+    children: [
+      { path: "/team-member", name: "Team Member" },
+      { path: "/team-section-title", name: "Team Section Title" },
+    ],
+  },
 
-  // {
-  //   path: "/contact",
-  //   name: "Contact",
-  //   icon: <IoIosContact />,
-  //   children: [
-  //     { path: "/contact-form", name: "Contact Form" },
-  //     { path: "/contact-data-details", name: "Contact Data Details" },
-  //   ],
-  // },
+  {
+    path: "/contact",
+    name: "Contact",
+    icon: <IoIosContact />,
+    children: [
+      { path: "/contact-form", name: "Contact Form" },
+      { path: "/contact-data-details", name: "Contact Data Details" },
+    ],
+  },
 
-  // {
-  //   path: "/career",
-  //   name: "Career",
-  //   icon: <IoIosContact />,
-  //   children: [
-  //     { path: "/career-opportunities", name: "Career Opportunities" },
-  //     { path: "/career-more-info", name: "Career More Info" },
-  //   ],
-  // },
+  {
+    path: "/career",
+    name: "Career",
+    icon: <IoIosContact />,
+    children: [
+      { path: "/career-opportunities", name: "Career Opportunities" },
+      { path: "/career-more-info", name: "Career More Info" },
+    ],
+  },
 
   {
     path: "/hotel",
@@ -67,16 +67,16 @@ const menuItems = [
     ],
   },
 
-  // {
-  //   path: "/private-policy",
-  //   name: "Private Policy",
-  //   icon: <MdPolicy />,
-  // },
-  // {
-  //   path: "/terms-conditions",
-  //   name: "Terms & Conditions",
-  //   icon: <FaFileContract />,
-  // },
+  {
+    path: "/private-policy",
+    name: "Private Policy",
+    icon: <MdPolicy />,
+  },
+  {
+    path: "/terms-conditions",
+    name: "Terms & Conditions",
+    icon: <FaFileContract />,
+  },
 ];
 
 const Sidebar = () => {
