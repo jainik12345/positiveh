@@ -23,7 +23,7 @@ const HomePageOurPortfolioSection = () => {
         Our Portfolio
       </h2>
       <motion.div
-        className="mx-auto h-1 w-30 bg-[var(--color-footer-color)] rounded-full mt-2"
+        className="mx-auto h-1 w-30 bg-[var(--color-logo-color)] rounded-full mt-3"
         initial={{ opacity: 0, scaleX: 0 }}
         whileInView={{ opacity: 1, scaleX: 1 }}
         viewport={{ once: true }}

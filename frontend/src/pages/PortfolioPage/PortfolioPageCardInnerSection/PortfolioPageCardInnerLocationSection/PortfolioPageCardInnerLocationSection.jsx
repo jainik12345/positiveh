@@ -5,7 +5,11 @@ const PortfolioPageCardInnerLocationSection = () => {
     
     <>
     
-      
+      <div className="container max-w-screen-xl mx-auto p-10 ">
+
+        
+
+      </div>
 
     </>
    

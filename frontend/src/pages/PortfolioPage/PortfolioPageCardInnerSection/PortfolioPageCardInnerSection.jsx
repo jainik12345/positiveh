@@ -5,8 +5,8 @@ import image from "../../../assets/banner.jpg";
 import TeamPageRedirectContactUsSection from "../../TeamPage/TeamPageRedirectContactUsSection/TeamPageRedirectContactUsSection";
 import PortfolioPageCardInnerHeroSection from "./PortfolioPageCardInnerHeroSection/PortfolioPageCardInnerHeroSection";
 import PortfolioPageCardInnerGallerySection from "./PortfolioPageCardInnerGallerySection/PortfolioPageCardInnerGallerySection";
-import PortfolioPageCardInnerInquiryFormSection from "./PortfolioPageCardInnerInquiryFormSection/PortfolioPageCardInnerInquiryFormSection";
-import PortfolioPageCardInnerLocationSection from "./PortfolioPageCardInnerLocationSection/PortfolioPageCardInnerLocationSection";
+import PortfolioPageCardInnerContactSection from "./PortfolioPageCardInnerContactSection/PortfolioPageCardInnerContactSection";
+
 import PortfolioPageCardInnerAmenitiesSection from "./PortfolioPageCardInnerAmenitiesSection/PortfolioPageCardInnerAmenitiesSection";
 
 const PortfolioPageCardInnerSection = () => {
@@ -25,10 +25,9 @@ const PortfolioPageCardInnerSection = () => {
     <>
       <BannerSection bgImage={image} title={hotel.displayName} subtitle="" />
       <PortfolioPageCardInnerHeroSection HotelData={hotel} />
-      <PortfolioPageCardInnerAmenitiesSection HotelData={hotel}/>
+      <PortfolioPageCardInnerAmenitiesSection HotelData={hotel} />
       <PortfolioPageCardInnerGallerySection />
-      <PortfolioPageCardInnerLocationSection />
-      {/* <PortfolioPageCardInnerInquiryFormSection /> */}
+      <PortfolioPageCardInnerContactSection />
       <TeamPageRedirectContactUsSection />
     </>
   );
