@@ -92,7 +92,7 @@ const ContactUsPageContactDetailsSection = () => {
         >
           <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
             Get In{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-orange-500">
+            <span className="text-transparent bg-clip-text bg-[var(--color-logo-color)]">
               Touch
             </span>{" "}
             With Us

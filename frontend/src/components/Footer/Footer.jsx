@@ -38,7 +38,7 @@ const Footer = () => {
       <div className="max-w-screen-xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-10">
         {/* Column 1: Logo & Description */}
         <div className="flex flex-col gap-5 items-start">
-          <img src={Logo} className="h-10" alt="Logo" />  
+          <img src={Logo} className="h-10" alt="Logo" />
           <p className="text-sm text-gray-300 leading-relaxed">
             We provide top-notch digital solutions to help your business grow
             and stand out online.
@@ -47,7 +47,9 @@ const Footer = () => {
 
         {/* Column 2: Navigation Links */}
         <div>
-          <h3 className="text-xl font-semibold mb-4 text-(--color-logo-color)">Quick Links</h3>
+          <h3 className="text-xl font-semibold mb-4 text-(--color-logo-color)">
+            Quick Links
+          </h3>
           <ul className="space-y-2">
             {NAV_LINKS.map((link, index) => (
               <li
@@ -92,7 +94,9 @@ const Footer = () => {
 
         {/* Column 4: Contact + Social */}
         <div>
-          <h3 className="text-xl font-semibold mb-4 text-(--color-logo-color)">Contact Us</h3>
+          <h3 className="text-xl font-semibold mb-4 text-(--color-logo-color)">
+            Contact Us
+          </h3>
           <div className="space-y-3 text-sm text-gray-300">
             <div className="flex items-center gap-3">
               <FaPhoneAlt className="text-white" />
@@ -118,7 +122,7 @@ const Footer = () => {
                   whileHover={{ scale: 1.2, rotate: 2 }}
                   whileTap={{ scale: 0.95 }}
                   transition={{ type: "spring", stiffness: 300 }}
-                  className="text-white text-xl p-3 bg-gray-800 rounded-full hover:bg-blue-500 hover:text-white shadow-md transition-all"
+                  className="text-white text-xl p-3 bg-gray-800 rounded-full hover:bg-[var(--color-logo-color)]  hover:text-white shadow-md transition-all"
                 >
                   <Icon />
                 </a>
