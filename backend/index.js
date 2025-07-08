@@ -55,6 +55,9 @@ const careerMoreInfo = require("./routes/career/careerMoreInfo");
 
 const hotelName = require("./routes/hotel/hotelName");
 const hotelOverview = require("./routes/hotel/hotelOverview");
+const hotelBannerBgImage = require("./routes/hotel/hotelBannerBgImage");
+const hotelAmenities = require("./routes/hotel/hotelAmenities");
+const hotelGallery = require("./routes/hotel/hotelGallery");
 
 app.use("/admin", admin);
 app.use("/privatePolicy", privatePolicy);
@@ -83,6 +86,9 @@ app.use("/careerMoreInfo", careerMoreInfo);
 
 app.use("/hotelName", hotelName);
 app.use("/hotelOverview", hotelOverview);
+app.use("/hotelBannerBgImage", hotelBannerBgImage);
+app.use("/hotelAmenities", hotelAmenities);
+app.use("/hotelGallery", hotelGallery);
 
 // Static Images
 /**--------------------------------------------------Home-------------------------------------------------- */
@@ -133,6 +139,21 @@ app.use(
 app.use(
   "/Images/HotelImages/HotelOverview",
   express.static(path.join(__dirname, "Images/HotelImages/HotelOverview"))
+);
+
+app.use(
+  "/Images/HotelImages/HotelBannerBg",
+  express.static(path.join(__dirname, "Images/HotelImages/HotelBannerBg"))
+);
+
+app.use(
+  "/Images/HotelImages/HotelAmenities",
+  express.static(path.join(__dirname, "Images/HotelImages/HotelAmenities"))
+);
+
+app.use(
+  "/Images/HotelImages/HotelGallery",
+  express.static(path.join(__dirname, "Images/HotelImages/HotelGallery"))
 );
 
 /**---------------Start Server ---------------*/

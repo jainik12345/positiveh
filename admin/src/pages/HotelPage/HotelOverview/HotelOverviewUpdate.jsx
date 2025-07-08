@@ -113,49 +113,6 @@ const HotelOverviewUpdate = () => {
     });
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   const newErrors = {
-  //     hotel_id: formData.hotel_id === "",
-  //     description: formData.description.trim() === "",
-  //     images: !images.length && !previewImages.length,
-  //   };
-  //   setErrors(newErrors);
-  //   if (Object.values(newErrors).some((v) => v)) return;
-
-  //   const data = new FormData();
-  //   data.append("hotel_id", formData.hotel_id);
-  //   data.append("description", formData.description);
-  //   if (images.length > 0) {
-  //     images.forEach((img) => data.append("images", img));
-  //   } else if (rowData.images) {
-  //     data.append("existingImages", JSON.stringify(rowData.images));
-  //   }
-
-  //   try {
-  //     const res = await axios.put(
-  //       `${BE_URL}/hotelOverview/${formData.id}`,
-  //       data,
-  //       {
-  //         headers: { "Content-Type": "multipart/form-data" },
-  //       }
-  //     );
-
-  //     if (res.data.status === "success") {
-  //       setSuccess(true);
-  //       setTimeout(() => {
-  //         setSuccess(false);
-  //         navigate("/hotel-overview");
-  //       }, 2500);
-  //     } else {
-  //       console.error("Update failed");
-  //     }
-  //   } catch (err) {
-  //     console.error("Update error:", err);
-  //   }
-  // };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -280,17 +237,6 @@ const HotelOverviewUpdate = () => {
               className="mb-2"
             />
             {previewImages.length > 0 && (
-              // <div className="mt-4 flex flex-wrap gap-3">
-              //   {previewImages.map((src, idx) => (
-              //     <img
-              //       key={idx}
-              //       src={src}
-              //       alt={`Preview ${idx}`}
-              //       className="w-20 h-20 object-cover rounded border"
-              //     />
-              //   ))}
-              // </div>
-
               <div className="mt-4 flex flex-wrap gap-4">
                 {previewImages.map((img, idx) => (
                   <div key={idx} className="relative group">
