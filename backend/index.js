@@ -29,6 +29,7 @@ app.get("/", (req, res) => {
 
 const admin = require("./routes/admin");
 const privatePolicy = require("./routes/privatePolicy");
+const termsConditions = require("./routes/termsConditions");
 
 /**----------------------------------------------------Home ----------------------------------------------------*/
 
@@ -58,9 +59,11 @@ const hotelOverview = require("./routes/hotel/hotelOverview");
 const hotelBannerBgImage = require("./routes/hotel/hotelBannerBgImage");
 const hotelAmenities = require("./routes/hotel/hotelAmenities");
 const hotelGallery = require("./routes/hotel/hotelGallery");
+const hotelLocation = require("./routes/hotel/hotelLocation");
 
 app.use("/admin", admin);
 app.use("/privatePolicy", privatePolicy);
+app.use("/termsConditions", termsConditions);
 
 /**----------------------------------------------------Home ----------------------------------------------------*/
 
@@ -89,6 +92,7 @@ app.use("/hotelOverview", hotelOverview);
 app.use("/hotelBannerBgImage", hotelBannerBgImage);
 app.use("/hotelAmenities", hotelAmenities);
 app.use("/hotelGallery", hotelGallery);
+app.use("/hotelLocation", hotelLocation);
 
 // Static Images
 /**--------------------------------------------------Home-------------------------------------------------- */
