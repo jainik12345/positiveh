@@ -70,11 +70,11 @@ import HotelLocationUpdate from './../../pages/HotelPage/HotelLocation/HotelLoca
 import HotelLocationTrace from './../../pages/HotelPage/HotelLocation/HotelLocationTrace';
 import HotelInquirys from './../../pages/HotelPage/HotelInquirys/HotelInquirys';
 import HotelInquirysTrace from './../../pages/HotelPage/HotelInquirys/HotelInquirysTrace';
-import HotelUsers from './../../pages/UserSection/HotelUsers/HotelUsers';
-import HotelUsersInsert from './../../pages/UserSection/HotelUsers/HotelUsersInsert';
-import HotelUsersUpdate from "../../pages/UserSection/HotelUsers/HotelUsersUpdate";
-import HotelUsersTrace from './../../pages/UserSection/HotelUsers/HotelUsersTrace';
-
+import EmployeeData from "../../pages/UserSection/EmployeeData/EmployeeData";
+import EmployeeDataInsert from "../../pages/UserSection/EmployeeData/EmployeeDataInsert";
+import EmployeeDataUpdate from "../../pages/UserSection/EmployeeData/EmployeeDataUpdate";
+import EmployeeDataTrace from "../../pages/UserSection/EmployeeData/EmployeeDataTrace";
+ 
 const RouteComponents = () => {
   return (
     <>
@@ -207,13 +207,16 @@ const RouteComponents = () => {
           <Route path="/hotel-inquirys/trace" element={<HotelInquirysTrace/>} />
 
 
-          {/* ---------------------------------- ------------USers Section----------------- ----------------------------- */}
+          {/* -----------------------------------------USers Section----------------- ----------------------------- */}
 
 
-          <Route path="/user" element={<HotelUsers/>} />
-          <Route path="/user/insert" element={<HotelUsersInsert/>} />
-          <Route path="/user/update" element={<HotelUsersUpdate/>} />
-          <Route path="/user/trace" element={<HotelUsersTrace/>} />
+          <Route path="/employee-data" element={<EmployeeData/>} />
+          <Route path="/employee-data/insert" element={<EmployeeDataInsert/>} />
+          <Route path="/employee-data/update" element={<EmployeeDataUpdate/>} />
+          <Route path="/employee-data/trace" element={<EmployeeDataTrace/>} />
+
+
+    
 
 
         </Route>
