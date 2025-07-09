@@ -2,8 +2,9 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import person1 from "../../../assets/images/22172a778498fdd0b4894ccf93fd1ca3.jpg";
-import person2 from "../../../assets/images/whats_new_image_1.avif";
+import person1 from "../../../assets/images/andy.jpg";
+import person2 from "../../../assets/images/ken.jpg";
+import person3 from "../../../assets/images/bobby.jpg";
 
 const TeamPageMembersDetailsSection = ({ members }) => {
   // Animation variants
@@ -61,9 +62,23 @@ const TeamPageMembersDetailsSection = ({ members }) => {
     },
     {
       id: 2,
-      name: "Jane Smith",
-      position: "Vice President",
+      name: "Ken Patel",
+      position: "CFO",
       image: person2,
+      description: [
+        "Jane Smith brings over 15 years of strategic management and hotel development experience. She has successfully led several turnaround operations and emphasizes leadership development and team culture.",
+        "With a background in both finance and hospitality, she bridges the gap between investment and operations, delivering consistent performance for investors and guests alike.",
+      ],
+      quote: {
+        text: "Leadership is not about being in charge. It is about taking care of those in your charge.",
+        author: "Simon Sinek",
+      },
+    },
+    {
+      id: 3,
+      name: "Bobby Tipton",
+      position: "Director of Operations",
+      image: person3,
       description: [
         "Jane Smith brings over 15 years of strategic management and hotel development experience. She has successfully led several turnaround operations and emphasizes leadership development and team culture.",
         "With a background in both finance and hospitality, she bridges the gap between investment and operations, delivering consistent performance for investors and guests alike.",
@@ -78,7 +93,7 @@ const TeamPageMembersDetailsSection = ({ members }) => {
   return (
     <section className="w-full px-4 md:px-8 py-16 bg-white">
       <motion.div
-        className="max-w-7xl mx-auto space-y-20"
+        className="max-w-screen-xl mx-auto space-y-20"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
@@ -115,7 +130,7 @@ const TeamPageMembersDetailsSection = ({ members }) => {
                   {member.name}
                 </motion.h2>
                 <motion.p
-                  className="text-blue-600 font-semibold text-lg uppercase mb-6"
+                  className="text-blue-600 text-md font-semibold  uppercase mb-6"
                   variants={itemVariants}
                 >
                   {member.position}
@@ -124,7 +139,7 @@ const TeamPageMembersDetailsSection = ({ members }) => {
                 {member.description.map((paragraph, i) => (
                   <motion.p
                     key={i}
-                    className="text-gray-700 leading-relaxed mb-4 text-lg"
+                    className="text-gray-700 leading-relaxed text-justify mb-4 text-lg "
                     variants={itemVariants}
                   >
                     {paragraph}
@@ -133,7 +148,9 @@ const TeamPageMembersDetailsSection = ({ members }) => {
 
                 {/* Quote Box */}
                 <motion.div
-                  className="mt-8 bg-gray-50 border-l-4 border-blue-500 p-6 rounded-lg shadow-sm"
+                  className={`mt-8 bg-gray-50 ${
+                    index % 2 === 0 ? "border-r-4" : "border-l-4"
+                  } border-blue-500 p-6 font-semibold rounded-lg shadow-sm`}
                   variants={itemVariants}
                 >
                   <p className="text-gray-800 text-md md:text-lg italic mb-2">

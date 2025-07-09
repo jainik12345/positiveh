@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import image1 from "../../../assets/images/whats_new_image_1.avif";
-import image2 from "../../../assets/images/22172a778498fdd0b4894ccf93fd1ca3.jpg";
+import image1 from "../../../assets/images/5.jpg";
+import image2 from "../../../assets/images/4.jpg";
 
 const HomePageAboutUsSection = () => {
   const AboutDetails = [
@@ -19,7 +19,7 @@ const HomePageAboutUsSection = () => {
       <div className="max-w-screen-xl mx-auto flex flex-col gap-10">
         <div className="text-center ">
           <motion.h1
-            className="text-2xl font-bold text-gray-900 sm:text-5xl mb-4"
+            className="text-2xl font-bold text-gray-900 md:text-5xl sm:text-3xl mb-4"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -57,7 +57,7 @@ const HomePageAboutUsSection = () => {
                 >
                   <div className="lg:w-1/2 w-full flex flex-col gap-5">
                     <div className="bg-white p-8 rounded-xl shadow-lg h-full flex items-center">
-                      <p className="text-gray-700 text-lg leading-relaxed text-justify">
+                      <p className="text-gray-700 font-semibold text-lg leading-relaxed text-justify">
                         {val.para}
                       </p>
                     </div>

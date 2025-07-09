@@ -19,7 +19,7 @@ const ClientLogos = [
 const HomePageOurPortfolioSection = () => {
   return (
     <div className="client_logo_main_container py-10 ">
-      <h2 className="text-center text-5xl font-bold text-gray-800">
+      <h2 className="text-center md:text-5xl sm:text-3xl text-2xl font-bold text-gray-800">
         Our Portfolio
       </h2>
       <motion.div

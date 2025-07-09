@@ -45,22 +45,22 @@ const PortfolioPageCardsSection = () => {
   };
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-      <div className="max-w-7xl mx-auto">
+    <section>
+      <div className="max-w-screen-xl mx-auto py-16 px-4 sm:px-6 lg:px-8 ">
         <motion.div
           initial="hidden"
           animate="visible"
           variants={container}
-          className="text-center mb-16"
+          className="text-center  mb-10"
         >
           <motion.h2
-            className="text-4xl md:text-4xl font-semibold text-gray-900 mb-4"
+            className="text-2xl md:text-4xl font-semibold text-gray-900 mb-4"
             variants={item}
           >
             Positive Hospitality Portfolio
           </motion.h2>
           <motion.p
-            className="text-lg md:text-lg text-gray-600 max-w-6xl mx-auto"
+            className="text-md font-semibold md:text-lg text-gray-600 "
             variants={item}
           >
             Our portfolio highlights hotels that prioritize guest satisfaction,
@@ -123,7 +123,7 @@ const PortfolioPageCardsSection = () => {
                 />
               </div>
               <div className="p-6 mt-auto">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                <h3 className="md:text-2xl text-xl font-bold text-gray-900 mb-2">
                   {hotel.displayName}
                 </h3>
                 <p className="text-gray-600">{hotel.location}</p>

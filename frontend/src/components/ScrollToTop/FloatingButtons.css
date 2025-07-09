@@ -1,3 +1,5 @@
+/*whatsapp icon */
+
 .phone-call {
   width: 50px;
   height: 50px;
@@ -55,7 +57,7 @@
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background: #00D2FF;
+  background: #00d2ff;
   color: #ffffff;
   padding: 12px;
   border-radius: 50%;
@@ -98,4 +100,62 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* call icons  */
+
+.call-button {
+  width: 50px;
+  height: 50px;
+  left: 20px;
+  bottom: 90px; /* Placed above WhatsApp button */
+  background: #007bff; /* Blue color for call */
+  position: fixed;
+  text-align: center;
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.call-button:before {
+  position: absolute;
+  content: " ";
+  z-index: -1;
+  top: -15px;
+  left: -15px;
+  background-color: #007bff;
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  animation: pulse 1.8s ease-out infinite;
+  opacity: 0.6;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  25% {
+    transform: scale(0.3);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.6);
+    opacity: 0.6;
+  }
+  75% {
+    transform: scale(0.9);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
 }

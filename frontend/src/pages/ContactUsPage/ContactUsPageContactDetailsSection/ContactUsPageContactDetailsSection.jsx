@@ -1,88 +1,11 @@
 /* eslint-disable no-unused-vars */
 
-import React from "react";
 import { motion } from "framer-motion";
-import {
-  FaPhone,
-  FaEnvelope,
-  FaMapMarkerAlt,
-  FaWhatsapp,
-} from "react-icons/fa";
 
 const ContactUsPageContactDetailsSection = () => {
-  const handleWhatsApp = () => {
-    const phoneNumber = "12345678";
-    const message = encodeURIComponent(
-      "Hello, I am interested in your services."
-    );
-    window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
-  };
-
-  const handleMapDirection = () => {
-    window.open(
-      "https://www.google.com/maps/dir/?api=1&destination=Raj+Chamunda+Tours+And+Travels+Kothariya+Rajkot",
-      "_blank"
-    );
-  };
-
-  const contactItems = [
-    {
-      icon: <FaEnvelope className="text-4xl text-white" />,
-      title: "Mail Us",
-      content: "dummymail@gmail.com",
-      action: () =>
-        (window.location.href = "mailto:gohilluckyrajsinhgohil8@gmail.com"),
-      bgGradient: "from-blue-500 to-blue-600",
-      hoverGradient: "from-blue-600 to-blue-700",
-      iconColor: "bg-blue-500",
-    },
-
-    {
-      icon: <FaMapMarkerAlt className="text-4xl text-white" />,
-      title: "Visit Us",
-      content:
-        "110 Meeting Pl Dr 110 Meeting Pl Dr, Fayetteville, GA 30214, USA",
-      action: handleMapDirection,
-      bgGradient: "from-purple-500 to-purple-600",
-      hoverGradient: "from-purple-600 to-purple-700",
-      iconColor: "bg-purple-500",
-    },
-    {
-      icon: <FaPhone className="text-4xl text-white" />,
-      title: "Call Us",
-      content: "+91 123456789",
-      action: handleWhatsApp,
-      bgGradient: "from-green-500 to-green-600",
-      hoverGradient: "from-green-600 to-green-700",
-      iconColor: "bg-green-500",
-    },
-  ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    },
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="bg-gradient-to-br from-gray-50 to-gray-100 py-10">
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
@@ -90,14 +13,14 @@ const ContactUsPageContactDetailsSection = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+          <h1 className="text-3xl md:text-5xl font-bold text-gray-800 mb-4">
             Get In{" "}
             <span className="text-transparent bg-clip-text bg-[var(--color-logo-color)]">
               Touch
             </span>{" "}
             With Us
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="md:text-xl text-md text-gray-600 ">
             We're here to help you plan your perfect journey. Reach out to us
             through any of these channels.
           </p>

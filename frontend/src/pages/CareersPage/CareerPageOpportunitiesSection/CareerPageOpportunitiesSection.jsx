@@ -94,11 +94,11 @@ const CareerPageOpportunitiesSection = () => {
     <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-screen-xl mx-auto">
         <div className="text-center mb-16 ">
-          <h1 className="font-bold text-gray-900 mb-4 text-4xl">
+          <h1 className="font-bold text-gray-900 mb-4 md:text-4xl text-2xl">
             Career Opportunities with{" "}
             <span className="text-blue-600">Positive Hospitality</span>
           </h1>
-          <p className=" text-gray-600  mx-auto">
+          <p className=" text-gray-600  font-semibold text-center">
             There are several career opportunities available within the
             hospitality industry that focus on providing positive hospitality
             experiences for customers.
@@ -120,7 +120,7 @@ const CareerPageOpportunitiesSection = () => {
                 <h3 className="text-xl font-semibold text-gray-800 mb-3 ">
                   {benefit.title}
                 </h3>
-                <p className="text-gray-600 font-semibold text-justify ">
+                <p className="text-gray-600  text-justify ">
                   {benefit.description}
                 </p>
               </div>

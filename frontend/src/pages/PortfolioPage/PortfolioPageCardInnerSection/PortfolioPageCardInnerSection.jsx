@@ -1,7 +1,7 @@
 import BannerSection from "../../../components/BannerSection/BannerSection";
 import { useParams } from "react-router-dom";
 import hotelData from "../hotelData";
-import image from "../../../assets/banner.jpg";
+import image from "../../../assets/images/banner.jpg";
 import TeamPageRedirectContactUsSection from "../../TeamPage/TeamPageRedirectContactUsSection/TeamPageRedirectContactUsSection";
 import PortfolioPageCardInnerHeroSection from "./PortfolioPageCardInnerHeroSection/PortfolioPageCardInnerHeroSection";
 import PortfolioPageCardInnerGallerySection from "./PortfolioPageCardInnerGallerySection/PortfolioPageCardInnerGallerySection";

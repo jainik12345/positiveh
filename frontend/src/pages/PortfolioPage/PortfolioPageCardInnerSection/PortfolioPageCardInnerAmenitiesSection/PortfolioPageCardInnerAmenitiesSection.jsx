@@ -58,7 +58,7 @@ const PortfolioPageCardInnerAmenitiesSection = ({ HotelData }) => {
           <div className="text-center ">
             <button
               onClick={() => setShowAll((prev) => !prev)}
-              className="text-blue-600 hover:text-blue-800 font-medium underline transition-colors cursor-pointer"
+              className="text-blue-600 hover:text-blue-800 font-medium text-xl  transition-colors cursor-pointer"
             >
               {showAll ? "Hide" : "View All"}
             </button>

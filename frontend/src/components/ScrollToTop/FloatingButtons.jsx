@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
-import { FaArrowUp, FaWhatsapp } from "react-icons/fa";
+import { FaArrowUp, FaWhatsapp, FaPhoneAlt } from "react-icons/fa";
+
 import { motion, AnimatePresence } from "framer-motion";
 import "./FloatingButtons.css";
 
@@ -26,6 +27,14 @@ const FloatingButtons = () => {
   return (
     <>
       <a
+        href="tel:+1234567890" // Replace with your phone number
+        target="_blank"
+        rel="noopener noreferrer"
+        className="call-button flex items-center justify-center"
+      >
+        <FaPhoneAlt size={28} color="#ffffff" />
+      </a>
+      <a
         href="https://wa.me/1234567890"
         target="_blank"
         rel="noopener noreferrer"
@@ -33,7 +42,6 @@ const FloatingButtons = () => {
       >
         <FaWhatsapp size={36} color="#ffffff" />
       </a>
-
       <AnimatePresence>
         {showTopButton && (
           <motion.button

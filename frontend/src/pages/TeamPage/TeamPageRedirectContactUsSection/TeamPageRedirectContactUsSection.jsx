@@ -38,7 +38,7 @@ const TeamPageRedirectContactUsSection = () => {
       <div className="max-w-screen-xl mx-auto flex flex-col items-center gap-8">
         {/* Heading */}
         <motion.h3
-          className="text-center text-[1.6rem] sm:text-[2rem] md:text-[2.4rem] font-medium leading-relaxed text-gray-900"
+          className="text-center md:text-4xl text-lg font-medium leading-relaxed text-gray-900"
           variants={itemVariants}
         >
           Positive Hospitality is a{" "}

@@ -1,9 +1,9 @@
 import { FaWifi } from "react-icons/fa";
-import hamptonInnImage from "../../assets/images/22172a778498fdd0b4894ccf93fd1ca3.jpg";
-import home2SuitesImage from "../../assets/images/whats_new_image_1.avif";
-import townplaceSuitesImage from "../../assets/images/22172a778498fdd0b4894ccf93fd1ca3.jpg";
-import trubyHiltonImage from "../../assets/images/whats_new_image_1.avif";
-import hamptonInnPeachtreeImage from "../../assets/images/22172a778498fdd0b4894ccf93fd1ca3.jpg";
+import hamptonInnImage from "../../assets/images/hotelinn.png";
+import home2SuitesImage from "../../assets/images/h2s.jpg";
+import townplaceSuitesImage from "../../assets/images/tp.jpg";
+import trubyHiltonImage from "../../assets/images/tru.jpg";
+import hamptonInnPeachtreeImage from "../../assets/images/hampton.jpg";
 
 const hotelData = {
   "hampton-inn": {
