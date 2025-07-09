@@ -22,7 +22,7 @@ global.db = db;
 
 // Simple Route to Check Server
 app.get("/", (req, res) => {
-  res.send("Hello Backend 🚀🚀🚀🚀🚀");
+  res.send("Hello POSITIVE H. Backend 🚀🚀🚀🚀🚀");
 });
 
 /**Call Routes.. */
@@ -60,6 +60,7 @@ const hotelBannerBgImage = require("./routes/hotel/hotelBannerBgImage");
 const hotelAmenities = require("./routes/hotel/hotelAmenities");
 const hotelGallery = require("./routes/hotel/hotelGallery");
 const hotelLocation = require("./routes/hotel/hotelLocation");
+const hotelInquiry = require("./routes/hotel/hotelInquiry");
 
 app.use("/admin", admin);
 app.use("/privatePolicy", privatePolicy);
@@ -93,6 +94,7 @@ app.use("/hotelBannerBgImage", hotelBannerBgImage);
 app.use("/hotelAmenities", hotelAmenities);
 app.use("/hotelGallery", hotelGallery);
 app.use("/hotelLocation", hotelLocation);
+app.use("/hotelInquiry", hotelInquiry);
 
 // Static Images
 /**--------------------------------------------------Home-------------------------------------------------- */

@@ -102,3 +102,17 @@ exports.restoreHotelLocation = (req, res) => {
     }
   );
 };
+
+// GET trashed hotel locations by hotel_id
+exports.getTrashedHotelLocationsByHotel = (req, res) => {
+  const { hotel_id } = req.params;
+
+  db.query(
+    "SELECT * FROM hotel_location WHERE deleted_at = 1 AND hotel_id = ?",
+    [hotel_id],
+    (err, results) => {
+      if (err) return res.status(500).json({ error: err.message });
+      res.status(200).json({ status: "success", data: results });
+    }
+  );
+};

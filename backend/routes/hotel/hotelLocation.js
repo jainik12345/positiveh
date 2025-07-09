@@ -9,4 +9,7 @@ router.put("/:id", controller.updateHotelLocation);
 router.delete("/:id", controller.deleteHotelLocation);
 router.patch("/restore/:id", controller.restoreHotelLocation);
 
+router.get("/trashed/hotel/:hotel_id", controller.getTrashedHotelLocationsByHotel);
+
+
 module.exports = router;
