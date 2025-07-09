@@ -8,49 +8,50 @@ import { AiOutlineTeam } from "react-icons/ai";
 import { MdPolicy } from "react-icons/md";
 import { IoIosHome, IoIosContact } from "react-icons/io";
 import { FaHotel } from "react-icons/fa6";
+import { FaUser } from "react-icons/fa";
 
 const menuItems = [
-  {
-    path: "/home",
-    name: "Home",
-    icon: <IoIosHome />,
-    children: [
-      { path: "/home-our-team", name: "Home Our Team" },
-      { path: "/home-our-portfolio", name: "Home Our Portfolio" },
-      { path: "/home-image-slider", name: "Home Image Slider" },
-      { path: "/home-about-hotel-section", name: "Home About Hotels Section" },
-    ],
-  },
+  // {
+  //   path: "/home",
+  //   name: "Home",
+  //   icon: <IoIosHome />,
+  //   children: [
+  //     { path: "/home-our-team", name: "Home Our Team" },
+  //     { path: "/home-our-portfolio", name: "Home Our Portfolio" },
+  //     { path: "/home-image-slider", name: "Home Image Slider" },
+  //     { path: "/home-about-hotel-section", name: "Home About Hotels Section" },
+  //   ],
+  // },
 
-  {
-    path: "/team",
-    name: "Team",
-    icon: <AiOutlineTeam />,
-    children: [
-      { path: "/team-member", name: "Team Member" },
-      { path: "/team-section-title", name: "Team Section Title" },
-    ],
-  },
+  // {
+  //   path: "/team",
+  //   name: "Team",
+  //   icon: <AiOutlineTeam />,
+  //   children: [
+  //     { path: "/team-member", name: "Team Member" },
+  //     { path: "/team-section-title", name: "Team Section Title" },
+  //   ],
+  // },
 
-  {
-    path: "/contact",
-    name: "Contact",
-    icon: <IoIosContact />,
-    children: [
-      { path: "/contact-form", name: "Contact Form" },
-      { path: "/contact-data-details", name: "Contact Data Details" },
-    ],
-  },
+  // {
+  //   path: "/contact",
+  //   name: "Contact",
+  //   icon: <IoIosContact />,
+  //   children: [
+  //     { path: "/contact-form", name: "Contact Form" },
+  //     { path: "/contact-data-details", name: "Contact Data Details" },
+  //   ],
+  // },
 
-  {
-    path: "/career",
-    name: "Career",
-    icon: <IoIosContact />,
-    children: [
-      { path: "/career-opportunities", name: "Career Opportunities" },
-      { path: "/career-more-info", name: "Career More Info" },
-    ],
-  },
+  // {
+  //   path: "/career",
+  //   name: "Career",
+  //   icon: <IoIosContact />,
+  //   children: [
+  //     { path: "/career-opportunities", name: "Career Opportunities" },
+  //     { path: "/career-more-info", name: "Career More Info" },
+  //   ],
+  // },
 
   {
     path: "/hotel",
@@ -58,25 +59,32 @@ const menuItems = [
     icon: <FaHotel />,
     children: [
       { path: "/hotel-name", name: "Hotel Name" },
-      { path: "/hotel-overview", name: "Hotel Overview" },
-      { path: "/hotel-banner-bg-image", name: "Hotel Banner Bg image" },
-      { path: "/hotel-amenities", name: "Hotel Amenities" },
-      { path: "/hotel-gallery", name: "Hotel Gallery" },
-      { path: "/hotel-location", name: "Hotel Location" },
-      { path: "/hotel-inquirys", name: "Hotel Inquirys" },
+      // { path: "/hotel-overview", name: "Hotel Overview" },
+      // { path: "/hotel-banner-bg-image", name: "Hotel Banner Bg image" },
+      // { path: "/hotel-amenities", name: "Hotel Amenities" },
+      // { path: "/hotel-gallery", name: "Hotel Gallery" },
+      // { path: "/hotel-location", name: "Hotel Location" },
+      // { path: "/hotel-inquirys", name: "Hotel Inquirys" },
     ],
   },
 
   {
-    path: "/private-policy",
-    name: "Private Policy",
-    icon: <MdPolicy />,
+    path: "/user",
+    name: "Users",
+    icon: <FaUser />,
+    children: [{ path: "/user", name: "Hotel Users" }],
   },
-  {
-    path: "/terms-conditions",
-    name: "Terms & Conditions",
-    icon: <FaFileContract />,
-  },
+
+  // {
+  //   path: "/private-policy",
+  //   name: "Private Policy",
+  //   icon: <MdPolicy />,
+  // },
+  // {
+  //   path: "/terms-conditions",
+  //   name: "Terms & Conditions",
+  //   icon: <FaFileContract />,
+  // },
 ];
 
 const Sidebar = () => {

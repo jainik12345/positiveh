@@ -70,6 +70,10 @@ import HotelLocationUpdate from './../../pages/HotelPage/HotelLocation/HotelLoca
 import HotelLocationTrace from './../../pages/HotelPage/HotelLocation/HotelLocationTrace';
 import HotelInquirys from './../../pages/HotelPage/HotelInquirys/HotelInquirys';
 import HotelInquirysTrace from './../../pages/HotelPage/HotelInquirys/HotelInquirysTrace';
+import HotelUsers from './../../pages/UserSection/HotelUsers/HotelUsers';
+import HotelUsersInsert from './../../pages/UserSection/HotelUsers/HotelUsersInsert';
+import HotelUsersUpdate from "../../pages/UserSection/HotelUsers/HotelUsersUpdate";
+import HotelUsersTrace from './../../pages/UserSection/HotelUsers/HotelUsersTrace';
 
 const RouteComponents = () => {
   return (
@@ -201,6 +205,16 @@ const RouteComponents = () => {
 
           <Route path="/hotel-inquirys" element={<HotelInquirys/>} />
           <Route path="/hotel-inquirys/trace" element={<HotelInquirysTrace/>} />
+
+
+          {/* ---------------------------------- ------------USers Section----------------- ----------------------------- */}
+
+
+          <Route path="/user" element={<HotelUsers/>} />
+          <Route path="/user/insert" element={<HotelUsersInsert/>} />
+          <Route path="/user/update" element={<HotelUsersUpdate/>} />
+          <Route path="/user/trace" element={<HotelUsersTrace/>} />
+
 
         </Route>
       </Routes>
