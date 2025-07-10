@@ -19,13 +19,6 @@ const NAV_LINKS = [
   { label: "Terms & Conditions", to: "/terms-conditions" },
 ];
 
-// const SERVICES = [
-//   "Web Development",
-//   "Graphic Design",
-//   "SEO Services",
-//   "Social Media Marketing",
-// ];
-
 const Footer = () => {
   return (
     <div className="bg-(--color-footer-color) p-10 text-white font-(family-name:--font-navbar-font) font-semibold">
