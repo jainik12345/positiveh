@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+//design no:1
 
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -137,3 +137,12 @@ const PortfolioPageCardsSection = () => {
 };
 
 export default PortfolioPageCardsSection;
+
+
+//design no:2
+
+
+
+
+
+//design no:3

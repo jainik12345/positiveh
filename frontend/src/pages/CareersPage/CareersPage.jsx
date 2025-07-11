@@ -2,6 +2,7 @@ import CareerPageMoreInfoSection from "./CareerPageMoreInfoSection/CareerPageMor
 import CareerPageOpportunitiesSection from "./CareerPageOpportunitiesSection/CareerPageOpportunitiesSection";
 import CareerPageRedirectContactUsSection from "./CareerPageRedirectContactUsSection/CareerPageRedirectContactUsSection";
 import BannerSection from "../../components/BannerSection/BannerSection";
+import TeamPageRedirectContactUsSection from "../TeamPage/TeamPageRedirectContactUsSection/TeamPageRedirectContactUsSection";
 import bgImage from "../../assets/images/career_download.jpeg"
 
 const CareersPage = () => {
@@ -10,7 +11,8 @@ const CareersPage = () => {
       <BannerSection  bgImage={bgImage} title="Be The Part Of Our Family" subtitle="Join The Our Family"/>
       <CareerPageOpportunitiesSection />
       <CareerPageMoreInfoSection />
-      <CareerPageRedirectContactUsSection />
+      {/* <CareerPageRedirectContactUsSection /> */}
+      <TeamPageRedirectContactUsSection/>
     </>
   );
 };
