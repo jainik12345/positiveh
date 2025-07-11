@@ -74,6 +74,7 @@ import EmployeeData from "../../pages/UserSection/EmployeeData/EmployeeData";
 import EmployeeDataInsert from "../../pages/UserSection/EmployeeData/EmployeeDataInsert";
 import EmployeeDataUpdate from "../../pages/UserSection/EmployeeData/EmployeeDataUpdate";
 import EmployeeDataTrace from "../../pages/UserSection/EmployeeData/EmployeeDataTrace";
+import EmployeeDashboard from "../../components/LoginSection/EmployeeDashboard";
  
 const RouteComponents = () => {
   return (
@@ -83,6 +84,8 @@ const RouteComponents = () => {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/verify-otp" element={<VerifyOTP />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+
+        <Route path="/employee-dashboard" element={<EmployeeDashboard/>} />
     
         {/* Redirect / to /admin */}
 

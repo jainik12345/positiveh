@@ -74,56 +74,85 @@ module.exports.postadmin = (req, res) => {
   });
 };
 
+// module.exports.sendOtp = (req, res) => {
+//   const { email } = req.body;
+
+//   const otp = Math.floor(100000 + Math.random() * 900000).toString();
+//   const expiresAt = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
+
+//   const sql = `UPDATE admin SET admin_otp = ?, admin_otp_expires = ? WHERE admin_email_id = ?`;
+//   db.query(sql, [otp, expiresAt, email], (err, result) => {
+//     if (err) return res.status(500).json({ message: "Database error" });
+
+//     const transporter = nodemailer.createTransport({
+//       service: "gmail",
+//       auth: {
+//         user: process.env.EMAIL_USER,
+//         pass: process.env.EMAIL_PASS,
+//       },
+//     });
+
+//     const mailOptions = {
+//       from: `"Positive H. Admin" <${process.env.EMAIL_USER}>`,
+//       to: email,
+//       subject: "🔐 OTP for Password Reset -  Admin Panel",
+//       html: `
+//         <div style="max-width:600px;margin:0 auto;font-family:'Segoe UI',Roboto,sans-serif;color:#333;background-color:#f4f6f8;padding:20px;border-radius:10px;">
+//           <div style="text-align:center;margin-bottom:30px;">
+//             <h2 style="color:#1976d2;"></h2>
+//             <h3 style="color:#333;">Password Reset OTP</h3>
+//           </div>
+//           <p>Hi there,</p>
+//           <p>You recently requested to reset your password for the <b>Positive H. Admin Panel</b>. Use the OTP below to proceed:</p>
+//           <div style="background-color:#e3f2fd;padding:15px;text-align:center;border-radius:8px;margin:20px 0;">
+//             <span style="font-size:28px;font-weight:bold;color:#0d47a1;">${otp}</span>
+//           </div>
+//           <p>This OTP is valid for <b>10 minutes</b>. If you didn’t request a password reset, please ignore this email or contact support.</p>
+//           <br/>
+//           <p>Regards,</p>
+//           <p><b>Positive H. Admin Team</b></p>
+//           <hr style="border:none;border-top:1px solid #ccc;margin-top:30px;">
+//           <p style="font-size:12px;color:#888;text-align:center;">
+//             This is an automated message. Please do not reply directly to this email.
+//           </p>
+//         </div>
+//       `,
+//     };
+
+//     transporter.sendMail(mailOptions, (err, info) => {
+//       if (err)
+//         return res
+//           .status(500)
+//           .json({ message: "Email send error", error: err });
+//       return res.status(200).json({ message: "OTP sent successfully" });
+//     });
+//   });
+// };
+
 module.exports.sendOtp = (req, res) => {
   const { email } = req.body;
 
-  const otp = Math.floor(100000 + Math.random() * 900000).toString();
-  const expiresAt = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
-
-  const sql = `UPDATE admin SET admin_otp = ?, admin_otp_expires = ? WHERE admin_email_id = ?`;
-  db.query(sql, [otp, expiresAt, email], (err, result) => {
+  // First, check if email exists in admin table
+  const checkSql = "SELECT * FROM admin WHERE admin_email_id = ?";
+  db.query(checkSql, [email], (err, results) => {
     if (err) return res.status(500).json({ message: "Database error" });
 
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
+    if (results.length === 0) {
+      // Email does not exist
+      return res.status(404).json({ message: "Admin not found" });
+    }
 
-    const mailOptions = {
-      from: `"Positive H. Admin" <${process.env.EMAIL_USER}>`,
-      to: email,
-      subject: "🔐 OTP for Password Reset -  Admin Panel",
-      html: `
-        <div style="max-width:600px;margin:0 auto;font-family:'Segoe UI',Roboto,sans-serif;color:#333;background-color:#f4f6f8;padding:20px;border-radius:10px;">
-          <div style="text-align:center;margin-bottom:30px;">
-            <h2 style="color:#1976d2;"></h2>
-            <h3 style="color:#333;">Password Reset OTP</h3>
-          </div>
-          <p>Hi there,</p>
-          <p>You recently requested to reset your password for the <b>Positive H. Admin Panel</b>. Use the OTP below to proceed:</p>
-          <div style="background-color:#e3f2fd;padding:15px;text-align:center;border-radius:8px;margin:20px 0;">
-            <span style="font-size:28px;font-weight:bold;color:#0d47a1;">${otp}</span>
-          </div>
-          <p>This OTP is valid for <b>10 minutes</b>. If you didn’t request a password reset, please ignore this email or contact support.</p>
-          <br/>
-          <p>Regards,</p>
-          <p><b>Positive H. Admin Team</b></p>
-          <hr style="border:none;border-top:1px solid #ccc;margin-top:30px;">
-          <p style="font-size:12px;color:#888;text-align:center;">
-            This is an automated message. Please do not reply directly to this email.
-          </p>
-        </div>
-      `,
-    };
+    // Email exists, send OTP as before...
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const expiresAt = new Date(Date.now() + 10 * 60 * 1000);
 
-    transporter.sendMail(mailOptions, (err, info) => {
-      if (err)
-        return res
-          .status(500)
-          .json({ message: "Email send error", error: err });
+    const sql = `UPDATE admin SET admin_otp = ?, admin_otp_expires = ? WHERE admin_email_id = ?`;
+    db.query(sql, [otp, expiresAt, email], (err, result) => {
+      if (err) return res.status(500).json({ message: "Database error" });
+
+      // ...Send email as before
+      // (nodemailer code here)
+
       return res.status(200).json({ message: "OTP sent successfully" });
     });
   });

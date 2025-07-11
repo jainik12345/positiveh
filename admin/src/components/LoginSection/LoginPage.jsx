@@ -41,26 +41,51 @@ const LoginPage = () => {
     setErrors(newErrors);
     if (!hasError) {
       try {
-        const res = await axios.post(`${BE_URL}/admin/login`, {
+        // Try Admin Login
+        const adminRes = await axios.post(`${BE_URL}/admin/login`, {
           email,
           password,
         });
 
-        if (res.status === 200) {
+        if (adminRes.status === 200) {
           Swal.fire({
             icon: "success",
-            title: "Login Successful",
+            title: "Admin Login Successful",
             text: "Welcome to Compass Tourism!",
           });
 
           navigate("/home-page");
+          return;
         }
-      } catch (error) {
-        Swal.fire({
-          icon: "error",
-          title: "Login Failed",
-          text: error?.response?.data?.message || "Something went wrong",
-        });
+      } catch (adminError) {
+        // Try Employee Login only if Admin login fails
+        try {
+          const empRes = await axios.post(`${BE_URL}/employeeDataName/login`, {
+            email,
+            password,
+          });
+
+          if (empRes.status === 200) {
+            Swal.fire({
+              icon: "success",
+              title: "Employee Login Successful",
+              text: "Welcome!",
+            });
+
+            navigate("/employee-dashboard");
+            return;
+          }
+        } catch (empError) {
+          // Both failed
+          Swal.fire({
+            icon: "error",
+            title: "Login Failed",
+            text:
+              empError?.response?.data?.message ||
+              adminError?.response?.data?.message ||
+              "Invalid email or password",
+          });
+        }
       }
     }
   };

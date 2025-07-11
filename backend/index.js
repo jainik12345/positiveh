@@ -62,6 +62,10 @@ const hotelGallery = require("./routes/hotel/hotelGallery");
 const hotelLocation = require("./routes/hotel/hotelLocation");
 const hotelInquiry = require("./routes/hotel/hotelInquiry");
 
+/**----------------------------------------------------Employee ----------------------------------------------------*/
+
+const EmployeeDataName = require("./routes/EmployeeData/EmployeeDataName");
+
 app.use("/admin", admin);
 app.use("/privatePolicy", privatePolicy);
 app.use("/termsConditions", termsConditions);
@@ -95,6 +99,10 @@ app.use("/hotelAmenities", hotelAmenities);
 app.use("/hotelGallery", hotelGallery);
 app.use("/hotelLocation", hotelLocation);
 app.use("/hotelInquiry", hotelInquiry);
+
+/**----------------------------------------------------Employee ----------------------------------------------------*/
+
+app.use("/employeeDataName", EmployeeDataName);
 
 // Static Images
 /**--------------------------------------------------Home-------------------------------------------------- */
@@ -160,6 +168,15 @@ app.use(
 app.use(
   "/Images/HotelImages/HotelGallery",
   express.static(path.join(__dirname, "Images/HotelImages/HotelGallery"))
+);
+
+/**----------------------------------------------------Employee ----------------------------------------------------*/
+
+app.use(
+  "/Images/EmployeeDataImages/EmployeeDataName",
+  express.static(
+    path.join(__dirname, "Images/EmployeeDataImages/EmployeeDataName")
+  )
 );
 
 /**---------------Start Server ---------------*/

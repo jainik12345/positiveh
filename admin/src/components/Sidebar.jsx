@@ -61,7 +61,7 @@ const menuItems = [
     icon: <FaHotel />,
     children: [
       { path: "/hotel-name", name: "Hotel Name" },
-      // { path: "/hotel-overview", name: "Hotel Overview" },
+      { path: "/hotel-overview", name: "Hotel Overview" },
       // { path: "/hotel-banner-bg-image", name: "Hotel Banner Bg image" },
       // { path: "/hotel-amenities", name: "Hotel Amenities" },
       // { path: "/hotel-gallery", name: "Hotel Gallery" },
