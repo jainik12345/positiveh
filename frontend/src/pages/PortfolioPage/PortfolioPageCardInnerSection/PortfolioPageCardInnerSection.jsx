@@ -61,12 +61,9 @@ const PortfolioPageCardInnerSection = () => {
   return (
     <>
       <BannerSection bgImage={image} title={hotel.displayName} subtitle="" />
-      {/* <PortfolioPageCardInnerHeroSection />   */}
-       {/* Done */}
-      {/* <PortfolioPageCardInnerAmenitiesSection HotelData={hotel} />   */}
-      {/* Done */}
-      {/* <PortfolioPageCardInnerGallerySection />  */}
-       {/* Done */}
+      <PortfolioPageCardInnerHeroSection />
+      <PortfolioPageCardInnerAmenitiesSection HotelData={hotel} />
+      <PortfolioPageCardInnerGallerySection />
       <PortfolioPageCardInnerContactSection />
       <TeamPageRedirectContactUsSection />
     </>
