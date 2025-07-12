@@ -138,7 +138,37 @@ const CareerMoreInfoTrace = () => {
                       background: "rgba(16, 26, 45, 0.30)",
                     }}
                   >
+                    Heading
+                  </TableCell>
+                  <TableCell
+                    className="!font-bold text-base"
+                    style={{
+                      color: "#5186c9",
+                      borderRight: "1.5px solid #192e4d",
+                      background: "rgba(16, 26, 45, 0.30)",
+                    }}
+                  >
                     Description
+                  </TableCell>
+                  <TableCell
+                    className="!font-bold text-base"
+                    style={{
+                      color: "#5186c9",
+                      borderRight: "1.5px solid #192e4d",
+                      background: "rgba(16, 26, 45, 0.30)",
+                    }}
+                  >
+                    Quote
+                  </TableCell>
+                  <TableCell
+                    className="!font-bold text-base"
+                    style={{
+                      color: "#5186c9",
+                      borderRight: "1.5px solid #192e4d",
+                      background: "rgba(16, 26, 45, 0.30)",
+                    }}
+                  >
+                    Name
                   </TableCell>
                   <TableCell
                     className="!font-bold text-base"
@@ -183,6 +213,14 @@ const CareerMoreInfoTrace = () => {
                         className="w-16 h-16 object-cover rounded"
                       />
                     </TableCell>
+                    <TableCell
+                      style={{
+                        color: "#e3eafc",
+                        borderRight: "1.2px solid #192e4d",
+                      }}
+                    >
+                      {row.heading}
+                    </TableCell>
 
                     <TableCell
                       style={{
@@ -193,6 +231,23 @@ const CareerMoreInfoTrace = () => {
                       {row.description.length > 80
                         ? row.description.slice(0, 80) + "..."
                         : row.description}
+                    </TableCell>
+                    <TableCell
+                      style={{
+                        color: "#e3eafc",
+                        borderRight: "1.2px solid #192e4d",
+                      }}
+                    >
+                      {row.quote}
+                    </TableCell>
+
+                    <TableCell
+                      style={{
+                        color: "#e3eafc",
+                        borderRight: "1.2px solid #192e4d",
+                      }}
+                    >
+                      {row.name}
                     </TableCell>
 
                     <TableCell>

@@ -154,6 +154,26 @@ const CareerMoreInfo = () => {
                     className="!font-bold text-base"
                     style={{
                       color: "#5186c9",
+                      borderRight: "1.5px solid #192e4d",
+                      background: "rgba(16, 26, 45, 0.30)",
+                    }}
+                  >
+                    Quote
+                  </TableCell>
+                  <TableCell
+                    className="!font-bold text-base"
+                    style={{
+                      color: "#5186c9",
+                      borderRight: "1.5px solid #192e4d",
+                      background: "rgba(16, 26, 45, 0.30)",
+                    }}
+                  >
+                    Name
+                  </TableCell>
+                  <TableCell
+                    className="!font-bold text-base"
+                    style={{
+                      color: "#5186c9",
                       background: "rgba(16, 26, 45, 0.30)",
                     }}
                   >
@@ -223,6 +243,22 @@ const CareerMoreInfo = () => {
                           ? row.description.slice(0, 80) + "..."
                           : row.description}
                       </div>
+                    </TableCell>
+                    <TableCell
+                      style={{
+                        color: "#e3eafc",
+                        borderRight: "1.2px solid #192e4d",
+                      }}
+                    >
+                      {row.quote}
+                    </TableCell>
+                    <TableCell
+                      style={{
+                        color: "#e3eafc",
+                        borderRight: "1.2px solid #192e4d",
+                      }}
+                    >
+                      {row.name}
                     </TableCell>
 
                     <TableCell>

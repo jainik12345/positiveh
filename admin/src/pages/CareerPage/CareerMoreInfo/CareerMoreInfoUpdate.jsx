@@ -19,6 +19,8 @@ const CareerMoreInfoUpdate = () => {
   const [image, setImage] = useState(null);
   const [heading, setHeading] = useState(rowData.heading || "");
   const [description, setDescription] = useState(rowData.description || "");
+  const [quote, setQuote] = useState(rowData.quote || "");
+  const [name, setName] = useState(rowData.name || "");
   const [success, setSuccess] = useState(false);
 
   const handleImageChange = (e) => {
@@ -33,6 +35,8 @@ const CareerMoreInfoUpdate = () => {
     const formData = new FormData();
     formData.append("heading", heading);
     formData.append("description", description);
+    formData.append("quote", quote);
+    formData.append("name", name);
 
     if (image) {
       formData.append("image", image);
@@ -153,6 +157,52 @@ const CareerMoreInfoUpdate = () => {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Enter description..."
+              style={{
+                background: "#181a24",
+                border: "1.5px solid #192e4d",
+                color: "#b2c7e5",
+              }}
+              required
+            />
+          </div>
+
+          {/* quote */}
+          <div>
+            <label
+              className="block mb-2 font-semibold"
+              style={{ color: "#5186c9" }}
+            >
+              Quote
+            </label>
+            <input
+              type="text"
+              value={quote}
+              onChange={(e) => setQuote(e.target.value)}
+              className="rounded-md p-2 w-full"
+              placeholder="Enter Quote..."
+              style={{
+                background: "#181a24",
+                border: "1.5px solid #192e4d",
+                color: "#b2c7e5",
+              }}
+              required
+            />
+          </div>
+
+          {/* name */}
+          <div>
+            <label
+              className="block mb-2 font-semibold"
+              style={{ color: "#5186c9" }}
+            >
+              Name
+            </label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="rounded-md p-2 w-full"
+              placeholder="Enter Name..."
               style={{
                 background: "#181a24",
                 border: "1.5px solid #192e4d",
