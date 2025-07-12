@@ -62,6 +62,44 @@ exports.insertOverview = (req, res) => {
   });
 };
 
+// exports.updateOverview = (req, res) => {
+//   upload(req, res, (err) => {
+//     if (err) return res.status(500).json({ error: err.message });
+
+//     const { id } = req.params;
+//     const { hotel_id, description, existingImages } = req.body;
+
+//     // New images from form upload
+//     const newImages = req.files?.map((file) => file.filename) || [];
+
+//     // Parse existing images sent from frontend
+//     let oldImages = [];
+//     try {
+//       oldImages = JSON.parse(existingImages || "[]");
+//     } catch (e) {
+//       return res.status(400).json({ error: "Invalid existing images format" });
+//     }
+
+//     // ✅ Merge both old and new images
+//     const allImages = [...oldImages, ...newImages];
+
+//     if (!hotel_id || !description || allImages.length === 0) {
+//       return res.status(400).json({
+//         error: "Hotel ID, Description, and at least one image are required",
+//       });
+//     }
+
+//     db.query(
+//       "UPDATE hotel_overview SET hotel_id = ?, images = ?, description = ? WHERE id = ? AND deleted_at = 0",
+//       [hotel_id, JSON.stringify(allImages), description, id],
+//       (err) => {
+//         if (err) return res.status(500).json({ error: err.message });
+//         res.status(200).json({ status: "success", message: "Updated" });
+//       }
+//     );
+//   });
+// };
+
 exports.updateOverview = (req, res) => {
   upload(req, res, (err) => {
     if (err) return res.status(500).json({ error: err.message });
@@ -72,15 +110,15 @@ exports.updateOverview = (req, res) => {
     // New images from form upload
     const newImages = req.files?.map((file) => file.filename) || [];
 
-    // Parse existing images sent from frontend
+    // Parse and clean existing images
     let oldImages = [];
     try {
-      oldImages = JSON.parse(existingImages || "[]");
+      const parsed = JSON.parse(existingImages || "[]");
+      oldImages = parsed.map((img) => img.split("/").pop());
     } catch (e) {
       return res.status(400).json({ error: "Invalid existing images format" });
     }
 
-    // ✅ Merge both old and new images
     const allImages = [...oldImages, ...newImages];
 
     if (!hotel_id || !description || allImages.length === 0) {

@@ -33,6 +33,7 @@ const RouteComponent = () => {
         <Route path="/portfolio" element={<WebsitePage><PortfolioPage /></WebsitePage>} /> 
         <Route path="/portfolio/:hotelName" element={<WebsitePage><PortfolioPageCardInnerSection /></WebsitePage>} />
         <Route path="/careers" element={<WebsitePage><CareersPage /></WebsitePage>} />
+        
         <Route path="/terms-conditions" element={<WebsitePage><TermsConditionsPage /></WebsitePage>} />
       </Routes>
     </>

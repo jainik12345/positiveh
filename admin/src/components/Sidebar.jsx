@@ -51,7 +51,7 @@ const menuItems = [
     icon: <IoIosContact />,
     children: [
       { path: "/career-opportunities", name: "Career Opportunities" },
-      // { path: "/career-more-info", name: "Career More Info" },
+      { path: "/career-more-info", name: "Career More Info" },
     ],
   },
 
@@ -62,11 +62,11 @@ const menuItems = [
     children: [
       { path: "/hotel-name", name: "Hotel Name" },
       { path: "/hotel-overview", name: "Hotel Overview" },
-      // { path: "/hotel-banner-bg-image", name: "Hotel Banner Bg image" },
-      // { path: "/hotel-amenities", name: "Hotel Amenities" },
-      // { path: "/hotel-gallery", name: "Hotel Gallery" },
-      // { path: "/hotel-location", name: "Hotel Location" },
-      // { path: "/hotel-inquirys", name: "Hotel Inquirys" },
+      { path: "/hotel-banner-bg-image", name: "Hotel Banner Bg image" },
+      { path: "/hotel-amenities", name: "Hotel Amenities" },
+      { path: "/hotel-gallery", name: "Hotel Gallery" },
+      { path: "/hotel-location", name: "Hotel Location" },
+      { path: "/hotel-inquirys", name: "Hotel Inquirys" },
     ],
   },
 

@@ -6,7 +6,7 @@ const PortfolioPage = () => {
     <>
       <PortfolioPageBannerSection />
       <PortfolioPageCardsSection />
-      <TeamPageRedirectContactUsSection />
+      {/* <TeamPageRedirectContactUsSection /> */}
     </>
   );
 };

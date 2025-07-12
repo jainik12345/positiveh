@@ -55,34 +55,31 @@
 
 // export default ContactUsPageContactDetailsSection;
 
-
 /* */
 
-
 /* eslint-disable no-unused-vars */
-
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
 import BE_URL from "./../../../config";
 
 const ContactUsPageContactDetailsSection = () => {
-  const [mapLink, setMapLink] = useState("");
+  const [iframeHtml, setIframeHtml] = useState("");
 
   useEffect(() => {
-    const fetchMapLink = async () => {
+    const fetchMapIframe = async () => {
       try {
         const response = await axios.get(`${BE_URL}/contact-data-details`);
         const data = response?.data?.data;
         if (data?.length > 0 && data[0].Link) {
-          setMapLink(data[0].Link);
+          setIframeHtml(data[0].Link);
         }
       } catch (error) {
-        console.error("Error fetching map link:", error);
+        console.error("Error fetching map iframe:", error);
       }
     };
 
-    fetchMapLink();
+    fetchMapIframe();
   }, []);
 
   return (
@@ -109,26 +106,21 @@ const ContactUsPageContactDetailsSection = () => {
         </motion.div>
 
         {/* Map Section */}
+        {/* Map Section */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
           className="rounded-2xl overflow-hidden shadow-2xl border border-gray-200"
         >
-          <div className="relative">
-            {mapLink ? (
-              <iframe
-                src={mapLink}
-                width="100%"
-                height="450"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="w-full filter hover:grayscale-0 grayscale-[0.2] transition-all duration-500"
+          <div className="relative w-full h-[450px]">
+            {iframeHtml ? (
+              <div
+                className="absolute top-0 left-0 w-full h-full [&>iframe]:w-full [&>iframe]:h-full [&>iframe]:border-0"
+                dangerouslySetInnerHTML={{ __html: iframeHtml }}
               />
             ) : (
-              <div className="w-full h-[450px] flex items-center justify-center text-gray-500">
+              <div className="w-full h-full flex items-center justify-center text-gray-500">
                 Loading map...
               </div>
             )}
