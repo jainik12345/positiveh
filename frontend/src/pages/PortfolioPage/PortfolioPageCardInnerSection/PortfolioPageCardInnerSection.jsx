@@ -8,7 +8,7 @@ import TeamPageRedirectContactUsSection from "../../TeamPage/TeamPageRedirectCon
 import PortfolioPageCardInnerHeroSection from "./PortfolioPageCardInnerHeroSection/PortfolioPageCardInnerHeroSection";
 import PortfolioPageCardInnerAmenitiesSection from "./PortfolioPageCardInnerAmenitiesSection/PortfolioPageCardInnerAmenitiesSection";
 import PortfolioPageCardInnerGallerySection from "./PortfolioPageCardInnerGallerySection/PortfolioPageCardInnerGallerySection";
-// import PortfolioPageCardInnerContactSection from "./PortfolioPageCardInnerContactSection/PortfolioPageCardInnerContactSection";
+import PortfolioPageCardInnerContactSection from "./PortfolioPageCardInnerContactSection/PortfolioPageCardInnerContactSection";
 
 const PortfolioPageCardInnerSection = () => {
   const { hotelName } = useParams();
@@ -61,10 +61,13 @@ const PortfolioPageCardInnerSection = () => {
   return (
     <>
       <BannerSection bgImage={image} title={hotel.displayName} subtitle="" />
-      {/* <PortfolioPageCardInnerHeroSection /> */}
-      {/* <PortfolioPageCardInnerAmenitiesSection HotelData={hotel} /> */}
-      <PortfolioPageCardInnerGallerySection />
-      {/* <PortfolioPageCardInnerContactSection /> */}
+      {/* <PortfolioPageCardInnerHeroSection />   */}
+       {/* Done */}
+      {/* <PortfolioPageCardInnerAmenitiesSection HotelData={hotel} />   */}
+      {/* Done */}
+      {/* <PortfolioPageCardInnerGallerySection />  */}
+       {/* Done */}
+      <PortfolioPageCardInnerContactSection />
       <TeamPageRedirectContactUsSection />
     </>
   );
