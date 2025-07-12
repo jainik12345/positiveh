@@ -14,14 +14,15 @@ const HomeOurTeam = () => {
   const [loading, setLoading] = useState(true);
 
   // Fetch existing data on mount
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await axios.get(`${BE_URL}/homeOurTeam`);
         if (res.data.status === "success" && res.data.data.length > 0) {
           const data = res.data.data[0];
-
           setDescription(data.description || "");
+          setId(data.id);
         }
       } catch (err) {
         console.error("Error fetching team section title:", err);
@@ -137,7 +138,7 @@ const HomeOurTeam = () => {
               className="rounded-md p-2 w-full"
               style={{
                 background: "#181a24",
-                height:"350px",
+                height: "350px",
                 border: "1.5px solid #192e4d",
                 color: "#e3eafc",
                 outline: "none",

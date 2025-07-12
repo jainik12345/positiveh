@@ -132,131 +132,145 @@ const HotelOverviewTrace = () => {
 
         <div className="h-[2px] mb-8 mt-6 w-full rounded bg-gradient-to-r from-[#263859]/70 via-[#101a2d]/90 to-[#263859]/70" />
 
-        <TableContainer
-          component={Paper}
-          elevation={0}
-          className="rounded-2xl overflow-hidden"
-          style={{ background: "rgba(13, 15, 25, 0.99)" }}
-        >
-          <Table>
-            <TableHead>
-              <TableRow style={{ background: "rgba(10, 20, 35, 0.89)" }}>
-                {["ID", "Description", "Images", "Restore"].map((head) => (
-                  <TableCell
-                    key={head}
-                    className="!font-bold text-base"
-                    style={{
-                      color: "#5186c9",
-                      borderRight: "1.5px solid #192e4d",
-                      background: "rgba(16, 26, 45, 0.30)",
-                    }}
-                  >
-                    {head}
-                  </TableCell>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {displayedRows.length === 0 ? (
-                <TableRow>
-                  <TableCell
-                    colSpan={4}
-                    align="center"
-                    className="py-6 text-white"
-                  >
-                    First select hotel name, then trashed data will appear here.
-                  </TableCell>
+        <div style={{ overflowX: "auto", width: "100%" }}>
+          <TableContainer
+            component={Paper}
+            elevation={0}
+            className="rounded-2xl overflow-hidden"
+            style={{ background: "rgba(13, 15, 25, 0.99)", minWidth: "1500px" }}
+          >
+            <Table>
+              <TableHead>
+                <TableRow style={{ background: "rgba(10, 20, 35, 0.89)" }}>
+                  {["ID", "Description", "Images", "Restore"].map((head) => (
+                    <TableCell
+                      key={head}
+                      className="!font-bold text-base"
+                      style={{
+                        color: "#5186c9",
+                        borderRight: "1.5px solid #192e4d",
+                        background: "rgba(16, 26, 45, 0.30)",
+                      }}
+                    >
+                      {head}
+                    </TableCell>
+                  ))}
                 </TableRow>
-              ) : (
-                displayedRows.map((row, index) => (
-                  <TableRow
-                    key={row.id}
-                    style={{
-                      background:
-                        "linear-gradient(90deg, #10131a 85%, #192e4d26 100%)",
-                      borderBottom: "1.2px solid #101a2d",
-                    }}
-                    className="hover:bg-[#101a2d]/60 transition"
-                  >
+              </TableHead>
+              <TableBody>
+                {displayedRows.length === 0 ? (
+                  <TableRow>
                     <TableCell
-                      style={{
-                        color: "#86a7cf",
-                        borderRight: "1.2px solid #192e4d",
-                      }}
+                      colSpan={4}
+                      align="center"
+                      className="py-6 text-white"
                     >
-                      {(page - 1) * rowsPerPage + index + 1}
-                    </TableCell>
-                    <TableCell
-                      style={{
-                        color: "#e3eafc",
-                        borderRight: "1.2px solid #192e4d",
-                      }}
-                    >
-                      {row.description}
-                    </TableCell>
-                    <TableCell
-                      style={{
-                        color: "#ffffff",
-                        borderRight: "1.2px solid #192e4d",
-                      }}
-                    >
-                      <div className="flex flex-wrap gap-3">
-                        {row.images?.length > 0
-                          ? row.images.map((img, idx) => (
-                              <img
-                                key={idx}
-                                src={`${BE_URL}/Images/HotelImages/HotelOverview/${img}`}
-                                alt={`Preview ${idx}`}
-                                className="w-16 h-16 object-cover rounded"
-                              />
-                            ))
-                          : "-"}
-                      </div>
-                    </TableCell>
-                    <TableCell className="text-center">
-                      <Tooltip title="Restore Overview" arrow>
-                        <button
-                          className="text-blue-500 hover:text-blue-700"
-                          onClick={() => handleRestore(row.id)}
-                        >
-                          <FaRecycle size={22} />
-                        </button>
-                      </Tooltip>
+                      First select hotel name, then trashed data will appear
+                      here.
                     </TableCell>
                   </TableRow>
-                ))
-              )}
-            </TableBody>
-          </Table>
+                ) : (
+                  displayedRows.map((row, index) => (
+                    <TableRow
+                      key={row.id}
+                      style={{
+                        background:
+                          "linear-gradient(90deg, #10131a 85%, #192e4d26 100%)",
+                        borderBottom: "1.2px solid #101a2d",
+                      }}
+                      className="hover:bg-[#101a2d]/60 transition"
+                    >
+                      <TableCell
+                        style={{
+                          color: "#86a7cf",
+                          borderRight: "1.2px solid #192e4d",
+                        }}
+                      >
+                        {(page - 1) * rowsPerPage + index + 1}
+                      </TableCell>
+                      <TableCell
+                        style={{
+                          color: "#e3eafc",
+                          borderRight: "1.2px solid #192e4d",
+                          minWidth: 600,
+                          maxWidth: 600,
+                          whiteSpace: "pre-wrap",
+                        }}
+                      >
+                        <div
+                          style={{
+                            maxHeight: "200px",
+                            overflowY: "auto",
+                            paddingRight: "6px",
+                          }}
+                        >
+                          {row.description}
+                        </div>
+                      </TableCell>
+                      <TableCell
+                        style={{
+                          color: "#ffffff",
+                          borderRight: "1.2px solid #192e4d",
+                        }}
+                      >
+                        <div className="flex flex-wrap gap-3">
+                          {row.images?.length > 0
+                            ? row.images.map((img, idx) => (
+                                <img
+                                  key={idx}
+                                  src={`${BE_URL}/Images/HotelImages/HotelOverview/${img}`}
+                                  alt={`Preview ${idx}`}
+                                  className="w-16 h-16 object-cover rounded"
+                                />
+                              ))
+                            : "-"}
+                        </div>
+                      </TableCell>
+                      <TableCell className="text-center">
+                        <Tooltip title="Restore Overview" arrow>
+                          <button
+                            className="text-blue-500 hover:text-blue-700"
+                            onClick={() => handleRestore(row.id)}
+                          >
+                            <FaRecycle size={22} />
+                          </button>
+                        </Tooltip>
+                      </TableCell>
+                    </TableRow>
+                  ))
+                )}
+              </TableBody>
+            </Table>
 
-          <div
-            className="flex justify-end p-4"
-            style={{
-              background: "rgba(10, 20, 35, 0.95)",
-              borderTop: "1.5px solid #192e4d",
-            }}
-          >
-            <Pagination
-              count={Math.ceil(trashedOverviews.length / rowsPerPage)}
-              page={page}
-              onChange={(e, value) => setPage(value)}
-              color="primary"
-              sx={{
-                "& .MuiPaginationItem-root": {
-                  color: "#5186c9",
-                  backgroundColor: "#10131a",
-                  borderRadius: "8px",
-                  margin: "0 2px",
-                  border: "1.2px solid #192e4d",
-                },
-                "& .Mui-selected": {
-                  background: "#192e4d",
-                  color: "#fff",
-                },
+            <div
+              className="flex justify-end p-4"
+              style={{
+                background: "rgba(10, 20, 35, 0.95)",
+                borderTop: "1.5px solid #192e4d",
               }}
-            />
-          </div>
-        </TableContainer>
+            >
+              <Pagination
+                count={Math.ceil(trashedOverviews.length / rowsPerPage)}
+                page={page}
+                onChange={(e, value) => setPage(value)}
+                color="primary"
+                sx={{
+                  "& .MuiPaginationItem-root": {
+                    color: "#5186c9",
+                    backgroundColor: "#10131a",
+                    borderRadius: "8px",
+                    margin: "0 2px",
+                    border: "1.2px solid #192e4d",
+                  },
+                  "& .Mui-selected": {
+                    background: "#192e4d",
+                    color: "#fff",
+                  },
+                }}
+              />
+            </div>
+          </TableContainer>
+        </div>
       </div>
     </div>
   );

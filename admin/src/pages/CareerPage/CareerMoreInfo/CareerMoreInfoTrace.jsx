@@ -92,150 +92,152 @@ const CareerMoreInfoTrace = () => {
         </div>
 
         <div className="h-[2px] mb-8 w-full rounded bg-gradient-to-r from-[#263859]/70 via-[#101a2d]/90 to-[#263859]/70" />
-
-        <TableContainer
-          component={Paper}
-          elevation={0}
-          className="rounded-2xl overflow-hidden"
-          style={{
-            background: "rgba(13, 15, 25, 0.99)",
-            boxShadow: "0 0 16px #101a2d44",
-          }}
-        >
-          <Table>
-            <TableHead>
-              <TableRow
-                style={{
-                  background: "rgba(10, 20, 35, 0.89)",
-                }}
-              >
-                <TableCell
-                  className="!font-bold text-base"
-                  style={{
-                    color: "#5186c9",
-                    borderRight: "1.5px solid #192e4d",
-                    background: "rgba(16, 26, 45, 0.30)",
-                  }}
-                >
-                  ID
-                </TableCell>
-                <TableCell
-                  className="!font-bold text-base"
-                  style={{
-                    color: "#5186c9",
-                    borderRight: "1.5px solid #192e4d",
-                    background: "rgba(16, 26, 45, 0.30)",
-                  }}
-                >
-                  Image
-                </TableCell>
-                <TableCell
-                  className="!font-bold text-base"
-                  style={{
-                    color: "#5186c9",
-                    borderRight: "1.5px solid #192e4d",
-                    background: "rgba(16, 26, 45, 0.30)",
-                  }}
-                >
-                  Description
-                </TableCell>
-                <TableCell
-                  className="!font-bold text-base"
-                  style={{
-                    color: "#5186c9",
-                    background: "rgba(16, 26, 45, 0.30)",
-                  }}
-                >
-                  Restore
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {displayedRows.map((row, index) => (
-                <TableRow
-                  key={row.id}
-                  style={{
-                    background:
-                      "linear-gradient(90deg, #10131a 85%, #192e4d26 100%)",
-                    borderBottom: "1.2px solid #101a2d",
-                  }}
-                  className="hover:bg-[#101a2d]/60 transition"
-                >
-                  <TableCell
-                    className="font-semibold"
-                    style={{
-                      color: "#86a7cf",
-                      borderRight: "1.2px solid #192e4d",
-                    }}
-                  >
-                    {(page - 1) * rowsPerPage + index + 1}
-                  </TableCell>
-
-                  <TableCell
-                    style={{
-                      borderRight: "1.2px solid #192e4d",
-                    }}
-                  >
-                    <img
-                      src={row.imageUrl}
-                      alt="Career Info"
-                      className="w-16 h-16 object-cover rounded"
-                    />
-                  </TableCell>
-
-                  <TableCell
-                    style={{
-                      color: "#e3eafc",
-                      borderRight: "1.2px solid #192e4d",
-                    }}
-                  >
-                    {row.description.length > 80
-                      ? row.description.slice(0, 80) + "..."
-                      : row.description}
-                  </TableCell>
-
-                  <TableCell>
-                    <button
-                      className="text-blue-600 cursor-pointer hover:text-blue-800"
-                      onClick={() => handleRestore(row.id)}
-                      title="Restore"
-                    >
-                      <FaRecycle size={22} />
-                    </button>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-
-          <div
-            className="flex justify-end p-4"
+        <div style={{ overflowX: "auto", width: "100%" }}>
+          <TableContainer
+            component={Paper}
+            elevation={0}
+            className="rounded-2xl overflow-hidden"
             style={{
-              background: "rgba(10, 20, 35, 0.95)",
-              borderTop: "1.5px solid #192e4d",
+              background: "rgba(13, 15, 25, 0.99)",
+              boxShadow: "0 0 16px #101a2d44",
+              minWidth: "1500px",
             }}
           >
-            <Pagination
-              count={Math.ceil(data.length / rowsPerPage)}
-              page={page}
-              onChange={(e, value) => setPage(value)}
-              color="primary"
-              sx={{
-                "& .MuiPaginationItem-root": {
-                  color: "#5186c9",
-                  backgroundColor: "#10131a",
-                  borderRadius: "8px",
-                  margin: "0 2px",
-                  border: "1.2px solid #192e4d",
-                },
-                "& .Mui-selected": {
-                  background: "#192e4d",
-                  color: "#fff",
-                },
+            <Table>
+              <TableHead>
+                <TableRow
+                  style={{
+                    background: "rgba(10, 20, 35, 0.89)",
+                  }}
+                >
+                  <TableCell
+                    className="!font-bold text-base"
+                    style={{
+                      color: "#5186c9",
+                      borderRight: "1.5px solid #192e4d",
+                      background: "rgba(16, 26, 45, 0.30)",
+                    }}
+                  >
+                    ID
+                  </TableCell>
+                  <TableCell
+                    className="!font-bold text-base"
+                    style={{
+                      color: "#5186c9",
+                      borderRight: "1.5px solid #192e4d",
+                      background: "rgba(16, 26, 45, 0.30)",
+                    }}
+                  >
+                    Image
+                  </TableCell>
+                  <TableCell
+                    className="!font-bold text-base"
+                    style={{
+                      color: "#5186c9",
+                      borderRight: "1.5px solid #192e4d",
+                      background: "rgba(16, 26, 45, 0.30)",
+                    }}
+                  >
+                    Description
+                  </TableCell>
+                  <TableCell
+                    className="!font-bold text-base"
+                    style={{
+                      color: "#5186c9",
+                      background: "rgba(16, 26, 45, 0.30)",
+                    }}
+                  >
+                    Restore
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {displayedRows.map((row, index) => (
+                  <TableRow
+                    key={row.id}
+                    style={{
+                      background:
+                        "linear-gradient(90deg, #10131a 85%, #192e4d26 100%)",
+                      borderBottom: "1.2px solid #101a2d",
+                    }}
+                    className="hover:bg-[#101a2d]/60 transition"
+                  >
+                    <TableCell
+                      className="font-semibold"
+                      style={{
+                        color: "#86a7cf",
+                        borderRight: "1.2px solid #192e4d",
+                      }}
+                    >
+                      {(page - 1) * rowsPerPage + index + 1}
+                    </TableCell>
+
+                    <TableCell
+                      style={{
+                        borderRight: "1.2px solid #192e4d",
+                      }}
+                    >
+                      <img
+                        src={row.imageUrl}
+                        alt="Career Info"
+                        className="w-16 h-16 object-cover rounded"
+                      />
+                    </TableCell>
+
+                    <TableCell
+                      style={{
+                        color: "#e3eafc",
+                        borderRight: "1.2px solid #192e4d",
+                      }}
+                    >
+                      {row.description.length > 80
+                        ? row.description.slice(0, 80) + "..."
+                        : row.description}
+                    </TableCell>
+
+                    <TableCell>
+                      <button
+                        className="text-blue-600 cursor-pointer hover:text-blue-800"
+                        onClick={() => handleRestore(row.id)}
+                        title="Restore"
+                      >
+                        <FaRecycle size={22} />
+                      </button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+
+            <div
+              className="flex justify-end p-4"
+              style={{
+                background: "rgba(10, 20, 35, 0.95)",
+                borderTop: "1.5px solid #192e4d",
               }}
-            />
-          </div>
-        </TableContainer>
+            >
+              <Pagination
+                count={Math.ceil(data.length / rowsPerPage)}
+                page={page}
+                onChange={(e, value) => setPage(value)}
+                color="primary"
+                sx={{
+                  "& .MuiPaginationItem-root": {
+                    color: "#5186c9",
+                    backgroundColor: "#10131a",
+                    borderRadius: "8px",
+                    margin: "0 2px",
+                    border: "1.2px solid #192e4d",
+                  },
+                  "& .Mui-selected": {
+                    background: "#192e4d",
+                    color: "#fff",
+                  },
+                }}
+              />
+            </div>
+          </TableContainer>
+        </div>
       </div>
     </div>
   );
