@@ -104,27 +104,344 @@
 
 // export default HomePageAboutUsSection;
 
+// import { motion } from "framer-motion";
+// import image1 from "../../../assets/images/5.jpg";
+// import image2 from "../../../assets/images/4.jpg";
+
+// const HomePageAboutUsSection = () => {
+//   const AboutDetails = [
+//     {
+//       para: "Positive Hospitality is a top-notch owner-operator model management company in the hospitality industry. We understand that the hospitality industry is highly competitive, so we focus on providing personalized solutions tailored to each of our investors and partners' specific needs. Our services include customer satisfaction and excellent Guest stay experience.",
+//       image: image1,
+//     },
+//     {
+//       para: "Positive Hospitality is a top-notch owner-operator model management company in the hospitality industry. We understand that the hospitality industry is highly competitive, so we focus on providing personalized solutions tailored to each of our investors and partners' specific needs. Our services include customer satisfaction and excellent Guest stay experience.",
+//       image: image2,
+//     },
+//   ];
+
+//   return (
+//     <>
+//       <div className="section">
+//         <div className="container max-w-screen-2xl mx-auto md:p-10 p-5 flex flex-col gap-5 bg-gray-100">
+//           <div className="text-center ">
+//             <motion.h1
+//               className="text-2xl font-bold text-gray-900 md:text-5xl sm:text-3xl mb-4"
+//               initial={{ opacity: 0, y: 40 }}
+//               whileInView={{ opacity: 1, y: 0 }}
+//               viewport={{ once: true, amount: 0.3 }}
+//               transition={{ duration: 0.8, ease: "easeOut" }}
+//             >
+//               Welcome To{" "}
+//               <span className="text-[var(--color-logo-color)]">
+//                 Positive Hospitality
+//               </span>
+//             </motion.h1>
+//             <motion.div
+//               className="mx-auto h-1 w-50 bg-[var(--color-footer-color)] rounded-full"
+//               initial={{ opacity: 0, scaleX: 0 }}
+//               whileInView={{ opacity: 1, scaleX: 1 }}
+//               viewport={{ once: true }}
+//               transition={{ duration: 0.8, delay: 0.3 }}
+//             />
+//           </div>
+
+//           {AboutDetails.map((detail, index) => (
+//             <div key={index} className="bg-gray-200 md:p-8 p-3 mb-8 last:mb-0">
+//               <div className="max-w-screen-2xl mx-auto">
+//                 <div
+//                   className={`grid grid-cols-1 lg:grid-cols-2 md:gap-12 gap-4 items-center ${
+//                     index % 2 === 1 ? "lg:grid-flow-col-dense" : ""
+//                   }`}
+//                 >
+//                   {/* Image */}
+//                   <motion.div
+//                     className={`relative ${
+//                       index % 2 === 1 ? "lg:col-start-2" : ""
+//                     }`}
+//                     initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+//                     whileInView={{ opacity: 1, x: 0 }}
+//                     transition={{ duration: 0.8 }}
+//                     viewport={{ once: true }}
+//                   >
+//                     <div className="relative overflow-hidden shadow-lg">
+//                       <img
+//                         src={detail.image}
+//                         alt="img"
+//                         className="w-full h-100 object-cover "
+//                       />
+//                     </div>
+//                   </motion.div>
+
+//                   {/* Content */}
+//                   <motion.div
+//                     className={` md:p-5 p-2 h-full flex flex-col gap-5 justify-between ${
+//                       index % 2 === 1 ? "lg:col-start-1" : ""
+//                     }`}
+//                     initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
+//                     whileInView={{ opacity: 1, x: 0 }}
+//                     transition={{ duration: 0.8, delay: 0.2 }}
+//                     viewport={{ once: true }}
+//                   >
+//                     <div className="space-y-4 p-2 h-70 overflow-y-auto" style={{scrollbarWidth:"thin"}}>
+//                       <p className="text-gray-700 leading-relaxed h-full text-justify text-md font-semibold">
+//                         {detail.para}
+//                       </p>
+//                     </div>
+
+//                     {/* <motion.button
+//                       className="bg-gray-900 text-white px-8 py-3 text-xs font-bold tracking-widest hover:bg-gray-800 transition-colors duration-300"
+//                       whileHover={{ scale: 1.05 }}
+//                       whileTap={{ scale: 0.95 }}
+//                     >
+//                       LERN MORE
+//                     </motion.button> */}
+
+//                     <button className="relative w-50 px-8 py-3 cursor-pointer bg-black text-white font-bold rounded-lg overflow-hidden group ">
+//                       <span className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-all duration-300"></span>
+//                       <span className="relative z-10 flex items-center gap-2">
+//                         <span>Know More</span>
+//                         <svg
+//                           className="w-4 h-4"
+//                           fill="none"
+//                           stroke="currentColor"
+//                           viewBox="0 0 24 24"
+//                         >
+//                           <path
+//                             strokeLinecap="round"
+//                             strokeLinejoin="round"
+//                             strokeWidth="2"
+//                             d="M14 5l7 7m0 0l-7 7m7-7H3"
+//                           ></path>
+//                         </svg>
+//                       </span>
+//                       <span className="absolute inset-0 border-2 border-white rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300"></span>
+//                     </button>
+//                   </motion.div>
+//                 </div>
+//               </div>
+//             </div>
+//           ))}
+//         </div>
+//       </div>
+//     </>
+//   );
+// };
+
+// export default HomePageAboutUsSection;
+
+//fetching code
+
+// import { motion } from "framer-motion";
+// import image1 from "../../../assets/images/5.jpg";
+// import image2 from "../../../assets/images/4.jpg";
+// import BE_URL from "../../../config";
+// import axios from "axios";
+// import { useEffect, useState } from "react";
+
+// const HomePageAboutUsSection = () => {
+//   const [FetchError, setFetchError] = useState(false);
+//   const [HomeAboutUsData, setHomeAboutUsData] = useState([]);
+
+//   useEffect(() => {
+//     const FetchHomeAboutSection = async () => {
+//       try {
+//         const FetchResponse = await axios.get(
+//           `${BE_URL}/homeAboutHotelSection`
+//         );
+//         const FetchResponseData = FetchResponse.data.data;
+
+//         if (FetchResponse.status === 200 && FetchResponse.length > 0) {
+//           if (typeof FetchResponseData === "string") {
+//             const tmp = JSON.parse(FetchResponseData);
+//             setHomeAboutUsData(tmp);
+//           } else {
+//             setHomeAboutUsData(FetchResponseData);
+//           }
+//           setFetchError(false);
+//         } else {
+//           setFetchError(true); // no data
+//         }
+//       } catch (error) {
+//         console.error("Unable to fetch the data:", error);
+//         setFetchError(true); // error fetching data
+//       }
+//     };
+
+//     FetchHomeAboutSection();
+//   }, []);
+
+//   const AboutDetails = [
+//     {
+//       para: "Positive Hospitality is a top-notch owner-operator model management company in the hospitality industry. We understand that the hospitality industry is highly competitive, so we focus on providing personalized solutions tailored to each of our investors and partners' specific needs. Our services include customer satisfaction and excellent Guest stay experience.",
+//       image: image1,
+//     },
+//     {
+//       para: "Positive Hospitality is a top-notch owner-operator model management company in the hospitality industry. We understand that the hospitality industry is highly competitive, so we focus on providing personalized solutions tailored to each of our investors and partners' specific needs. Our services include customer satisfaction and excellent Guest stay experience.",
+//       image: image2,
+//     },
+//   ];
+
+
+//   return (
+//     <>
+//       <div className="section">
+//         <div className="container max-w-screen-2xl mx-auto md:p-10 p-5 flex flex-col gap-5 bg-gray-100">
+//           <div className="text-center ">
+//             <motion.h1
+//               className="text-2xl font-bold text-gray-900 md:text-5xl sm:text-3xl mb-4"
+//               initial={{ opacity: 0, y: 40 }}
+//               whileInView={{ opacity: 1, y: 0 }}
+//               viewport={{ once: true, amount: 0.3 }}
+//               transition={{ duration: 0.8, ease: "easeOut" }}
+//             >
+//               Welcome To{" "}
+//               <span className="text-[var(--color-logo-color)]">
+//                 Positive Hospitality
+//               </span>
+//             </motion.h1>
+//             <motion.div
+//               className="mx-auto h-1 w-50 bg-[var(--color-footer-color)] rounded-full"
+//               initial={{ opacity: 0, scaleX: 0 }}
+//               whileInView={{ opacity: 1, scaleX: 1 }}
+//               viewport={{ once: true }}
+//               transition={{ duration: 0.8, delay: 0.3 }}
+//             />
+//           </div>
+
+//           {HomeAboutUsData?.map((detail, index) => (
+//             <div key={index} className="bg-gray-200 md:p-8 p-3 mb-8 last:mb-0">
+//               <div className="max-w-screen-2xl mx-auto">
+//                 <div
+//                   className={`grid grid-cols-1 lg:grid-cols-2 md:gap-12 gap-4 items-center ${
+//                     index % 2 === 1 ? "lg:grid-flow-col-dense" : ""
+//                   }`}
+//                 >
+//                   {/* Image */}
+//                   <motion.div
+//                     className={`relative ${
+//                       index % 2 === 1 ? "lg:col-start-2" : ""
+//                     }`}
+//                     initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+//                     whileInView={{ opacity: 1, x: 0 }}
+//                     transition={{ duration: 0.8 }}
+//                     viewport={{ once: true }}
+//                   >
+//                     <div className="relative overflow-hidden shadow-lg">
+//                       <img
+//                         src={`${BE_URL}/Images/HomeImages/HomeAboutHotels/${detail.image}`}
+//                         alt="img"
+//                         className="w-full h-100 object-cover "
+//                       />
+//                     </div>
+//                   </motion.div>
+
+//                   {/* Content */}
+//                   <motion.div
+//                     className={` md:p-5 p-2 h-full flex flex-col gap-5 justify-between ${
+//                       index % 2 === 1 ? "lg:col-start-1" : ""
+//                     }`}
+//                     initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
+//                     whileInView={{ opacity: 1, x: 0 }}
+//                     transition={{ duration: 0.8, delay: 0.2 }}
+//                     viewport={{ once: true }}
+//                   >
+//                     <div
+//                       className="space-y-4 p-2 h-70 overflow-y-auto"
+//                       style={{ scrollbarWidth: "thin" }}
+//                     >
+//                       <p className="text-gray-700 leading-relaxed h-full text-justify text-md font-semibold">
+//                         {detail.para}
+//                       </p>
+//                     </div>
+
+//                     {/* <motion.button
+//                       className="bg-gray-900 text-white px-8 py-3 text-xs font-bold tracking-widest hover:bg-gray-800 transition-colors duration-300"
+//                       whileHover={{ scale: 1.05 }}
+//                       whileTap={{ scale: 0.95 }}
+//                     >
+//                       LERN MORE
+//                     </motion.button> */}
+
+//                     <button className="relative w-50 px-8 py-3 cursor-pointer bg-black text-white font-bold rounded-lg overflow-hidden group ">
+//                       <span className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-all duration-300"></span>
+//                       <span className="relative z-10 flex items-center gap-2">
+//                         <span>Know More</span>
+//                         <svg
+//                           className="w-4 h-4"
+//                           fill="none"
+//                           stroke="currentColor"
+//                           viewBox="0 0 24 24"
+//                         >
+//                           <path
+//                             strokeLinecap="round"
+//                             strokeLinejoin="round"
+//                             strokeWidth="2"
+//                             d="M14 5l7 7m0 0l-7 7m7-7H3"
+//                           ></path>
+//                         </svg>
+//                       </span>
+//                       <span className="absolute inset-0 border-2 border-white rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300"></span>
+//                     </button>
+//                   </motion.div>
+//                 </div>
+//               </div>
+//             </div>
+//           ))}
+//         </div>
+//       </div>
+//     </>
+//   );
+// };
+
+// export default HomePageAboutUsSection;
+
+
+
+
+
 import { motion } from "framer-motion";
-import image1 from "../../../assets/images/5.jpg";
-import image2 from "../../../assets/images/4.jpg";
+import BE_URL from "../../../config";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const HomePageAboutUsSection = () => {
-  const AboutDetails = [
-    {
-      para: "Positive Hospitality is a top-notch owner-operator model management company in the hospitality industry. We understand that the hospitality industry is highly competitive, so we focus on providing personalized solutions tailored to each of our investors and partners' specific needs. Our services include customer satisfaction and excellent Guest stay experience.",
-      image: image1,
-    },
-    {
-      para: "Positive Hospitality is a top-notch owner-operator model management company in the hospitality industry. We understand that the hospitality industry is highly competitive, so we focus on providing personalized solutions tailored to each of our investors and partners' specific needs. Our services include customer satisfaction and excellent Guest stay experience.",
-      image: image2,
-    },
-  ];
+  const [FetchError, setFetchError] = useState(false);
+  const [HomeAboutUsData, setHomeAboutUsData] = useState([]);
+
+  useEffect(() => {
+    const FetchHomeAboutSection = async () => {
+      try {
+        const FetchResponse = await axios.get(
+          `${BE_URL}/homeAboutHotelSection`
+        );
+        let FetchResponseData = FetchResponse.data.data;
+
+        // ✅ Handle case where API returns a JSON string
+        if (typeof FetchResponseData === "string") {
+          FetchResponseData = JSON.parse(FetchResponseData);
+        }
+
+        if (FetchResponse.status === 200 && FetchResponseData.length > 0) {
+          setHomeAboutUsData(FetchResponseData);
+          setFetchError(false);
+        } else {
+          setFetchError(true); // no data
+        }
+      } catch (error) {
+        console.error("Unable to fetch the data:", error);
+        setFetchError(true); // error fetching data
+      }
+    };
+
+    FetchHomeAboutSection();
+  }, []);
 
   return (
     <>
       <div className="section">
         <div className="container max-w-screen-2xl mx-auto md:p-10 p-5 flex flex-col gap-5 bg-gray-100">
-          <div className="text-center ">
+          <div className="text-center">
             <motion.h1
               className="text-2xl font-bold text-gray-900 md:text-5xl sm:text-3xl mb-4"
               initial={{ opacity: 0, y: 40 }}
@@ -146,82 +463,93 @@ const HomePageAboutUsSection = () => {
             />
           </div>
 
-          {AboutDetails.map((detail, index) => (
-            <div key={index} className="bg-gray-200 md:p-8 p-3 mb-8 last:mb-0">
-              <div className="max-w-screen-2xl mx-auto">
-                <div
-                  className={`grid grid-cols-1 lg:grid-cols-2 md:gap-12 gap-4 items-center ${
-                    index % 2 === 1 ? "lg:grid-flow-col-dense" : ""
-                  }`}
-                >
-                  {/* Image */}
-                  <motion.div
-                    className={`relative ${
-                      index % 2 === 1 ? "lg:col-start-2" : ""
+          {FetchError ? (
+            <p className="text-center text-red-500 text-lg font-medium">
+              Failed to load data
+            </p>
+          ) : HomeAboutUsData.length === 0 ? (
+            <p className="text-center text-gray-500 text-lg font-medium">
+              No data found
+            </p>
+          ) : (
+            HomeAboutUsData.map((detail, index) => (
+              <div
+                key={detail.id}
+                className="bg-gray-200 md:p-8 p-3 mb-8 last:mb-0"
+              >
+                <div className="max-w-screen-2xl mx-auto">
+                  <div
+                    className={`grid grid-cols-1 lg:grid-cols-2 md:gap-12 gap-4 items-center ${
+                      index % 2 === 1 ? "lg:grid-flow-col-dense" : ""
                     }`}
-                    initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8 }}
-                    viewport={{ once: true }}
                   >
-                    <div className="relative overflow-hidden shadow-lg">
-                      <img
-                        src={detail.image}
-                        alt="img"
-                        className="w-full h-100 object-cover "
-                      />
-                    </div>
-                  </motion.div>
-
-                  {/* Content */}
-                  <motion.div
-                    className={` md:p-5 p-2 h-full flex flex-col gap-5 justify-between ${
-                      index % 2 === 1 ? "lg:col-start-1" : ""
-                    }`}
-                    initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    viewport={{ once: true }}
-                  >
-                    <div className="space-y-4 p-2 h-70 overflow-y-auto" style={{scrollbarWidth:"thin"}}>
-                      <p className="text-gray-700 leading-relaxed h-full text-justify text-md font-semibold">
-                        {detail.para}
-                      </p>
-                    </div>
-
-                    {/* <motion.button
-                      className="bg-gray-900 text-white px-8 py-3 text-xs font-bold tracking-widest hover:bg-gray-800 transition-colors duration-300"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
+                    {/* Image */}
+                    <motion.div
+                      className={`relative ${
+                        index % 2 === 1 ? "lg:col-start-2" : ""
+                      }`}
+                      initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.8 }}
+                      viewport={{ once: true }}
                     >
-                      LERN MORE
-                    </motion.button> */}
+                      <div className="relative overflow-hidden shadow-lg">
+                        <img
+                          src={`${BE_URL}/Images/HomeImages/HomeAboutHotels/${detail.image}`}
+                          alt="img"
+                          className="w-full h-100 object-cover"
+                        />
+                      </div>
+                    </motion.div>
 
-                    <button className="relative w-50 px-8 py-3 cursor-pointer bg-black text-white font-bold rounded-lg overflow-hidden group ">
-                      <span className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-all duration-300"></span>
-                      <span className="relative z-10 flex items-center gap-2">
-                        <span>Know More</span>
-                        <svg
-                          className="w-4 h-4"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M14 5l7 7m0 0l-7 7m7-7H3"
-                          ></path>
-                        </svg>
-                      </span>
-                      <span className="absolute inset-0 border-2 border-white rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300"></span>
-                    </button>
-                  </motion.div>
+                    {/* Content */}
+                    <motion.div
+                      className={`md:p-5 p-2 h-full flex flex-col gap-5 justify-between ${
+                        index % 2 === 1 ? "lg:col-start-1" : ""
+                      }`}
+                      initial={{
+                        opacity: 0,
+                        x: index % 2 === 0 ? 50 : -50,
+                      }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.8, delay: 0.2 }}
+                      viewport={{ once: true }}
+                    >
+                      <div
+                        className="space-y-4 p-2 h-70 overflow-y-auto"
+                        style={{ scrollbarWidth: "thin" }}
+                      >
+                        <p className="text-gray-700 leading-relaxed h-full text-justify text-md font-semibold">
+                          {detail.description}
+                        </p>
+                      </div>
+
+                      <button className="relative w-50 px-8 py-3 cursor-pointer bg-black text-white font-bold rounded-lg overflow-hidden group ">
+                        <span className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-all duration-300"></span>
+                        <span className="relative z-10 flex items-center gap-2">
+                          <span>Know More</span>
+                          <svg
+                            className="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M14 5l7 7m0 0l-7 7m7-7H3"
+                            ></path>
+                          </svg>
+                        </span>
+                        <span className="absolute inset-0 border-2 border-white rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300"></span>
+                      </button>
+                    </motion.div>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </div>
     </>
