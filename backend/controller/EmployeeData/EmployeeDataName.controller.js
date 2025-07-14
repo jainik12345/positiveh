@@ -174,11 +174,24 @@ exports.getTrashedByHotelId = (req, res) => {
 };
 
 // Get employee by ID
+// exports.getEmployeeById = (req, res) => {
+//   const { hotelId } = req.params;
+//   db.query(
+//     "SELECT * FROM employee_data WHERE hotel_id = ? AND deleted_at = 0",
+//     [hotelId],
+//     (err, results) => {
+//       if (err) return res.status(500).json({ error: err.message });
+//       res.status(200).json({ status: "success", data: results });
+//     }
+//   );
+// };
+
 exports.getEmployeeById = (req, res) => {
-  const { hotelId } = req.params;
+  const { id } = req.params;
+
   db.query(
-    "SELECT * FROM employee_data WHERE hotel_id = ? AND deleted_at = 0",
-    [hotelId],
+    "SELECT * FROM employee_data WHERE id = ? AND deleted_at = 0",
+    [id],
     (err, results) => {
       if (err) return res.status(500).json({ error: err.message });
       res.status(200).json({ status: "success", data: results });
