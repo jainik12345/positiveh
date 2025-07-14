@@ -310,6 +310,145 @@
 
 // export default TeamPageMembersDetailsSection;
 
+// import { motion } from "framer-motion";
+// import BE_URL from "../../../config";
+// import axios from "axios";
+// import { useState, useEffect } from "react";
+
+// const TeamPageMembersDetailsSection = () => {
+//   const [FetchError, setFetchError] = useState(false);
+//   const [TeamMembersData, setTeamMembersData] = useState([]);
+
+//   useEffect(() => {
+//     const FetchTeamMembersAPI = async () => {
+//       try {
+//         const Response = await axios.get(`${BE_URL}/team-member-name`);
+//         const FetchResponse = Response.data.data;
+
+//         if (Response.status === 200 && FetchResponse.length > 0) {
+//           if (typeof FetchResponse === "string") {
+//             const tmp = JSON.parse(FetchResponse);
+//             setTeamMembersData(tmp);
+//             setFetchError(false);
+//           } else {
+//             setTeamMembersData(FetchResponse);
+//             setFetchError(false);
+//           }
+//         } else {
+//           setFetchError(true);
+//         }
+//       } catch (error) {
+//         console.error("Unable to fetch the data:", error);
+//         setFetchError(true);
+//       }
+//     };
+
+//     FetchTeamMembersAPI();
+//   }, []);
+
+//   // Animation variants
+//   const cardVariants = {
+//     offscreen: { opacity: 0, y: 100 },
+//     onscreen: {
+//       opacity: 1,
+//       y: 0,
+//       transition: {
+//         type: "spring",
+//         bounce: 0.2,
+//         duration: 0.8,
+//       },
+//     },
+//   };
+
+//   const imageVariants = {
+//     initial: { scale: 0.9, rotate: -5 },
+//     animate: {
+//       scale: 1,
+//       rotate: 0,
+//       transition: { duration: 0.6, ease: "easeOut" },
+//     },
+//     whileHover: {
+//       scale: 1.05,
+//       rotate: 2,
+//       transition: { duration: 0.3, ease: "easeInOut" },
+//     },
+//   };
+
+//   return (
+//     <section className="w-full px-4 md:px-8 py-16 bg-gradient-to-b from-blue-50 to-white">
+//       <div className="max-w-screen-xl mx-auto space-y-24">
+//         {TeamMembersData?.map((member, index) => (
+//           <motion.div
+//             key={member.id}
+//             className={`flex flex-col lg:flex-row items-center gap-12 lg:gap-16 ${
+//               index % 2 !== 0 ? "lg:flex-row-reverse" : ""
+//             }`}
+//             initial="offscreen"
+//             whileInView="onscreen"
+//             viewport={{ once: true, amount: 0.2 }}
+//             variants={cardVariants}
+//           >
+//             {/* Member Image */}
+//             <motion.div
+//               className="w-full lg:w-1/2 flex justify-center relative group"
+//               variants={imageVariants}
+//               initial="initial"
+//               animate="animate"
+//               whileHover="whileHover"
+//             >
+//               <img
+//                 src={`${BE_URL}/Images/TeamImages/TeamMemberName/${member.image}`}
+//                 alt={member.name}
+//                 className="w-fit h-110 rounded-3xl shadow-2xl object-cover transition duration-300 ease-in-out"
+//               />
+//               <div className="absolute -top-5 -left-5 w-20 h-20 rounded-full bg-blue-100 blur-xl opacity-70 group-hover:opacity-100 transition" />
+//             </motion.div>
+
+//             {/* Member Details */}
+//             <motion.div
+//               className="w-full lg:w-1/2 bg-white/60 backdrop-blur-lg p-8 rounded-3xl shadow-lg"
+//               initial={{ opacity: 0 }}
+//               whileInView={{ opacity: 1 }}
+//               transition={{ delay: 0.2, duration: 0.8 }}
+//             >
+//               <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-2">
+//                 {member.name}
+//               </h2>
+//               <p className="text-blue-600 text-lg font-semibold uppercase mb-6 tracking-wide">
+//                 {member.position}
+//               </p>
+
+//               {/* Indexed description with newlines */}
+//               <div className="text-gray-700 leading-relaxed mb-4 text-base text-justify sm:text-lg space-y-2">
+//                 {member.description.split("\n").map((para, idx) => (
+//                   <p key={idx}>{para.trim()}</p>
+//                 ))}
+//               </div>
+
+//               <div className="mt-6 border-l-4 border-r-4 border-blue-400 pl-4 italic text-gray-600">
+//                 “{member.heading}”
+//                 <p className="mt-2 text-sm font-medium text-gray-500">
+//                   — {member.title}
+//                 </p>
+//               </div>
+//             </motion.div>
+//           </motion.div>
+//         ))}
+
+//         {FetchError && (
+//           <div className="text-center text-red-500 text-lg font-semibold">
+//             Failed to load team member data.
+//           </div>
+//         )}
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default TeamPageMembersDetailsSection;
+
+//original approved design
+
 import { motion } from "framer-motion";
 import BE_URL from "../../../config";
 import axios from "axios";
@@ -346,7 +485,6 @@ const TeamPageMembersDetailsSection = () => {
     FetchTeamMembersAPI();
   }, []);
 
-
   // Animation variants
   const cardVariants = {
     offscreen: { opacity: 0, y: 100 },
@@ -367,11 +505,6 @@ const TeamPageMembersDetailsSection = () => {
       scale: 1,
       rotate: 0,
       transition: { duration: 0.6, ease: "easeOut" },
-    },
-    whileHover: {
-      scale: 1.05,
-      rotate: 2,
-      transition: { duration: 0.3, ease: "easeInOut" },
     },
   };
 
