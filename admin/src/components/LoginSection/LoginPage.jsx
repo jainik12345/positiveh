@@ -65,7 +65,23 @@ const LoginPage = () => {
             password,
           });
 
+          // if (empRes.status === 200) {
+          //   Swal.fire({
+          //     icon: "success",
+          //     title: "Employee Login Successful",
+          //     text: "Welcome!",
+          //   });
+
+          //   navigate("/employee-dashboard");
+          //   return;
+          // }
           if (empRes.status === 200) {
+            const employee = empRes.data.employee;
+
+            // ✅ Store ID + Email (you can store whole object if needed)
+            localStorage.setItem("employeeId", employee.id);
+            localStorage.setItem("employeeEmail", employee.email);
+
             Swal.fire({
               icon: "success",
               title: "Employee Login Successful",
@@ -99,7 +115,6 @@ const LoginPage = () => {
         alignItems: "center",
         justifyContent: "center",
         position: "relative",
-        backgroundImage: `url("https://admin.compasstourism.com/source/upload/banners/637921896094475779.png")`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
