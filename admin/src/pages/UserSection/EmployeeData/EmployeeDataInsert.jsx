@@ -1,18 +1,3 @@
-// import React from "react";
-
-// const EmployeeDataInsert = () => {
-//   return (
-//     <div className="text-white">
-//       HotelsID
-//       Name , EmailID , Password , Image , Address , Designation , Status.
-//     </div>
-//   );
-// };
-
-// export default EmployeeDataInsert;
-
-/* */
-
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -25,8 +10,8 @@ import SubmitData from "../../../components/Popup/SubmitData";
 import BE_URL from "../../../config";
 
 const BlueTextField = styled(TextField)({
-  marginTop:"1rem",
-  marginBottom:"1rem",
+  marginTop: "1rem",
+  marginBottom: "1rem",
   "& label": { color: "#ffffff" },
   "& label.Mui-focused": { color: "#ffffff" },
   "& .MuiInputBase-root": {
@@ -60,10 +45,19 @@ const EmployeeDataInsert = () => {
   const [status, setStatus] = useState("");
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
+  const [designationOptions, setDesignationOptions] = useState([]);
 
   useEffect(() => {
     axios.get(`${BE_URL}/hotelName`).then((res) => {
       if (res.data.status === "success") setHotelOptions(res.data.data);
+    });
+    axios.get(`${BE_URL}/employeeDesignation`).then((res) => {
+      if (res.data.status === "success") {
+        const validDesignations = res.data.data.filter(
+          (d) => d.deleted_at === 0
+        );
+        setDesignationOptions(validDesignations);
+      }
     });
   }, []);
 
@@ -227,13 +221,32 @@ const EmployeeDataInsert = () => {
             onChange={(e) => setAddress(e.target.value)}
             fullWidth
           />
-          <BlueTextField
+          {/* <BlueTextField
             label="Designation"
             value={designation}
             onChange={(e) => setDesignation(e.target.value)}
             fullWidth
             required
-          />
+          /> */}
+
+          <BlueTextField
+            select
+            label="Designation"
+            value={designation}
+            onChange={(e) => setDesignation(e.target.value)}
+            fullWidth
+            required
+          >
+            {designationOptions.length === 0 ? (
+              <MenuItem disabled>Loading...</MenuItem>
+            ) : (
+              designationOptions.map((d) => (
+                <MenuItem key={d.id} value={d.id}>
+                  {d.name}
+                </MenuItem>
+              ))
+            )}
+          </BlueTextField>
 
           <BlueTextField
             select

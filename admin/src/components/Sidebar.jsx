@@ -11,7 +11,6 @@ import { FaHotel } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa";
 import { FaPersonChalkboard } from "react-icons/fa6";
 
-
 const menuItems = [
   {
     path: "/home",
@@ -70,17 +69,16 @@ const menuItems = [
     ],
   },
 
-
-    {
+  {
     path: "/employee-data",
     name: "Employee Data",
     icon: <FaPersonChalkboard />,
     children: [
+      { path: "/employee-designation", name: "Employee Designation" },
       { path: "/employee-data", name: "Employee Data Name" },
     ],
   },
 
- 
   {
     path: "/private-policy",
     name: "Private Policy",

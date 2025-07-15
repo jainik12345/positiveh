@@ -47,12 +47,25 @@ const EmployeeDataTrace = () => {
   const [trashedEmployees, setTrashedEmployees] = useState([]);
   const [restoreSuccess, setRestoreSuccess] = useState(false);
   const navigate = useNavigate();
+  const [designationOptions, setDesignationOptions] = useState([]);
 
   useEffect(() => {
     axios
       .get(`${BE_URL}/hotelName`)
       .then((res) => setHotelOptions(res.data.data))
       .catch((err) => console.error("Hotel fetch failed:", err));
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(`${BE_URL}/employeeDesignation`)
+      .then((res) => {
+        if (res.data.status === "success") {
+          const filtered = res.data.data.filter((d) => d.deleted_at === 0);
+          setDesignationOptions(filtered);
+        }
+      })
+      .catch((err) => console.error("Designation fetch failed:", err));
   }, []);
 
   useEffect(() => {
@@ -175,9 +188,12 @@ const EmployeeDataTrace = () => {
                   <TableCell
                     colSpan={8}
                     align="center"
-                    className="py-6 text-white"
+                     
                   >
-                    First select hotel name, then trashed data will appear here.
+                    <div className="text-white">
+                      First select hotel name, then trashed data will appear
+                      here.
+                    </div>
                   </TableCell>
                 </TableRow>
               ) : (
@@ -208,7 +224,13 @@ const EmployeeDataTrace = () => {
                       )}
                     </TableCell>
                     <TableCell style={cellStyle}>{row.address}</TableCell>
-                    <TableCell style={cellStyle}>{row.designation}</TableCell>
+                    {/* <TableCell style={cellStyle}>{row.designation}</TableCell> */}
+                    <TableCell style={cellStyle}>
+                      {designationOptions.find(
+                        (d) => Number(d.id) === Number(row.designation)
+                      )?.name || "-"}
+                    </TableCell>
+
                     <TableCell
                       style={{
                         ...cellStyle,

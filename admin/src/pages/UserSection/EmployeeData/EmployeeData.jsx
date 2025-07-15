@@ -47,6 +47,7 @@ const EmployeeData = () => {
   const rowsPerPage = 10;
   const navigate = useNavigate();
   const [showDeletePopup, setShowDeletePopup] = useState(false);
+  const [designations, setDesignations] = useState([]);
 
   useEffect(() => {
     axios
@@ -73,6 +74,18 @@ const EmployeeData = () => {
       setRecords([]);
     }
   }, [selectedHotelId]);
+
+  useEffect(() => {
+    axios
+      .get(`${BE_URL}/employeeDesignation`)
+      .then((res) => {
+        if (res.data.status === "success") {
+          const filtered = res.data.data.filter((d) => d.deleted_at === 0);
+          setDesignations(filtered);
+        }
+      })
+      .catch((err) => console.error("Designation fetch failed", err));
+  }, []);
 
   const displayedRows = records.slice(
     (page - 1) * rowsPerPage,
@@ -217,9 +230,15 @@ const EmployeeData = () => {
                       <TableCell style={{ ...scrollCellStyle, width: "250px" }}>
                         {row.address}
                       </TableCell>
-                      <TableCell style={scrollCellStyle}>
+                      {/* <TableCell style={scrollCellStyle}>
                         {row.designation}
+                      </TableCell> */}
+                      <TableCell style={scrollCellStyle}>
+                        {designations.find(
+                          (d) => d.id === Number(row.designation)
+                        )?.name || "N/A"}
                       </TableCell>
+
                       <TableCell
                         style={{
                           ...cellStyle,

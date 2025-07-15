@@ -1,18 +1,3 @@
-// import React from 'react'
-
-// const EmployeeDataUpdate = () => {
-//   return (
-//     <div className='text-white'>
-//       HotelsID
-//       Name , EmailID  , Image , Address , Designation , Status.
-//     </div>
-//   )
-// }
-
-// export default EmployeeDataUpdate
-
-/* test 1 */
-
 import React, { useEffect, useState } from "react";
 import { TextField, MenuItem } from "@mui/material";
 import { styled } from "@mui/material/styles";
@@ -64,10 +49,18 @@ const EmployeeDataUpdate = () => {
   const [hotelOptions, setHotelOptions] = useState([]);
   const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState(false);
+  const [designationOptions, setDesignationOptions] = useState([]);
 
   useEffect(() => {
     axios.get(`${BE_URL}/hotelName`).then((res) => {
       setHotelOptions(res.data.data);
+    });
+
+    axios.get(`${BE_URL}/employeeDesignation`).then((res) => {
+      if (res.data.status === "success") {
+        const filtered = res.data.data.filter((d) => d.deleted_at === 0);
+        setDesignationOptions(filtered);
+      }
     });
 
     if (rowData) {
@@ -122,10 +115,11 @@ const EmployeeDataUpdate = () => {
       name: formData.name.trim() === "",
       email_id: formData.email_id.trim() === "",
       address: formData.address.trim() === "",
-      designation: formData.designation.trim() === "",
+      designation: !formData.designation,
       status: formData.status === "",
       image: !previewImage,
     };
+
     setErrors(newErrors);
 
     if (Object.values(newErrors).some((v) => v)) return;
@@ -239,15 +233,23 @@ const EmployeeDataUpdate = () => {
           />
 
           {/* Designation */}
+
           <BlueTextField
+            select
             label="Designation"
             name="designation"
             value={formData.designation}
             onChange={handleInputChange}
             fullWidth
             error={errors.designation}
-            helperText={errors.designation ? "Please enter designation" : ""}
-          />
+            helperText={errors.designation ? "Please select designation" : ""}
+          >
+            {designationOptions.map((d) => (
+              <MenuItem key={d.id} value={d.id}>
+                {d.name}
+              </MenuItem>
+            ))}
+          </BlueTextField>
 
           {/* Status */}
           <BlueTextField

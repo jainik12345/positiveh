@@ -65,6 +65,7 @@ const hotelInquiry = require("./routes/hotel/hotelInquiry");
 /**----------------------------------------------------Employee ----------------------------------------------------*/
 
 const EmployeeDataName = require("./routes/EmployeeData/EmployeeDataName");
+const employeeDesignation = require("./routes/EmployeeData/employeeDesignation");
 
 app.use("/admin", admin);
 app.use("/privatePolicy", privatePolicy);
@@ -103,6 +104,7 @@ app.use("/hotelInquiry", hotelInquiry);
 /**----------------------------------------------------Employee ----------------------------------------------------*/
 
 app.use("/employeeDataName", EmployeeDataName);
+app.use("/employeeDesignation", employeeDesignation);
 
 // Static Images
 /**--------------------------------------------------Home-------------------------------------------------- */
@@ -176,6 +178,13 @@ app.use(
   "/Images/EmployeeDataImages/EmployeeDataName",
   express.static(
     path.join(__dirname, "Images/EmployeeDataImages/EmployeeDataName")
+  )
+);
+
+app.use(
+  "/Images/EmployeeDataImages/EmployeeDesignation",
+  express.static(
+    path.join(__dirname, "Images/EmployeeDataImages/EmployeeDesignation")
   )
 );
 

@@ -75,6 +75,10 @@ import EmployeeDataInsert from "../../pages/UserSection/EmployeeData/EmployeeDat
 import EmployeeDataUpdate from "../../pages/UserSection/EmployeeData/EmployeeDataUpdate";
 import EmployeeDataTrace from "../../pages/UserSection/EmployeeData/EmployeeDataTrace";
 import EmployeeDashboard from "../../pages/EmployeeDashboard/EmployeeDashboard";
+import EmployeeDesignation from "../../pages/UserSection/EmployeeDesignation/EmployeeDesignation";
+import EmployeeDesignationInsert from "../../pages/UserSection/EmployeeDesignation/EmployeeDesignationInsert";
+import EmployeeDesignationUpdate from "../../pages/UserSection/EmployeeDesignation/EmployeeDesignationUpdate";
+import EmployeeDesignationTrace from "../../pages/UserSection/EmployeeDesignation/EmployeeDesignationTrace";
 // import EmployeeDashboard from "../../components/LoginSection/EmployeeDashboard";
  
 const RouteComponents = () => {
@@ -221,6 +225,12 @@ const RouteComponents = () => {
           <Route path="/employee-data/insert" element={<EmployeeDataInsert/>} />
           <Route path="/employee-data/update" element={<EmployeeDataUpdate/>} />
           <Route path="/employee-data/trace" element={<EmployeeDataTrace/>} />
+
+
+          <Route path="/employee-designation" element={<EmployeeDesignation/>} />
+          <Route path="/employee-designation/insert" element={<EmployeeDesignationInsert/>} />
+          <Route path="/employee-designation/update" element={<EmployeeDesignationUpdate/>} />
+          <Route path="/employee-designation/trace" element={<EmployeeDesignationTrace/>} />
 
 
         </Route>
