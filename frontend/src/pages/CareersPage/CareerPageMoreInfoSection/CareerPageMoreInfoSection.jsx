@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // Static Design Code
 
 // import React from "react";
@@ -369,7 +370,7 @@ const CareerPageMoreInfoSection = () => {
               variants={detailsVariants}
             >
               <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-2">
-                {member.name}
+                {member.heading}
               </h2>
               <p className="text-blue-600 text-lg font-semibold uppercase mb-6 tracking-wide">
                 {member.position}
