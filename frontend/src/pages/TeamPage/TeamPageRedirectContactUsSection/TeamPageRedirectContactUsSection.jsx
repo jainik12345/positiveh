@@ -36,7 +36,7 @@ const TeamPageRedirectContactUsSection = () => {
       <div className="max-w-screen-xl mx-auto text-center">
         {/* Glassmorphism Card */}
         <motion.div
-          className="bg-white/70 backdrop-blur-md rounded-3xl shadow-xl px-8 py-10 sm:px-10 md:px-16 lg:px-20 space-y-6"
+          className="bg-transparent backdrop-blur-md rounded-3xl shadow-xl px-8 py-10 sm:px-10 md:px-16 lg:px-20 space-y-6"
           variants={itemVariants}
         >
           {/* Heading */}

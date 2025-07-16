@@ -180,8 +180,6 @@
 
 // export default TeamPageMembersDetailsSection;
 
-
-
 //original approved design
 
 // import { motion } from "framer-motion";
@@ -316,7 +314,6 @@
 
 // export default TeamPageMembersDetailsSection;
 
-
 import { motion } from "framer-motion";
 import BE_URL from "../../../config";
 import axios from "axios";
@@ -443,9 +440,9 @@ const TeamPageMembersDetailsSection = () => {
                         <img
                           src={`${BE_URL}/Images/TeamImages/TeamMemberName/${member.image}`}
                           alt={member.name}
-                          className="w-full h-80 object-contain"
+                          className="w-full h-full  shadow-2xl object-cover transition duration-300 ease-in-out"
                         />
-                        <div className="absolute top-0 left-0 w-full h-1 bg-black"></div>
+                        <div className="absolute top-0 left-0 w-full h-1   bg-black"></div>
                       </div>
                     </motion.div>
 
@@ -473,7 +470,10 @@ const TeamPageMembersDetailsSection = () => {
                           .split("\n")
                           .filter((line) => line.trim() !== "")
                           .map((line, lineIndex) => (
-                            <div key={lineIndex} className="flex items-start gap-3">
+                            <div
+                              key={lineIndex}
+                              className="flex items-start gap-3"
+                            >
                               <span className="text-xs font-bold text-gray-400 flex-shrink-0 mt-1">
                                 {String(lineIndex + 1).padStart(2, "0")}
                               </span>
@@ -483,23 +483,21 @@ const TeamPageMembersDetailsSection = () => {
                       </div>
 
                       {/* 🔥 Animated Know More Button */}
-                      <div className="text-center">
+                      {/* <div className="text-center">
                         <button
                           className="group relative inline-flex items-center gap-3 px-8 py-4 bg-black text-white font-bold rounded-xl shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 overflow-hidden hover:scale-105"
                           onClick={HandleKnowMoreBtn}
                         >
-                          {/* Background animation */}
-                          <div className="absolute inset-0 bg-blue-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+                           <div className="absolute inset-0 bg-blue-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
 
                           <span className="relative z-10">Know More</span>
                           <div className="relative z-10 transition-transform duration-300 group-hover:translate-x-1">
                             <ArrowRight className="w-5 h-5" />
                           </div>
 
-                          {/* Border animation */}
-                          <div className="absolute inset-0 border-2 border-blue-600 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                           <div className="absolute inset-0 border-2 border-blue-600 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </button>
-                      </div>
+                      </div> */}
                     </motion.div>
                   </div>
                 </div>
