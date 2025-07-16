@@ -556,7 +556,7 @@ const TeamSection = () => {
         </h1>
         <div className="w-20 h-px bg-black"></div>
       </div>
-      <div className="relative max-w-screen-xl mx-auto text-center space-y-12">
+      <div className="relative max-w-screen-xl mx-auto text-justify space-y-12">
         {/* Main Paragraph or Fetched Data */}
         <div className="relative group   border border-[#212529]/10 rounded-2xl p-8 md:p-12  transition-all duration-500">
           {/* Decorative corner elements */}
@@ -578,14 +578,37 @@ const TeamSection = () => {
             </p>
           ) : (
             <div className="space-y-4">
-              {HomeOurTeamData.map((item, index) => (
+              {/* {HomeOurTeamData.map((item, index) => (
                 <p
                   key={item.id}
                   className="text-lg md:text-xl leading-relaxed text-[#212529] text-justify  relative z-10 transition-colors duration-300"
                 >
                   {item.description}
                 </p>
-              ))}
+              ))} */}
+              {/* {HomeOurTeamData.map((item, index) => (
+                <p
+                  key={item.id}
+                  className="text-lg md:text-xl leading-relaxed text-[#212529] text-justify relative z-10 transition-colors duration-300"
+                >
+                  <span className="font-bold mr-2">{index + 1}.</span>
+                  {item.description}
+                </p>
+              ))} */}
+              {HomeOurTeamData.flatMap((item) =>
+                item.description
+                  .split("\n")
+                  .filter((para) => para.trim() !== "")
+                  .map((para, idx) => (
+                    <div
+                      key={`${item.id}-${idx}`}
+                      className="flex items-start gap-3 text-lg md:text-xl leading-relaxed text-[#212529] relative z-10 transition-colors duration-300"
+                    >
+                      <span className="mt-3.5 w-2.5 h-2.5 bg-[#1b97b3] rounded-full mr-2 flex-shrink-0"></span>
+                      <p className="text-justify">{para.trim()}</p>
+                    </div>
+                  ))
+              )}
             </div>
           )}
 
