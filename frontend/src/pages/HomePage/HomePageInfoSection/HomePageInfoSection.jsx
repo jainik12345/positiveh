@@ -154,7 +154,6 @@
 
 // export default HomePageInfoSection;
 
- 
 //Best Design For Save But Not To Use
 
 // import { useState, useEffect } from "react";
@@ -376,17 +375,146 @@
 // };
 
 // export default HomePageInfoSection;
- 
+
+//design no.3
+
+// import { useEffect, useState } from "react";
+// import { motion } from "framer-motion";
+// import axios from "axios";
+// import BE_URL from "../../../config";
+// import { ArrowRight } from "lucide-react";
+
+// const HomePageOurTeamSection = () => {
+//   const [FetchError, setFetchError] = useState(false);
+//   const [HomeOurTeamData, setHomeOurTeamData] = useState([]);
+
+//   // Fetch API
+//   useEffect(() => {
+//     const FetchHomeOurTeamAPI = async () => {
+//       try {
+//         const Response = await axios.get(`${BE_URL}/homeOurTeam`);
+//         let FetchedResponse = Response.data.data;
+
+//         if (typeof FetchedResponse === "string") {
+//           FetchedResponse = JSON.parse(FetchedResponse);
+//         }
+
+//         if (Response.status === 200 && FetchedResponse.length > 0) {
+//           setHomeOurTeamData(FetchedResponse);
+//           setFetchError(false);
+//         } else {
+//           setFetchError(true); // No data
+//         }
+//       } catch (error) {
+//         console.error("Unable to fetch the data:", error);
+//         setFetchError(true);
+//       }
+//     };
+
+//     FetchHomeOurTeamAPI();
+//   }, []);
+
+//   return (
+//     <section className="relative bg-black text-white py-20 px-4 md:px-8 overflow-hidden">
+//       {/* Decorative Cyan Glow */}
+//       <div className="absolute inset-0 pointer-events-none">
+//         <div className="absolute w-72 h-72 bg-[#00D2FF]/10 rounded-full blur-3xl -top-20 -left-20"></div>
+//         <div className="absolute w-96 h-96 bg-[#00D2FF]/10 rounded-full blur-3xl -bottom-40 -right-40"></div>
+//       </div>
+
+//       <div className="relative max-w-5xl mx-auto space-y-16">
+//         {/* Section Header */}
+//         <motion.div
+//           className="text-center"
+//           initial={{ opacity: 0, y: 40 }}
+//           whileInView={{ opacity: 1, y: 0 }}
+//           viewport={{ once: true }}
+//           transition={{ duration: 0.8, ease: "easeOut" }}
+//         >
+//           <h2 className="text-4xl md:text-5xl font-extrabold">
+//             Meet <span className="text-[#00D2FF]">Our Team</span>
+//           </h2>
+//           <p className="mt-4 text-gray-400 max-w-2xl mx-auto">
+//             The minds and energy behind our vision.
+//           </p>
+//         </motion.div>
+
+//         {/* Team Text Cards */}
+//         <div className="space-y-10">
+//           {FetchError ? (
+//             <div className="text-center text-[#00D2FF] font-semibold">
+//               Failed to load team data.
+//             </div>
+//           ) : HomeOurTeamData.length === 0 ? (
+//             <div className="text-center text-gray-400 animate-pulse">
+//               Loading team information...
+//             </div>
+//           ) : (
+//             HomeOurTeamData.map((item, index) => (
+//               <motion.div
+//                 key={item.id}
+//                 initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+//                 whileInView={{ opacity: 1, x: 0 }}
+//                 viewport={{ once: true }}
+//                 transition={{ duration: 0.6, delay: index * 0.2 }}
+//                 className="relative group bg-gray-900/50 border border-gray-700 rounded-xl p-6 md:p-8 hover:border-[#00D2FF] hover:shadow-[0_0_30px_#00D2FF] transition-all duration-500"
+//               >
+//                 {/* Cyan Progress Bar */}
+//                 <div className="absolute top-0 left-0 w-0 h-1 bg-[#00D2FF] rounded-full group-hover:w-full transition-all duration-500"></div>
+
+//                 <div className="space-y-3">
+//                   {item.description
+//                     .split("\n")
+//                     .filter((line) => line.trim() !== "")
+//                     .map((line, lineIndex) => (
+//                       <p
+//                         key={lineIndex}
+//                         className="text-gray-300 leading-relaxed text-lg hover:text-[#00D2FF] transition-colors duration-300"
+//                       >
+//                         {line}
+//                       </p>
+//                     ))}
+//                 </div>
+//               </motion.div>
+//             ))
+//           )}
+//         </div>
+
+//         {/* Call to Action */}
+//         <motion.div
+//           className="text-center mt-12"
+//           initial={{ opacity: 0, y: 20 }}
+//           whileInView={{ opacity: 1, y: 0 }}
+//           viewport={{ once: true }}
+//           transition={{ duration: 0.6 }}
+//         >
+//           <button className="relative group inline-flex cursor-pointer items-center gap-3 px-6 py-3 border border-[#00D2FF] rounded-full text-[#00D2FF] font-semibold hover:bg-[#00D2FF] hover:text-black transition-all duration-300">
+//             Know More
+//             <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+//           </button>
+//         </motion.div>
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default HomePageOurTeamSection;
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import axios from "axios";  
+import axios from "axios";
 import BE_URL from "../../../config";
 import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
-const HomePageOurTeamSection = () => {
+const TeamSection = () => {
   const [FetchError, setFetchError] = useState(false);
   const [HomeOurTeamData, setHomeOurTeamData] = useState([]);
+
+  const RedirectTo = useNavigate();
+
+  const HandleKnowMoreBtn = () => {
+    RedirectTo("/team");
+  };
 
   // Fetch API
   useEffect(() => {
@@ -415,87 +543,98 @@ const HomePageOurTeamSection = () => {
   }, []);
 
   return (
-    <section className="relative bg-black text-white py-20 px-4 md:px-8 overflow-hidden">
-      {/* Decorative Cyan Glow */}
+    <section className="relative py-20 px-4 md:px-8 overflow-hidden bg-gray-50">
+      {/* Decorative Cyan Glow Effects */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute w-72 h-72 bg-[#00D2FF]/10 rounded-full blur-3xl -top-20 -left-20"></div>
-        <div className="absolute w-96 h-96 bg-[#00D2FF]/10 rounded-full blur-3xl -bottom-40 -right-40"></div>
+        <div className="absolute w-72 h-72  rounded-full blur-3xl -top-20 -left-20"></div>
+        <div className="absolute w-96 h-96  rounded-full blur-3xl -bottom-40 -right-40"></div>
       </div>
+      <div className="flex items-center justify-center gap-4 mb-6">
+        <div className="w-20 h-px bg-black"></div>
+        <h1 className="text-3xl md:text-4xl font-bold text-black">
+          Our <span className="text-[var(--color-logo-color)]">Team</span>
+        </h1>
+        <div className="w-20 h-px bg-black"></div>
+      </div>
+      <div className="relative max-w-screen-xl mx-auto text-center space-y-12">
+        {/* Main Paragraph or Fetched Data */}
+        <div className="relative group   border border-[#212529]/10 rounded-2xl p-8 md:p-12  transition-all duration-500">
+          {/* Decorative corner elements */}
+          <div className="absolute top-0 left-0 w-8 h-8 border-l-2 border-t-2 border-[#00D2FF]/40 rounded-tl-2xl"></div>
+          <div className="absolute top-0 right-0 w-8 h-8 border-r-2 border-t-2 border-[#00D2FF]/40 rounded-tr-2xl"></div>
+          <div className="absolute bottom-0 left-0 w-8 h-8 border-l-2 border-b-2 border-[#00D2FF]/40 rounded-bl-2xl"></div>
+          <div className="absolute bottom-0 right-0 w-8 h-8 border-r-2 border-b-2 border-[#00D2FF]/40 rounded-br-2xl"></div>
 
-      <div className="relative max-w-5xl mx-auto space-y-16">
-        {/* Section Header */}
-        <motion.div
-          className="text-center"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          <h2 className="text-4xl md:text-5xl font-extrabold">
-            Meet <span className="text-[#00D2FF]">Our Team</span>
-          </h2>
-          <p className="mt-4 text-gray-400 max-w-2xl mx-auto">
-            The minds and energy behind our vision.
-          </p>
-        </motion.div>
+          {/* Animated top border */}
+          {/* <div className="absolute top-0 left-0 w-0 h-1 bg-gradient-to-r from-[#00D2FF] to-[#00D2FF]/50 rounded-full group-hover:w-full transition-all duration-700"></div> */}
 
-        {/* Team Text Cards */}
-        <div className="space-y-10">
           {FetchError ? (
-            <div className="text-center text-[#00D2FF] font-semibold">
+            <p className="text-lg md:text-xl leading-relaxed text-[#00D2FF] font-medium relative z-10">
               Failed to load team data.
-            </div>
+            </p>
           ) : HomeOurTeamData.length === 0 ? (
-            <div className="text-center text-gray-400 animate-pulse">
+            <p className="text-lg md:text-xl leading-relaxed text-gray-400 animate-pulse relative z-10">
               Loading team information...
-            </div>
+            </p>
           ) : (
-            HomeOurTeamData.map((item, index) => (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="relative group bg-gray-900/50 border border-gray-700 rounded-xl p-6 md:p-8 hover:border-[#00D2FF] hover:shadow-[0_0_30px_#00D2FF] transition-all duration-500"
-              >
-                {/* Cyan Progress Bar */}
-                <div className="absolute top-0 left-0 w-0 h-1 bg-[#00D2FF] rounded-full group-hover:w-full transition-all duration-500"></div>
-
-                <div className="space-y-3">
-                  {item.description
-                    .split("\n")
-                    .filter((line) => line.trim() !== "")
-                    .map((line, lineIndex) => (
-                      <p
-                        key={lineIndex}
-                        className="text-gray-300 leading-relaxed text-lg hover:text-[#00D2FF] transition-colors duration-300"
-                      >
-                        {line}
-                      </p>
-                    ))}
-                </div>
-              </motion.div>
-            ))
+            <div className="space-y-4">
+              {HomeOurTeamData.map((item, index) => (
+                <p
+                  key={item.id}
+                  className="text-lg md:text-xl leading-relaxed text-[#212529] text-justify  relative z-10 transition-colors duration-300"
+                >
+                  {item.description}
+                </p>
+              ))}
+            </div>
           )}
+
+          {/* Floating particles inside the card */}
+          <div className="absolute top-4 right-4 w-2 h-2 bg-[#00D2FF]/30 rounded-full animate-pulse"></div>
+          <div className="absolute top-4 right-10 w-2 h-2 bg-[#00D2FF]/30 rounded-full animate-pulse"></div>
+
+          <div className="absolute top-4 left-4 w-2 h-2 bg-[#00D2FF]/30 rounded-full animate-pulse"></div>
+
+          <div className="absolute top-4 left-14 w-2 h-2 bg-[#00D2FF]/30 rounded-full animate-pulse"></div>
+
+          <div
+            className="absolute bottom-6 left-6 w-1 h-1 bg-[#00D2FF]/50 rounded-full animate-pulse"
+            style={{ animationDelay: "0.8s" }}
+          ></div>
         </div>
 
-        {/* Call to Action */}
-        <motion.div
-          className="text-center mt-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <button className="relative group inline-flex cursor-pointer items-center gap-3 px-6 py-3 border border-[#00D2FF] rounded-full text-[#00D2FF] font-semibold hover:bg-[#00D2FF] hover:text-black transition-all duration-300">
-            Know More
-            <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+        {/* CTA Button */}
+        <div className="text-center">
+          <button
+            className="group relative inline-flex items-center gap-3 px-8 py-4 bg-black text-white  rounded cursor-pointer shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 overflow-hidden "
+            onClick={HandleKnowMoreBtn}
+          >
+            {/* Button background animation */}
+            <div className="absolute inset-0 bg-blue-600 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+
+            <span className="relative z-10">Know More</span>
+            <div className="relative z-10 transition-transform duration-300 group-hover:translate-x-1">
+              <ArrowRight className="w-5 h-5" />
+            </div>
+
+            {/* Button border animation */}
+            <div className="absolute inset-0  border-blue-600 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </button>
-        </motion.div>
+        </div>
+
+        {/* Additional decorative elements */}
+        <div className="absolute top-1/2 left-4 w-2 h-2 bg-[#00D2FF] rounded-full opacity-60 animate-pulse"></div>
+        <div
+          className="absolute top-1/3 right-8 w-1 h-1 bg-[#00D2FF] rounded-full opacity-40 animate-pulse"
+          style={{ animationDelay: "0.5s" }}
+        ></div>
+        <div
+          className="absolute bottom-1/4 left-12 w-1.5 h-1.5 bg-[#00D2FF] rounded-full opacity-50 animate-pulse"
+          style={{ animationDelay: "1s" }}
+        ></div>
       </div>
     </section>
   );
 };
 
-export default HomePageOurTeamSection;
+export default TeamSection;
