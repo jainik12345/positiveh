@@ -10,6 +10,7 @@ import CareersPage from "../../pages/CareersPage/CareersPage";
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import TermsConditionsPage from "../../pages/TermsConditionPage/TermsConditionPage";
 import PortfolioPageCardInnerSection from "../../pages/PortfolioPage/PortfolioPageCardInnerSection/PortfolioPageCardInnerSection";
+import PortfolioPageCardsSection from "../../pages/PortfolioPage/PortfolioPageCardsSection/PortfolioPageCardsSection";
 
 const WebsitePage = ({ children }) => {
   return (
@@ -26,18 +27,82 @@ const RouteComponent = () => {
     <>
       <ScrollToTop />
       <Routes>
-        <Route path="/" element={<WebsitePage><HomePage /></WebsitePage>} /> 
-        <Route path="/contact-us" element={<WebsitePage><ContactUsPage /></WebsitePage>} />
-        <Route path="/team" element={<WebsitePage><TeamPage /></WebsitePage>} />
-        <Route path="/private-policy" element={<WebsitePage><PrivatePolicy /></WebsitePage>} />
-        <Route path="/portfolio" element={<WebsitePage><PortfolioPage /></WebsitePage>} /> 
-        <Route path="/portfolio/:hotelName" element={<WebsitePage><PortfolioPageCardInnerSection /></WebsitePage>} />
-        <Route path="/careers" element={<WebsitePage><CareersPage /></WebsitePage>} />
-        
-        <Route path="/terms-conditions" element={<WebsitePage><TermsConditionsPage /></WebsitePage>} />
+        <Route
+          path="/"
+          element={
+            <WebsitePage>
+              <HomePage />
+            </WebsitePage>
+          }
+        />
+        <Route
+          path="/contact-us"
+          element={
+            <WebsitePage>
+              <ContactUsPage />
+            </WebsitePage>
+          }
+        />
+        <Route
+          path="/team"
+          element={
+            <WebsitePage>
+              <TeamPage />
+            </WebsitePage>
+          }
+        />
+        <Route
+          path="/private-policy"
+          element={
+            <WebsitePage>
+              <PrivatePolicy />
+            </WebsitePage>
+          }
+        />
+        <Route
+          path="/portfolio"
+          element={
+            <WebsitePage>
+              <PortfolioPage />
+            </WebsitePage>
+          }
+        />
+        <Route
+          path="/portfolio/category/:HotelStatus"
+          element={
+            <WebsitePage>
+              <PortfolioPageCardsSection />
+            </WebsitePage>
+          }
+        />
+        <Route
+          path="/portfolio/:hotelName"
+          element={
+            <WebsitePage>
+              <PortfolioPageCardInnerSection />
+            </WebsitePage>
+          }
+        />
+        <Route
+          path="/careers"
+          element={
+            <WebsitePage>
+              <CareersPage />
+            </WebsitePage>
+          }
+        />
+
+        <Route
+          path="/terms-conditions"
+          element={
+            <WebsitePage>
+              <TermsConditionsPage />
+            </WebsitePage>
+          }
+        />
       </Routes>
     </>
   );
 };
-    
+
 export default RouteComponent;
