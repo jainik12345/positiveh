@@ -1,3 +1,287 @@
+// /* eslint-disable no-unused-vars */
+
+// import React, { useState } from "react";
+// import {
+//   Box,
+//   Button,
+//   Container,
+//   TextField,
+//   Typography,
+//   InputAdornment,
+//   Link,
+//   Paper,
+// } from "@mui/material";
+// import { MdEmail, MdLock } from "react-icons/md";
+// import { motion } from "framer-motion";
+// import axios from "axios";
+// import BE_URL from "../../config";
+// import Swal from "sweetalert2";
+// import { useNavigate } from "react-router-dom";
+
+// const LoginPage = () => {
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [errors, setErrors] = useState({ email: "", password: "" });
+//   const navigate = useNavigate();
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     let hasError = false;
+//     const newErrors = { email: "", password: "" };
+
+//     if (!email.trim()) {
+//       newErrors.email = "Email is required";
+//       hasError = true;
+//     }
+//     if (!password.trim()) {
+//       newErrors.password = "Password is required";
+//       hasError = true;
+//     }
+
+//     setErrors(newErrors);
+//     if (!hasError) {
+//       try {
+//         // Try Admin Login
+//         const adminRes = await axios.post(`${BE_URL}/admin/login`, {
+//           email,
+//           password,
+//         });
+
+//         if (adminRes.status === 200) {
+//           Swal.fire({
+//             icon: "success",
+//             title: "Admin Login Successful",
+//             text: "Welcome to Compass Tourism!",
+//           });
+
+//           navigate("/home-page");
+//           return;
+//         }
+//       } catch (adminError) {
+//         // Try Employee Login only if Admin login fails
+//         try {
+//           const empRes = await axios.post(`${BE_URL}/employeeDataName/login`, {
+//             email,
+//             password,
+//           });
+
+//           // if (empRes.status === 200) {
+//           //   Swal.fire({
+//           //     icon: "success",
+//           //     title: "Employee Login Successful",
+//           //     text: "Welcome!",
+//           //   });
+
+//           //   navigate("/employee-dashboard");
+//           //   return;
+//           // }
+//           if (empRes.status === 200) {
+//             const employee = empRes.data.employee;
+
+//             // ✅ Store ID + Email (you can store whole object if needed)
+//             localStorage.setItem("employeeId", employee.id);
+//             localStorage.setItem("employeeEmail", employee.email);
+
+//             Swal.fire({
+//               icon: "success",
+//               title: "Employee Login Successful",
+//               text: "Welcome!",
+//             });
+
+//             navigate("/employee-dashboard");
+//             return;
+//           }
+//         } catch (empError) {
+//           // Both failed
+//           Swal.fire({
+//             icon: "error",
+//             title: "Login Failed",
+//             text:
+//               empError?.response?.data?.message ||
+//               adminError?.response?.data?.message ||
+//               "Invalid email or password",
+//           });
+//         }
+//       }
+//     }
+//   };
+
+//   return (
+//     <Box
+//       sx={{
+//         height: "100vh",
+//         width: "100vw",
+//         display: "flex",
+//         alignItems: "center",
+//         justifyContent: "center",
+//         position: "relative",
+//         backgroundSize: "cover",
+//         backgroundPosition: "center",
+//         backgroundRepeat: "no-repeat",
+//         overflow: "hidden",
+//       }}
+//     >
+//       {/* Overlay */}
+//       <Box
+//         sx={{
+//           position: "absolute",
+//           top: 0,
+//           left: 0,
+//           width: "100%",
+//           height: "100%",
+//           backgroundColor: "rgba(0, 0, 0, 0.6)",
+//           zIndex: 1,
+//         }}
+//       />
+
+//       {/* Content */}
+//       <Box
+//         sx={{
+//           position: "relative",
+//           zIndex: 2,
+//           display: "flex",
+//           width: "100%",
+//           maxWidth: "1200px",
+//           padding: 2,
+//         }}
+//       >
+//         {/* Left Side - Welcome Text */}
+//         <motion.div
+//           initial={{ x: -100, opacity: 0 }}
+//           animate={{ x: 0, opacity: 1 }}
+//           transition={{ duration: 1 }}
+//           style={{
+//             flex: 1,
+//             display: "flex",
+//             alignItems: "center",
+//             justifyContent: "center",
+//             color: "#fff",
+//             fontSize: "3rem",
+//             fontWeight: "bold",
+//             textShadow: "2px 2px 10px rgba(0,0,0,0.6)",
+//           }}
+//         >
+//           Welcome Back!
+//         </motion.div>
+
+//         {/* Right Side - Login Form */}
+//         <motion.div
+//           initial={{ x: 100, opacity: 0 }}
+//           animate={{ x: 0, opacity: 1 }}
+//           transition={{ duration: 1 }}
+//           style={{ flex: 1 }}
+//         >
+//           <Container maxWidth="xl">
+//             <Paper
+//               elevation={6}
+//               sx={{
+//                 padding: 4,
+//                 borderRadius: "8px",
+//                 background: "rgba(255, 255, 255, 0.85)",
+//                 backdropFilter: "blur(10px)",
+//                 boxShadow: "0 8px 32px rgba(0,0,0,0.25)",
+//               }}
+//             >
+//               <Typography
+//                 variant="h5"
+//                 align="center"
+//                 gutterBottom
+//                 sx={{ fontWeight: "bold", mb: 3 }}
+//               >
+//                 Compass Tourism Admin Panel
+//               </Typography>
+
+//               <Typography variant="body1" sx={{ mb: 3 }}>
+//                 Sign in to start your session
+//               </Typography>
+
+//               <form onSubmit={handleSubmit}>
+//                 <TextField
+//                   fullWidth
+//                   label="Email"
+//                   variant="outlined"
+//                   margin="normal"
+//                   value={email}
+//                   onChange={(e) => setEmail(e.target.value)}
+//                   error={!!errors.email}
+//                   helperText={errors.email}
+//                   InputProps={{
+//                     endAdornment: (
+//                       <InputAdornment position="end">
+//                         <MdEmail size={25} />
+//                       </InputAdornment>
+//                     ),
+//                   }}
+//                 />
+
+//                 <TextField
+//                   fullWidth
+//                   label="Password"
+//                   type="password"
+//                   variant="outlined"
+//                   margin="normal"
+//                   value={password}
+//                   onChange={(e) => setPassword(e.target.value)}
+//                   error={!!errors.password}
+//                   helperText={errors.password}
+//                   InputProps={{
+//                     endAdornment: (
+//                       <InputAdornment position="end">
+//                         <MdLock size={25} />
+//                       </InputAdornment>
+//                     ),
+//                   }}
+//                 />
+
+//                 <Box
+//                   sx={{ display: "flex", justifyContent: "flex-end", mt: 1 }}
+//                 >
+//                   <Link
+//                     href="/forgot-password"
+//                     underline="hover"
+//                     sx={{ color: "red", fontSize: 14 }}
+//                   >
+//                     Forgot password?
+//                   </Link>
+//                 </Box>
+
+//                 <Box
+//                   sx={{ display: "flex", justifyContent: "flex-end", mt: 3 }}
+//                 >
+//                   <Button
+//                     type="submit"
+//                     variant="contained"
+//                     sx={{
+//                       px: 4,
+//                       py: 1.5,
+//                       fontWeight: "bold",
+//                       background: "linear-gradient(135deg, #1976d2, #42a5f5)",
+//                       color: "#fff",
+//                       borderRadius: "30px",
+//                       boxShadow: "0 4px 20px rgba(0,0,0,0.2)",
+//                       transition: "all 0.3s ease",
+//                       "&:hover": {
+//                         background: "linear-gradient(135deg, #1565c0, #1e88e5)",
+//                         boxShadow: "0 6px 25px rgba(0,0,0,0.25)",
+//                       },
+//                     }}
+//                   >
+//                     Sign In
+//                   </Button>
+//                 </Box>
+//               </form>
+//             </Paper>
+//           </Container>
+//         </motion.div>
+//       </Box>
+//     </Box>
+//   );
+// };
+
+// export default LoginPage;
+
+/* test 1 :  */
+
 /* eslint-disable no-unused-vars */
 
 import React, { useState } from "react";
@@ -58,27 +342,15 @@ const LoginPage = () => {
           return;
         }
       } catch (adminError) {
-        // Try Employee Login only if Admin login fails
+        // Try Employee Login
         try {
           const empRes = await axios.post(`${BE_URL}/employeeDataName/login`, {
             email,
             password,
           });
 
-          // if (empRes.status === 200) {
-          //   Swal.fire({
-          //     icon: "success",
-          //     title: "Employee Login Successful",
-          //     text: "Welcome!",
-          //   });
-
-          //   navigate("/employee-dashboard");
-          //   return;
-          // }
           if (empRes.status === 200) {
             const employee = empRes.data.employee;
-
-            // ✅ Store ID + Email (you can store whole object if needed)
             localStorage.setItem("employeeId", employee.id);
             localStorage.setItem("employeeEmail", employee.email);
 
@@ -92,15 +364,42 @@ const LoginPage = () => {
             return;
           }
         } catch (empError) {
-          // Both failed
-          Swal.fire({
-            icon: "error",
-            title: "Login Failed",
-            text:
-              empError?.response?.data?.message ||
-              adminError?.response?.data?.message ||
-              "Invalid email or password",
-          });
+          // Try General Manager Login
+          try {
+            const gmRes = await axios.post(
+              `${BE_URL}/generalManagerDataName/login`,
+              {
+                email,
+                password,
+              }
+            );
+
+            if (gmRes.status === 200) {
+              const gm = gmRes.data.gm;
+              localStorage.setItem("generalManagerId", gm.id);
+              localStorage.setItem("generalManagerEmail", gm.email);
+
+              Swal.fire({
+                icon: "success",
+                title: "GM Login Successful",
+                text: `Welcome ${gm.name}`,
+              });
+
+              navigate("/general-manager-dashboard");
+              return;
+            }
+          } catch (gmError) {
+            // All three failed
+            Swal.fire({
+              icon: "error",
+              title: "Login Failed",
+              text:
+                gmError?.response?.data?.message ||
+                empError?.response?.data?.message ||
+                adminError?.response?.data?.message ||
+                "Invalid email or password",
+            });
+          }
         }
       }
     }
@@ -121,7 +420,6 @@ const LoginPage = () => {
         overflow: "hidden",
       }}
     >
-      {/* Overlay */}
       <Box
         sx={{
           position: "absolute",
@@ -134,7 +432,6 @@ const LoginPage = () => {
         }}
       />
 
-      {/* Content */}
       <Box
         sx={{
           position: "relative",
@@ -145,7 +442,6 @@ const LoginPage = () => {
           padding: 2,
         }}
       >
-        {/* Left Side - Welcome Text */}
         <motion.div
           initial={{ x: -100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
@@ -164,7 +460,6 @@ const LoginPage = () => {
           Welcome Back!
         </motion.div>
 
-        {/* Right Side - Login Form */}
         <motion.div
           initial={{ x: 100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}

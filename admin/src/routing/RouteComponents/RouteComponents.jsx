@@ -80,7 +80,12 @@ import EmployeeDesignationInsert from "../../pages/UserSection/EmployeeDesignati
 import EmployeeDesignationUpdate from "../../pages/UserSection/EmployeeDesignation/EmployeeDesignationUpdate";
 import EmployeeDesignationTrace from "../../pages/UserSection/EmployeeDesignation/EmployeeDesignationTrace";
 // import EmployeeDashboard from "../../components/LoginSection/EmployeeDashboard";
- 
+ import GeneralManagerDataName from './../../pages/GeneralManagerSection/GeneralManagerDataName/GeneralManagerDataName';
+import GeneralManagerDataNameInsert from './../../pages/GeneralManagerSection/GeneralManagerDataName/GeneralManagerDataNameInsert';
+import GeneralManagerDataNameUpdate from "../../pages/GeneralManagerSection/GeneralManagerDataName/GeneralManagerDataNameUpdate";
+import GeneralManagerDataNameTrace from "../../pages/GeneralManagerSection/GeneralManagerDataName/GeneralManagerDataNameTrace";
+import GeneralManagerDashboard from './../../pages/GeneralManagerDashboard/GeneralManagerDashboard';
+
 const RouteComponents = () => {
   return (
     <>
@@ -94,6 +99,8 @@ const RouteComponents = () => {
 
 
         <Route path="/employee-dashboard" element={<EmployeeDashboard/>} />
+
+        <Route path="/general-manager-dashboard" element={<GeneralManagerDashboard/>} />
     
         {/* Redirect / to /admin */}
 
@@ -218,7 +225,7 @@ const RouteComponents = () => {
           <Route path="/hotel-inquirys/trace" element={<HotelInquirysTrace/>} />
 
 
-          {/* -----------------------------------------USers Section----------------- ----------------------------- */}
+          {/* -----------------------------------------Users Section-------------------------------------------- */}
 
 
           <Route path="/employee-data" element={<EmployeeData/>} />
@@ -231,6 +238,19 @@ const RouteComponents = () => {
           <Route path="/employee-designation/insert" element={<EmployeeDesignationInsert/>} />
           <Route path="/employee-designation/update" element={<EmployeeDesignationUpdate/>} />
           <Route path="/employee-designation/trace" element={<EmployeeDesignationTrace/>} />
+
+
+
+
+          {/* -----------------------------------------General Manager-------------------------------------------- */}
+
+
+
+
+          <Route path="/general-manager-data-name" element={<GeneralManagerDataName/>} />
+          <Route path="/general-manager-data-name/insert" element={<GeneralManagerDataNameInsert/>} />
+          <Route path="/general-manager-data-name/update" element={<GeneralManagerDataNameUpdate/>} />
+          <Route path="/general-manager-data-name/trace" element={<GeneralManagerDataNameTrace/>} />
 
 
         </Route>

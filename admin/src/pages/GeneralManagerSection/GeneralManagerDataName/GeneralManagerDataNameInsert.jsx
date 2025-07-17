@@ -32,7 +32,7 @@ const BlueTextField = styled(TextField)({
   },
 });
 
-const EmployeeDataInsert = () => {
+const GeneralManagerDataNameInsert = () => {
   const navigate = useNavigate();
   const [hotelOptions, setHotelOptions] = useState([]);
   const [hotelId, setHotelId] = useState("");
@@ -41,22 +41,14 @@ const EmployeeDataInsert = () => {
   const [password, setPassword] = useState("");
   const [image, setImage] = useState(null);
   const [address, setAddress] = useState("");
-  const [designation, setDesignation] = useState("");
   const [status, setStatus] = useState("");
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
-  const [designationOptions, setDesignationOptions] = useState([]);
 
   useEffect(() => {
     axios.get(`${BE_URL}/hotelName`).then((res) => {
-      if (res.data.status === "success") setHotelOptions(res.data.data);
-    });
-    axios.get(`${BE_URL}/employeeDesignation`).then((res) => {
       if (res.data.status === "success") {
-        const validDesignations = res.data.data.filter(
-          (d) => d.deleted_at === 0
-        );
-        setDesignationOptions(validDesignations);
+        setHotelOptions(res.data.data);
       }
     });
   }, []);
@@ -78,7 +70,7 @@ const EmployeeDataInsert = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!hotelId || !name || !email || !password || !designation || !image) {
+    if (!hotelId || !name || !email || !password || !image) {
       setError("All required fields must be filled.");
       return;
     }
@@ -90,11 +82,10 @@ const EmployeeDataInsert = () => {
     formData.append("password", password);
     formData.append("image", image);
     formData.append("address", address);
-    formData.append("designation", designation);
     formData.append("status", status);
 
     try {
-      const res = await axios.post(`${BE_URL}/employeeDataName`, formData);
+      const res = await axios.post(`${BE_URL}/generalManagerDataName`, formData);
       if (res.data.status === "success") {
         setSuccess(true);
         setError(null);
@@ -104,18 +95,17 @@ const EmployeeDataInsert = () => {
         setPassword("");
         setImage(null);
         setAddress("");
-        setDesignation("");
         setStatus("");
         document.getElementById("image-input").value = "";
       } else {
-        setError("Failed to insert employee");
+        setError("Failed to insert General Manager");
       }
     } catch (err) {
       setError(err.response?.data?.error || "Something went wrong");
     }
   };
 
-  const handleCancel = () => navigate("/employee-data");
+  const handleCancel = () => navigate("/general-manager-data-name");
 
   return (
     <div
@@ -142,7 +132,7 @@ const EmployeeDataInsert = () => {
             letterSpacing: "0.04em",
           }}
         >
-          Add Employee Data
+          Add General Manager Data
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-8">
@@ -168,6 +158,7 @@ const EmployeeDataInsert = () => {
             fullWidth
             required
           />
+
           <BlueTextField
             label="Email ID"
             value={email}
@@ -224,25 +215,6 @@ const EmployeeDataInsert = () => {
 
           <BlueTextField
             select
-            label="Designation"
-            value={designation}
-            onChange={(e) => setDesignation(e.target.value)}
-            fullWidth
-            required
-          >
-            {designationOptions.length === 0 ? (
-              <MenuItem disabled>Loading...</MenuItem>
-            ) : (
-              designationOptions.map((d) => (
-                <MenuItem key={d.id} value={d.id}>
-                  {d.name}
-                </MenuItem>
-              ))
-            )}
-          </BlueTextField>
-
-          <BlueTextField
-            select
             label="Status"
             value={status}
             onChange={(e) => setStatus(e.target.value)}
@@ -267,4 +239,4 @@ const EmployeeDataInsert = () => {
   );
 };
 
-export default EmployeeDataInsert;
+export default GeneralManagerDataNameInsert;

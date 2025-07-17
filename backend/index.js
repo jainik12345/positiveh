@@ -67,6 +67,10 @@ const hotelInquiry = require("./routes/hotel/hotelInquiry");
 const EmployeeDataName = require("./routes/EmployeeData/EmployeeDataName");
 const employeeDesignation = require("./routes/EmployeeData/employeeDesignation");
 
+/**----------------------------------------------------General Manager ----------------------------------------------------*/
+
+const generalManagerDataName = require("./routes/generalManager/generalManagerDataName");
+
 app.use("/admin", admin);
 app.use("/privatePolicy", privatePolicy);
 app.use("/termsConditions", termsConditions);
@@ -105,6 +109,10 @@ app.use("/hotelInquiry", hotelInquiry);
 
 app.use("/employeeDataName", EmployeeDataName);
 app.use("/employeeDesignation", employeeDesignation);
+
+/**----------------------------------------------------General Manager ----------------------------------------------------*/
+
+app.use("/generalManagerDataName", generalManagerDataName);
 
 // Static Images
 /**--------------------------------------------------Home-------------------------------------------------- */
@@ -185,6 +193,18 @@ app.use(
   "/Images/EmployeeDataImages/EmployeeDesignation",
   express.static(
     path.join(__dirname, "Images/EmployeeDataImages/EmployeeDesignation")
+  )
+);
+
+/**----------------------------------------------------General Manager ----------------------------------------------------*/
+
+app.use(
+  "/Images/GeneralManagerDataImages/GeneralManagerDataName",
+  express.static(
+    path.join(
+      __dirname,
+      "Images/GeneralManagerDataImages/GeneralManagerDataName"
+    )
   )
 );
 

@@ -10,6 +10,7 @@ import { IoIosHome, IoIosContact } from "react-icons/io";
 import { FaHotel } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa";
 import { FaPersonChalkboard } from "react-icons/fa6";
+import { FcManager } from "react-icons/fc";
 
 const menuItems = [
   {
@@ -76,6 +77,15 @@ const menuItems = [
     children: [
       { path: "/employee-designation", name: "Employee Designation" },
       { path: "/employee-data", name: "Employee Data Name" },
+    ],
+  },
+
+  {
+    path: "/general-manager",
+    name: "General Manager",
+    icon: <FcManager />,
+    children: [
+      { path: "/general-manager-data-name", name: "General Manager Data Name" },
     ],
   },
 

@@ -28,17 +28,16 @@ const BlueTextField = styled(TextField)({
   },
 });
 
-const EmployeeDataUpdate = () => {
+const GeneralManagerDataNameUpdate = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const rowData = location.state?.employee;
+  const rowData = location.state?.generalManager;
 
   const [formData, setFormData] = useState({
     hotel_id: "",
     name: "",
     email_id: "",
     address: "",
-    designation: "",
     status: "",
     id: "",
   });
@@ -49,18 +48,10 @@ const EmployeeDataUpdate = () => {
   const [hotelOptions, setHotelOptions] = useState([]);
   const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState(false);
-  const [designationOptions, setDesignationOptions] = useState([]);
 
   useEffect(() => {
     axios.get(`${BE_URL}/hotelName`).then((res) => {
       setHotelOptions(res.data.data);
-    });
-
-    axios.get(`${BE_URL}/employeeDesignation`).then((res) => {
-      if (res.data.status === "success") {
-        const filtered = res.data.data.filter((d) => d.deleted_at === 0);
-        setDesignationOptions(filtered);
-      }
     });
 
     if (rowData) {
@@ -69,7 +60,6 @@ const EmployeeDataUpdate = () => {
         name: rowData.name || "",
         email_id: rowData.email_id || "",
         address: rowData.address || "",
-        designation: rowData.designation || "",
         status:
           rowData.status?.toLowerCase() === "inactive" ? "Inactive" : "Active",
         id: rowData.id,
@@ -78,15 +68,14 @@ const EmployeeDataUpdate = () => {
       if (rowData.image) {
         const imageURL = rowData.image.startsWith("http")
           ? rowData.image
-          : `${BE_URL}/Images/EmployeeDataImages/EmployeeDataName/${rowData.image}`;
+          : `${BE_URL}/Images/GeneralManagerDataImages/GeneralManagerDataName/${rowData.image}`;
 
         const imageFileName = rowData.image.split("/").pop();
-
         setExistingImage(imageFileName);
         setPreviewImage({ url: imageURL, name: imageFileName });
       }
     } else {
-      navigate("/employee-data");
+      navigate("/general-manager-data-name");
     }
   }, [rowData, navigate]);
 
@@ -118,7 +107,6 @@ const EmployeeDataUpdate = () => {
       name: formData.name.trim() === "",
       email_id: formData.email_id.trim() === "",
       address: formData.address.trim() === "",
-      designation: !formData.designation,
       status: formData.status === "",
       image: !previewImage,
     };
@@ -132,7 +120,6 @@ const EmployeeDataUpdate = () => {
     data.append("name", formData.name);
     data.append("email_id", formData.email_id);
     data.append("address", formData.address);
-    data.append("designation", formData.designation);
     data.append("status", formData.status);
 
     if (existingImage) data.append("existingImage", existingImage);
@@ -140,7 +127,7 @@ const EmployeeDataUpdate = () => {
 
     try {
       const res = await axios.put(
-        `${BE_URL}/employeeDataName/${formData.id}`,
+        `${BE_URL}/generalManagerDataName/${formData.id}`,
         data,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
@@ -148,7 +135,7 @@ const EmployeeDataUpdate = () => {
         setSuccess(true);
         setTimeout(() => {
           setSuccess(false);
-          navigate("/employee-data");
+          navigate("/general-manager-data-name");
         }, 2500);
       }
     } catch (err) {
@@ -180,11 +167,10 @@ const EmployeeDataUpdate = () => {
             marginBottom: "2.5rem",
           }}
         >
-          Update Employee Data
+          Update General Manager Data
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-8">
-          {/* Hotel Select */}
           <BlueTextField
             select
             label="Select Hotel"
@@ -202,7 +188,6 @@ const EmployeeDataUpdate = () => {
             ))}
           </BlueTextField>
 
-          {/* Name */}
           <BlueTextField
             label="Name"
             name="name"
@@ -213,7 +198,6 @@ const EmployeeDataUpdate = () => {
             helperText={errors.name ? "Please enter a name" : ""}
           />
 
-          {/* Email ID */}
           <BlueTextField
             label="Email ID"
             name="email_id"
@@ -224,7 +208,6 @@ const EmployeeDataUpdate = () => {
             helperText={errors.email_id ? "Please enter email ID" : ""}
           />
 
-          {/* Address */}
           <BlueTextField
             label="Address"
             name="address"
@@ -235,26 +218,6 @@ const EmployeeDataUpdate = () => {
             helperText={errors.address ? "Please enter address" : ""}
           />
 
-          {/* Designation */}
-
-          <BlueTextField
-            select
-            label="Designation"
-            name="designation"
-            value={formData.designation}
-            onChange={handleInputChange}
-            fullWidth
-            error={errors.designation}
-            helperText={errors.designation ? "Please select designation" : ""}
-          >
-            {designationOptions.map((d) => (
-              <MenuItem key={d.id} value={d.id}>
-                {d.name}
-              </MenuItem>
-            ))}
-          </BlueTextField>
-
-          {/* Status */}
           <BlueTextField
             select
             label="Status"
@@ -269,7 +232,6 @@ const EmployeeDataUpdate = () => {
             <MenuItem value="Inactive">Inactive</MenuItem>
           </BlueTextField>
 
-          {/* Image Upload */}
           <div>
             <label className="block font-medium mb-2 text-white">
               Upload Image <span className="text-red-500">*</span>
@@ -301,10 +263,9 @@ const EmployeeDataUpdate = () => {
             )}
           </div>
 
-          {/* Buttons */}
           <div className="flex justify-end gap-4">
             <Update type="submit" />
-            <Cancel onClick={() => navigate("/employee-data")} />
+            <Cancel onClick={() => navigate("/general-manager-data-name")} />
           </div>
         </form>
       </div>
@@ -314,4 +275,4 @@ const EmployeeDataUpdate = () => {
   );
 };
 
-export default EmployeeDataUpdate;
+export default GeneralManagerDataNameUpdate;

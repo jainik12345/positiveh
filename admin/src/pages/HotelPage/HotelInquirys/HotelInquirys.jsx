@@ -21,6 +21,7 @@ import { FaReply, FaTrash, FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Trace from "../../../components/Buttons/Trace";
 import axios from "axios";
+import * as XLSX from "xlsx";
 import BE_URL from "../../../config";
 
 const fieldLabels = [
@@ -42,6 +43,8 @@ function formatDate(dateString) {
 const HotelInquirys = () => {
   const [page, setPage] = useState(1);
   const [data, setData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedDate, setSelectedDate] = useState("");
   const [selectedRow, setSelectedRow] = useState(null);
   const [replyMessage, setReplyMessage] = useState("");
   const [sending, setSending] = useState(false);
@@ -50,6 +53,7 @@ const HotelInquirys = () => {
   const [showDeleteSuccess, setShowDeleteSuccess] = useState(false);
   const [showViewPopup, setShowViewPopup] = useState(false);
   const [viewRow, setViewRow] = useState(null);
+  const [downloadError, setDownloadError] = useState("");
   const navigate = useNavigate();
   const rowsPerPage = 10;
 
@@ -67,10 +71,45 @@ const HotelInquirys = () => {
     fetchData();
   }, []);
 
-  const displayedRows = data.slice(
+  const filteredData = data.filter((row) => {
+    const search = searchTerm.toLowerCase();
+    return (
+      row.name?.toLowerCase().includes(search) ||
+      row.email_id?.toLowerCase().includes(search) ||
+      row.hotel_name?.toLowerCase().includes(search)
+    );
+  });
+
+  const displayedRows = filteredData.slice(
     (page - 1) * rowsPerPage,
     page * rowsPerPage
   );
+
+  const handleDownloadExcel = () => {
+    if (!selectedDate) {
+      setDownloadError("Please select a date to download.");
+      setTimeout(() => setDownloadError(""), 5000);
+      return;
+    }
+
+    const matched = data.filter(
+      (row) => formatDate(row.created_at) === formatDate(selectedDate)
+    );
+
+    if (!matched.length) {
+      setDownloadError("No data found for selected date.");
+      setTimeout(() => setDownloadError(""), 5000);
+      return;
+    }
+
+    const worksheet = XLSX.utils.json_to_sheet(matched);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Inquiries");
+    XLSX.writeFile(
+      workbook,
+      `Hotel_Inquiries_${formatDate(selectedDate)}.xlsx`
+    );
+  };
 
   const handleReplyClick = (row) => {
     setSelectedRow(row);
@@ -142,6 +181,11 @@ const HotelInquirys = () => {
         background: "linear-gradient(120deg, #07090c 80%, #0a183d 100%)",
       }}
     >
+      {downloadError && (
+        <div className="fixed top-6 left-1/2 transform -translate-x-1/2 bg-red-600 text-white px-6 py-3 rounded-lg shadow-lg z-50">
+          {downloadError}
+        </div>
+      )}
       <div
         className="w-full max-w-screen-xl rounded-2xl p-7"
         style={{
@@ -152,6 +196,54 @@ const HotelInquirys = () => {
       >
         <div className="flex justify-between items-center mb-7">
           <Trace onClick={() => navigate("/hotel-inquirys/trace")} />
+
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+            <TextField
+              variant="outlined"
+              placeholder="Name, Email or Hotel Search"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              size="small"
+              fullWidth
+              sx={{
+                "& .MuiInputBase-input::placeholder": {
+                  color: "#ffffff",
+                  opacity: 0.8,
+                },
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: "#ffffff",
+                  },
+                  "&:hover fieldset": {
+                    borderColor: "#ffffff",
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "#ffffff",
+                  },
+                },
+                input: {
+                  color: "#ffffff",
+                },
+              }}
+            />
+
+            <div className="flex items-center gap-3">
+              <input
+                type="date"
+                value={selectedDate}
+                onChange={(e) => setSelectedDate(e.target.value)}
+                className="text-white bg-[#1f2937] border border-gray-600 rounded-md px-3 py-2"
+              />
+              <Button
+                variant="contained"
+                color="success"
+                className="w-45"
+                onClick={handleDownloadExcel}
+              >
+                Download Excel
+              </Button>
+            </div>
+          </div>
         </div>
 
         <div className="h-[2px] mb-8 w-full rounded bg-gradient-to-r from-[#263859]/70 via-[#101a2d]/90 to-[#263859]/70" />

@@ -174,17 +174,6 @@ exports.getTrashedByHotelId = (req, res) => {
 };
 
 // Get employee by ID
-// exports.getEmployeeById = (req, res) => {
-//   const { hotelId } = req.params;
-//   db.query(
-//     "SELECT * FROM employee_data WHERE hotel_id = ? AND deleted_at = 0",
-//     [hotelId],
-//     (err, results) => {
-//       if (err) return res.status(500).json({ error: err.message });
-//       res.status(200).json({ status: "success", data: results });
-//     }
-//   );
-// };
 
 exports.getEmployeeById = (req, res) => {
   const { id } = req.params;
@@ -200,43 +189,6 @@ exports.getEmployeeById = (req, res) => {
 };
 
 // Send OTP
-// exports.sendEmployeeOtp = (req, res) => {
-//   const { email } = req.body;
-//   const otp = Math.floor(100000 + Math.random() * 900000).toString();
-//   const expiresAt = new Date(Date.now() + 10 * 60 * 1000);
-
-//   db.query(
-//     "UPDATE employee_data SET otp = ?, otp_expires = ? WHERE email_id = ?",
-//     [otp, expiresAt, email],
-//     (err, result) => {
-//       if (err) return res.status(500).json({ message: "Database error" });
-
-//       const transporter = nodemailer.createTransport({
-//         service: "gmail",
-//         auth: {
-//           user: process.env.EMAIL_USER,
-//           pass: process.env.EMAIL_PASS,
-//         },
-//       });
-
-//       const mailOptions = {
-//         from: process.env.EMAIL_USER,
-//         to: email,
-//         subject: "OTP Employee Data Name for Password Reset",
-//         html: `<h3>Your OTP is: <b>${otp}</b></h3>`,
-//       };
-
-//       transporter.sendMail(mailOptions, (err, info) => {
-//         if (err)
-//           return res
-//             .status(500)
-//             .json({ message: "Email send error", error: err });
-//         return res.status(200).json({ message: "OTP sent successfully" });
-//       });
-//     }
-//   );
-// };
-
 exports.sendEmployeeOtp = (req, res) => {
   const { email } = req.body;
 
