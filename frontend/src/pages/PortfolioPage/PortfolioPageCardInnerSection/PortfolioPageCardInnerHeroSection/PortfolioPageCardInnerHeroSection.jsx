@@ -24,11 +24,76 @@ const PortfolioPageCardInnerHeroSection = () => {
       .replace(/\s+/g, "-")
       .replace(/[^\w-]/g, "");
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const hotelRes = await axios.get(`${BE_URL}/hotelName`);
-        const hotels = hotelRes.data.data;
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const hotelRes = await axios.get(`${BE_URL}/hotelName`);
+  //       const hotels = hotelRes.data.data;
+
+  //       const matchedHotel = hotels.find(
+  //         (hotel) => slugify(hotel.name) === hotelName
+  //       );
+
+  //       if (!matchedHotel) {
+  //         console.warn("Hotel not found for slug:", hotelName);
+  //         return;
+  //       }
+  //       if (hotelRes.status === 200 && hotels.length > 0) {
+
+  //         const tmp = JSON.parse(hotels);
+  //         setHotelData({
+  //         id: matchedHotel.id,
+  //         displayName: matchedHotel.name,
+  //       })
+
+  //       } else {
+          
+  //       }
+  //       setHotelData({
+  //         id: matchedHotel.id,
+  //         displayName: matchedHotel.name,
+  //       });
+
+  //       const overviewRes = await axios.get(
+  //         `${BE_URL}/hotelOverview/hotel/${matchedHotel.id}`
+  //       );
+
+  //       const overview = overviewRes?.data?.data?.[0];
+
+  //       if (overview) {
+  //         const imageUrls = overview.images.map(
+  //           (img) => `${BE_URL}/Images/HotelImages/HotelOverview/${img}`
+  //         );
+
+  //         setOverviewData({
+  //           description: overview.description,
+  //           images: imageUrls,
+  //         });
+  //       } else {
+  //         setOverviewData({
+  //           description: "No overview available.",
+  //           images: [],
+  //         });
+  //       }
+  //     } catch (err) {
+  //       console.error("Error fetching hotel or overview data:", err);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, [hotelName]);
+
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const hotelRes = await axios.get(`${BE_URL}/hotelName`);
+      let hotels = hotelRes.data.data;
+
+      if (hotelRes.status === 200 && hotels.length > 0) {
+        // Check if hotels is a string and parse if necessary
+        if (typeof hotels === "string") {
+          hotels = JSON.parse(hotels);
+        }
 
         const matchedHotel = hotels.find(
           (hotel) => slugify(hotel.name) === hotelName
@@ -65,13 +130,17 @@ const PortfolioPageCardInnerHeroSection = () => {
             images: [],
           });
         }
-      } catch (err) {
-        console.error("Error fetching hotel or overview data:", err);
+      } else {
+        console.warn("No hotels found in API response");
       }
-    };
+    } catch (err) {
+      console.error("Error fetching hotel or overview data:", err);
+    }
+  };
 
-    fetchData();
-  }, [hotelName]);
+  fetchData();
+}, [hotelName]);
+
 
   useEffect(() => {
     const checkOverflow = () => {
