@@ -335,7 +335,7 @@ const LoginPage = () => {
           Swal.fire({
             icon: "success",
             title: "Admin Login Successful",
-            text: "Welcome to Compass Tourism!",
+            text: "Welcome to PostiveH !",
           });
 
           navigate("/home-page");
