@@ -80,17 +80,26 @@ const Footer = () => {
             Contact Us
           </h3>
           <div className="space-y-3 text-sm text-gray-300">
-            <div className="flex items-center gap-3">
+            {/* <div className="flex items-center gap-3">
               <FaPhoneAlt className="text-white" />
               <span>+91 12345-67890</span>
-            </div>
+            </div> */}
             <div className="flex items-center gap-3">
-              <FaEnvelope className="text-white" />
-              <span>example@gmail.com</span>
+              {/* <FaEnvelope className="text-white" />
+              <span>Ken@positiveh.com</span> */}
+              <a
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=Ken@positiveh.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white flex gap-3"
+              >
+                <FaEnvelope size={20} />
+                Ken@positiveh.com
+              </a>
             </div>
             <div className="flex items-center gap-3">
               <FaMapMarkerAlt className="text-white" />
-              <span>123 Main Street, City, India</span>
+              <span>110 Meeting Place Drive, Fayetteville, GA 30214</span>
             </div>
           </div>
 

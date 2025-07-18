@@ -101,7 +101,7 @@ const CareerPageOpportunitiesSection = () => {
                 <h3 className="text-lg font-semibold text-gray-800 mb-1">
                   {item.heading}
                 </h3>
-                <p className="text-gray-600 text-sm leading-relaxed line-clamp-4">
+                <p className="text-gray-600 text-justify text-sm leading-relaxed line-clamp-4">
                   {item.description}
                 </p>
               </motion.div>

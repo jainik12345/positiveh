@@ -40,6 +40,7 @@ const Header = () => {
     { Name: "Portfolio", Path: "/portfolio" },
     { Name: "Careers", Path: "/careers" },
     { Name: "Contact Us", Path: "/contact-us" },
+    { Name: "Training", Path: "/" },
   ];
 
   const headerClass = ` w-full z-30 transition-all duration-500  ${
@@ -58,22 +59,22 @@ const Header = () => {
             className={`flex md:gap-10 gap-5 justify-end md:px-10 px-2 max-w-screen-2xl mx-auto `}
           >
             <a
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=example@gmail.com"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=Ken@positiveh.com"
               target="_blank"
               rel="noopener noreferrer"
               className="text-black font-semibold text-xs md:text-base flex justify-end items-center gap-3 py-1"
             >
               <IoMdMail size={20} />
-              example@gmail.com
+              Ken@positiveh.com
             </a>
 
-            <a
+            {/* <a
               href="https://wa.me/+919099705029"
               className="text-black font-semibold text-xs md:text-base flex items-center gap-1"
             >
               <FaPhoneAlt size={16} />
               +919099705029
-            </a>
+            </a> */}
           </div>
         </div>
 
